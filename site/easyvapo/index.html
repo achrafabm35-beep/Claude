@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EasyVapo — le vaporisateur de parfum de poche rechargeable. 5 ml, étanche, rechargeable en 3 secondes sur 99% des flacons. Votre parfum, partout." />
+  <title>EasyVapo — Votre parfum, partout.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo">easy<span>vapo</span></a>
+    <nav class="nav__links">
+      <a href="#how">Comment ça marche</a>
+      <a href="#features">Atouts</a>
+      <a href="#colors">Couleurs</a>
+    </nav>
+    <a href="#buy" class="btn btn--pill nav__cta">Commander</a>
+  </header>
+
+  <main id="top">
+    <!-- HERO + PINNED PRODUCT REVEAL -->
+    <section class="stage" id="stage">
+      <div class="stage__glow" aria-hidden="true"></div>
+
+      <div class="stage__product product-float">
+        <!-- ===== PRODUIT SVG (bouchon, gicleur, corps, niveau) ===== -->
+        <svg id="vapo" viewBox="0 0 220 470" role="img" aria-label="Vaporisateur de parfum EasyVapo">
+          <defs>
+            <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop class="m1" offset="0" />
+              <stop class="m2" offset="0.45" />
+              <stop class="m3" offset="1" />
+            </linearGradient>
+            <linearGradient id="capGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop class="m1" offset="0" />
+              <stop class="m2" offset="0.45" />
+              <stop class="m3" offset="1" />
+            </linearGradient>
+            <linearGradient id="liquidGrad" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0" stop-color="#caa15f" />
+              <stop offset="1" stop-color="#f4d79b" />
+            </linearGradient>
+            <radialGradient id="shine" cx="0.35" cy="0.25" r="0.8">
+              <stop offset="0" stop-color="#ffffff" stop-opacity="0.55" />
+              <stop offset="0.5" stop-color="#ffffff" stop-opacity="0" />
+            </radialGradient>
+            <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" />
+            </filter>
+          </defs>
+
+          <!-- ombre portée douce -->
+          <ellipse id="shadow" cx="110" cy="452" rx="62" ry="12" fill="#000" opacity="0.45" filter="url(#soft)" />
+
+          <!-- SPRAY (caché au départ) -->
+          <g class="spray" opacity="0">
+            <circle cx="110" cy="92" r="4" />
+            <circle cx="96"  cy="80" r="3" />
+            <circle cx="124" cy="82" r="3" />
+            <circle cx="110" cy="68" r="2.5" />
+            <circle cx="86"  cy="92" r="2.5" />
+            <circle cx="134" cy="94" r="2.5" />
+            <circle cx="110" cy="54" r="2" />
+          </g>
+
+          <!-- GICLEUR / actionneur (révélé quand le bouchon part) -->
+          <g id="nozzle">
+            <rect x="98" y="118" width="24" height="26" rx="9" fill="#1c1b22" />
+            <rect x="104" y="106" width="12" height="20" rx="6" fill="#2a2932" />
+            <rect x="106" y="100" width="8" height="10" rx="4" fill="#3a3942" />
+          </g>
+
+          <!-- CORPS -->
+          <g id="body">
+            <rect x="55" y="150" width="110" height="290" rx="55" fill="url(#bodyGrad)" />
+            <!-- collier -->
+            <rect x="78" y="140" width="64" height="26" rx="13" fill="url(#bodyGrad)" />
+            <rect x="78" y="140" width="64" height="26" rx="13" fill="#000" opacity="0.12" />
+            <!-- reflet -->
+            <rect x="55" y="150" width="110" height="290" rx="55" fill="url(#shine)" />
+            <!-- fenêtre de niveau -->
+            <rect x="100" y="205" width="20" height="200" rx="10" fill="#0a0a0c" opacity="0.55" />
+            <rect id="liquid" x="103" y="320" width="14" height="82" rx="7" fill="url(#liquidGrad)" />
+            <rect x="100" y="205" width="20" height="200" rx="10" fill="none" stroke="#ffffff" stroke-opacity="0.15" />
+          </g>
+
+          <!-- BOUCHON (s'enlève au scroll) -->
+          <g id="cap">
+            <rect x="55" y="58" width="110" height="118" rx="52" fill="url(#capGrad)" />
+            <rect x="55" y="58" width="110" height="118" rx="52" fill="url(#shine)" />
+            <rect x="64" y="150" width="92" height="18" rx="9" fill="#000" opacity="0.18" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- textes synchronisés au scroll -->
+      <div class="stage__copy">
+        <h1 class="step is-active" data-step="0">
+          Votre parfum.<br /><span class="accent">Partout.</span>
+        </h1>
+        <h2 class="step" data-step="1">Retirez le bouchon.</h2>
+        <h2 class="step" data-step="2">Une vaporisation suffit.</h2>
+        <h2 class="step" data-step="3">Rechargez en 3&nbsp;secondes.</h2>
+      </div>
+
+      <div class="stage__hint" data-step="0">défiler pour découvrir ↓</div>
+    </section>
+
+    <!-- INTRO TEXT -->
+    <section class="intro">
+      <p class="eyebrow">Le vaporisateur de poche rechargeable</p>
+      <p class="intro__text reveal">
+        Emportez votre fragrance préférée sans trimballer le flacon.
+        <span class="accent">5&nbsp;ml</span> qui se rechargent sur 99&nbsp;% des
+        flacons, en une pression. Discret, étanche, toujours prêt.
+      </p>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how" id="how">
+      <p class="eyebrow center">Comment ça marche</p>
+      <h2 class="section-title center reveal">Trois gestes, c'est tout.</h2>
+      <div class="steps">
+        <article class="stepcard reveal">
+          <span class="stepcard__num">01</span>
+          <h3>Posez</h3>
+          <p>Placez l'EasyVapo sur le diffuseur de votre flacon de parfum.</p>
+        </article>
+        <article class="stepcard reveal">
+          <span class="stepcard__num">02</span>
+          <h3>Pompez</h3>
+          <p>Quelques pressions : la valve brevetée GENIE-S aspire le parfum. Compatible 99&nbsp;% des flacons.</p>
+        </article>
+        <article class="stepcard reveal">
+          <span class="stepcard__num">03</span>
+          <h3>Emportez</h3>
+          <p>L'indicateur de niveau vous montre la réserve. Glissez-le dans votre poche.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+      <p class="eyebrow center">Pensé dans le détail</p>
+      <h2 class="section-title center reveal">Petit format,<br />grandes attentions.</h2>
+      <div class="grid">
+        <div class="feature reveal"><span class="feature__ico">⟳</span><h3>Rechargeable</h3><p>Des centaines de recharges. Fini les échantillons jetables.</p></div>
+        <div class="feature reveal"><span class="feature__ico">◷</span><h3>En 3 secondes</h3><p>Valve GENIE-S brevetée, compatible avec 99&nbsp;% des flacons.</p></div>
+        <div class="feature reveal"><span class="feature__ico">◎</span><h3>Niveau visible</h3><p>Une fenêtre indique précisément la quantité restante.</p></div>
+        <div class="feature reveal"><span class="feature__ico">◆</span><h3>Étanche</h3><p>Joints hermétiques : aucune fuite dans le sac ou la poche.</p></div>
+        <div class="feature reveal"><span class="feature__ico">◗</span><h3>Format poche</h3><p>5 ml, ultra-léger. Pantalon, veste, trousse : il disparaît.</p></div>
+        <div class="feature reveal"><span class="feature__ico">✦</span><h3>Finition premium</h3><p>Coque métallisée, lignes arrondies, toucher satiné.</p></div>
+      </div>
+    </section>
+
+    <!-- COLORS -->
+    <section class="colors" id="colors">
+      <div class="colors__visual">
+        <div class="colors__glow" aria-hidden="true"></div>
+        <svg viewBox="0 0 220 320" class="mini-vapo" id="miniVapo" aria-hidden="true">
+          <defs>
+            <linearGradient id="bodyGrad2" x1="0" y1="0" x2="1" y2="0">
+              <stop class="m1" offset="0" /><stop class="m2" offset="0.45" /><stop class="m3" offset="1" />
+            </linearGradient>
+            <radialGradient id="shine2" cx="0.35" cy="0.2" r="0.8">
+              <stop offset="0" stop-color="#fff" stop-opacity="0.5" /><stop offset="0.5" stop-color="#fff" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <rect x="55" y="80" width="110" height="118" rx="52" fill="url(#bodyGrad2)" />
+          <rect x="55" y="80" width="110" height="118" rx="52" fill="url(#shine2)" />
+          <rect x="55" y="120" width="110" height="180" rx="55" fill="url(#bodyGrad2)" />
+          <rect x="55" y="120" width="110" height="180" rx="55" fill="url(#shine2)" />
+          <rect x="100" y="165" width="20" height="115" rx="10" fill="#0a0a0c" opacity="0.5" />
+        </svg>
+      </div>
+      <div class="colors__panel">
+        <p class="eyebrow">Choisissez la vôtre</p>
+        <h2 class="section-title reveal">Cinq teintes,<br />une même rondeur.</h2>
+        <div class="swatches" role="listbox" aria-label="Couleurs">
+          <button class="swatch is-active" data-name="Titane"     style="--s:#b9bcc4" data-c1="#e7eaef" data-c2="#a9adb6" data-c3="#6f737c"></button>
+          <button class="swatch" data-name="Champagne"  style="--s:#e7c98f" data-c1="#f6e3b6" data-c2="#d9b779" data-c3="#9c7c44"></button>
+          <button class="swatch" data-name="Noir mat"   style="--s:#2c2c33" data-c1="#43434c" data-c2="#26262d" data-c3="#101014"></button>
+          <button class="swatch" data-name="Rose poudré" style="--s:#e9b8b0" data-c1="#f7d8d2" data-c2="#e2a59b" data-c3="#a86a61"></button>
+          <button class="swatch" data-name="Bleu nuit"  style="--s:#5a6f9c" data-c1="#8ba0c8" data-c2="#4f6493" data-c3="#2b3556"></button>
+        </div>
+        <p class="swatch-name">Teinte : <strong id="colorName">Titane</strong></p>
+      </div>
+    </section>
+
+    <!-- SPECS -->
+    <section class="specs">
+      <div class="spec reveal"><span class="spec__val">5 ml</span><span class="spec__key">Capacité</span></div>
+      <div class="spec reveal"><span class="spec__val">99 %</span><span class="spec__key">des flacons compatibles</span></div>
+      <div class="spec reveal"><span class="spec__val">3 s</span><span class="spec__key">pour recharger</span></div>
+      <div class="spec reveal"><span class="spec__val">0</span><span class="spec__key">fuite garantie</span></div>
+    </section>
+
+    <!-- BUY / CTA -->
+    <section class="buy" id="buy">
+      <div class="buy__card reveal">
+        <p class="eyebrow center">Édition rechargeable</p>
+        <h2 class="buy__title">EasyVapo</h2>
+        <p class="buy__price"><span>12,90&nbsp;€</span> <small>livraison offerte</small></p>
+        <p class="buy__desc">Le vaporisateur de poche 5 ml, rechargeable à l'infini sur votre flacon préféré.</p>
+        <a href="#" class="btn btn--pill btn--lg btn--accent">Ajouter au panier</a>
+        <p class="buy__rea">Satisfait ou remboursé 30 jours · Paiement sécurisé</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="footer__logo">easy<span>vapo</span></span>
+    <p>Votre parfum, partout.</p>
+    <div class="footer__links">
+      <a href="#how">Comment ça marche</a>
+      <a href="#features">Atouts</a>
+      <a href="#buy">Commander</a>
+    </div>
+    <small>© 2026 EasyVapo — page démo. Produit inspiré de l'EasyVapo d'easyCosmetic.</small>
+  </footer>
+
+  <script src="../assets/gsap.min.js"></script>
+  <script src="../assets/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
