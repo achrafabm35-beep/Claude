@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AS — Prêt-à-porter homme & femme, accessoires et art de vivre. Une maison contemporaine où l'essentiel devient signature." />
+  <title>AS — Maison de prêt-à-porter & art de vivre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__mark">
+      <span class="loader__letters">AS</span>
+      <span class="loader__count" id="loaderCount">0</span>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo" aria-label="AS — accueil">AS</a>
+    <nav class="nav__links" aria-label="Navigation principale">
+      <a href="#femme">Femme</a>
+      <a href="#homme">Homme</a>
+      <a href="#accessoires">Accessoires</a>
+      <a href="#home">Maison</a>
+    </nav>
+    <button class="nav__cta" type="button">Boutique</button>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" data-parallax="0.25"></div>
+      <div class="hero__inner">
+        <p class="hero__eyebrow" data-anim="eyebrow">Maison fondée à Paris</p>
+        <h1 class="hero__title">
+          <span class="line"><span class="word">L'essentiel,</span></span>
+          <span class="line"><span class="word">devenu</span> <span class="word word--italic">signature.</span></span>
+        </h1>
+        <p class="hero__lead" data-anim="lead">
+          Prêt-à-porter homme &amp; femme, accessoires et objets pour la maison.
+          Une garde-robe pensée pour durer, dessinée pour vivre.
+        </p>
+        <div class="hero__actions" data-anim="actions">
+          <a href="#collections" class="btn btn--solid">Découvrir les collections</a>
+          <a href="#story" class="btn btn--ghost">Notre histoire</a>
+        </div>
+      </div>
+      <div class="hero__scroll" data-anim="actions">
+        <span>Défiler</span>
+        <span class="hero__scroll-line"></span>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marquee">
+        <span>Prêt-à-porter</span><span class="dot">•</span>
+        <span>Accessoires</span><span class="dot">•</span>
+        <span>Art de vivre</span><span class="dot">•</span>
+        <span>Savoir-faire</span><span class="dot">•</span>
+        <span>Prêt-à-porter</span><span class="dot">•</span>
+        <span>Accessoires</span><span class="dot">•</span>
+        <span>Art de vivre</span><span class="dot">•</span>
+        <span>Savoir-faire</span><span class="dot">•</span>
+      </div>
+    </section>
+
+    <!-- STORY / INTRO -->
+    <section class="story" id="story">
+      <p class="story__index">01 — Maison</p>
+      <h2 class="story__text reveal-lines">
+        AS habille les gestes du quotidien. Des matières nobles, des coupes
+        franches, une palette intemporelle — pour l'homme, la femme et le lieu
+        que l'on appelle chez soi.
+      </h2>
+    </section>
+
+    <!-- COLLECTIONS -->
+    <section class="collections" id="collections">
+      <header class="collections__head">
+        <p class="section-index">02 — Collections</p>
+        <h2 class="section-title">Quatre univers,<br />une même exigence.</h2>
+      </header>
+
+      <div class="grid">
+        <article class="card" id="femme" data-card>
+          <div class="card__media card__media--femme">
+            <span class="card__tag">01</span>
+          </div>
+          <div class="card__body">
+            <h3>Femme</h3>
+            <p>Silhouettes fluides, tailoring précis. La féminité sans artifice.</p>
+            <a href="#" class="card__link">Explorer<span>&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="card" id="homme" data-card>
+          <div class="card__media card__media--homme">
+            <span class="card__tag">02</span>
+          </div>
+          <div class="card__body">
+            <h3>Homme</h3>
+            <p>Vestiaire structuré, matières durables. Le classique réinventé.</p>
+            <a href="#" class="card__link">Explorer<span>&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="card" id="accessoires" data-card>
+          <div class="card__media card__media--acc">
+            <span class="card__tag">03</span>
+          </div>
+          <div class="card__body">
+            <h3>Accessoires</h3>
+            <p>Maroquinerie, foulards, bijoux. Le détail qui signe l'allure.</p>
+            <a href="#" class="card__link">Explorer<span>&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="card" id="home" data-card>
+          <div class="card__media card__media--home">
+            <span class="card__tag">04</span>
+          </div>
+          <div class="card__body">
+            <h3>Maison</h3>
+            <p>Textile, céramique, lumière. L'art de vivre au quotidien.</p>
+            <a href="#" class="card__link">Explorer<span>&rarr;</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EDITORIAL PARALLAX -->
+    <section class="editorial">
+      <div class="editorial__media" data-parallax="0.18"></div>
+      <div class="editorial__panel">
+        <p class="section-index">03 — Édition</p>
+        <h2 class="editorial__title reveal-lines">
+          La collection<br />Hiver 2026.
+        </h2>
+        <p class="editorial__text">
+          Une étude de la lumière froide et des matières chaudes. Laine bouillie,
+          cachemire, cuir patiné — pensés pour traverser les saisons.
+        </p>
+        <a href="#" class="btn btn--solid">Voir le lookbook</a>
+      </div>
+    </section>
+
+    <!-- HORIZONTAL SHOWCASE -->
+    <section class="showcase" id="showcase">
+      <div class="showcase__track" id="showcaseTrack">
+        <div class="showcase__intro panel">
+          <p class="section-index">04 — Pièces</p>
+          <h2 class="section-title">Sélection<br />de la maison.</h2>
+          <p class="showcase__hint">Faites défiler &rarr;</p>
+        </div>
+        <article class="panel product">
+          <div class="product__media product__media--1"></div>
+          <div class="product__info"><span>Manteau Oversize</span><span>295 €</span></div>
+        </article>
+        <article class="panel product">
+          <div class="product__media product__media--2"></div>
+          <div class="product__info"><span>Sac Structuré</span><span>240 €</span></div>
+        </article>
+        <article class="panel product">
+          <div class="product__media product__media--3"></div>
+          <div class="product__info"><span>Maille Côtelée</span><span>150 €</span></div>
+        </article>
+        <article class="panel product">
+          <div class="product__media product__media--4"></div>
+          <div class="product__info"><span>Plaid Laine</span><span>180 €</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- STATS / VALUES -->
+    <section class="values">
+      <div class="value" data-card>
+        <span class="value__num" data-count="48">0</span>
+        <p>boutiques dans le monde</p>
+      </div>
+      <div class="value" data-card>
+        <span class="value__num" data-count="100">0</span>
+        <p>% matières tracées</p>
+      </div>
+      <div class="value" data-card>
+        <span class="value__num" data-count="12">0</span>
+        <p>ateliers partenaires</p>
+      </div>
+      <div class="value" data-card>
+        <span class="value__num" data-count="1998">0</span>
+        <p>maison depuis</p>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter" id="newsletter">
+      <p class="section-index">05 — Rejoindre</p>
+      <h2 class="newsletter__title reveal-lines">
+        Entrez dans le cercle AS.
+      </h2>
+      <form class="newsletter__form" onsubmit="return false;">
+        <input type="email" placeholder="Votre adresse e-mail" aria-label="Adresse e-mail" required />
+        <button type="submit" class="btn btn--solid">S'inscrire</button>
+      </form>
+      <p class="newsletter__note">Avant-premières, éditions limitées et invitations privées.</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">AS</span>
+      <nav class="footer__cols">
+        <div>
+          <h4>Maison</h4>
+          <a href="#">Histoire</a><a href="#">Savoir-faire</a><a href="#">Engagements</a>
+        </div>
+        <div>
+          <h4>Collections</h4>
+          <a href="#femme">Femme</a><a href="#homme">Homme</a><a href="#accessoires">Accessoires</a><a href="#home">Maison</a>
+        </div>
+        <div>
+          <h4>Service</h4>
+          <a href="#">Contact</a><a href="#">Livraison</a><a href="#">Retours</a>
+        </div>
+        <div>
+          <h4>Suivre</h4>
+          <a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">Journal</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 AS — Tous droits réservés</span>
+      <span>Paris · Milan · Tokyo</span>
+    </div>
+  </footer>
+
+  <!-- GSAP (embarqué localement pour un site autonome) -->
+  <script src="assets/gsap.min.js"></script>
+  <script src="assets/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
