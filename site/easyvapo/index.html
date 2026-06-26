@@ -30,74 +30,21 @@
       <div class="stage__glow" aria-hidden="true"></div>
 
       <div class="stage__product product-float">
-        <!-- ===== PRODUIT SVG (bouchon, gicleur, corps, niveau) ===== -->
-        <svg id="vapo" viewBox="0 0 220 470" role="img" aria-label="Vaporisateur de parfum EasyVapo">
-          <defs>
-            <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop class="m1" offset="0" />
-              <stop class="m2" offset="0.45" />
-              <stop class="m3" offset="1" />
-            </linearGradient>
-            <linearGradient id="capGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop class="m1" offset="0" />
-              <stop class="m2" offset="0.45" />
-              <stop class="m3" offset="1" />
-            </linearGradient>
-            <linearGradient id="liquidGrad" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0" stop-color="#caa15f" />
-              <stop offset="1" stop-color="#f4d79b" />
-            </linearGradient>
-            <radialGradient id="shine" cx="0.35" cy="0.25" r="0.8">
-              <stop offset="0" stop-color="#ffffff" stop-opacity="0.55" />
-              <stop offset="0.5" stop-color="#ffffff" stop-opacity="0" />
-            </radialGradient>
-            <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="6" />
-            </filter>
-          </defs>
+        <div class="vapo" id="vapo">
+          <!-- corps réel (gicleur argenté en haut) -->
+          <img class="vapo__body" src="img/product-body.png" alt="Vaporisateur de parfum EasyVapo" />
 
-          <!-- ombre portée douce -->
-          <ellipse id="shadow" cx="110" cy="452" rx="62" ry="12" fill="#000" opacity="0.45" filter="url(#soft)" />
+          <!-- voile d'or sur la fenêtre de niveau (recharge) -->
+          <span class="vapo__level" id="level" aria-hidden="true"></span>
 
-          <!-- SPRAY (caché au départ) -->
-          <g class="spray" opacity="0">
-            <circle cx="110" cy="92" r="4" />
-            <circle cx="96"  cy="80" r="3" />
-            <circle cx="124" cy="82" r="3" />
-            <circle cx="110" cy="68" r="2.5" />
-            <circle cx="86"  cy="92" r="2.5" />
-            <circle cx="134" cy="94" r="2.5" />
-            <circle cx="110" cy="54" r="2" />
-          </g>
+          <!-- vaporisation -->
+          <span class="spray" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </span>
 
-          <!-- GICLEUR / actionneur (révélé quand le bouchon part) -->
-          <g id="nozzle">
-            <rect x="98" y="118" width="24" height="26" rx="9" fill="#1c1b22" />
-            <rect x="104" y="106" width="12" height="20" rx="6" fill="#2a2932" />
-            <rect x="106" y="100" width="8" height="10" rx="4" fill="#3a3942" />
-          </g>
-
-          <!-- CORPS -->
-          <g id="body">
-            <rect x="55" y="150" width="110" height="290" rx="55" fill="url(#bodyGrad)" />
-            <!-- collier -->
-            <rect x="78" y="140" width="64" height="26" rx="13" fill="url(#bodyGrad)" />
-            <rect x="78" y="140" width="64" height="26" rx="13" fill="#000" opacity="0.12" />
-            <!-- reflet -->
-            <rect x="55" y="150" width="110" height="290" rx="55" fill="url(#shine)" />
-            <!-- fenêtre de niveau -->
-            <rect x="100" y="205" width="20" height="200" rx="10" fill="#0a0a0c" opacity="0.55" />
-            <rect id="liquid" x="103" y="320" width="14" height="82" rx="7" fill="url(#liquidGrad)" />
-            <rect x="100" y="205" width="20" height="200" rx="10" fill="none" stroke="#ffffff" stroke-opacity="0.15" />
-          </g>
-
-          <!-- BOUCHON (s'enlève au scroll) -->
-          <g id="cap">
-            <rect x="55" y="58" width="110" height="118" rx="52" fill="url(#capGrad)" />
-            <rect x="55" y="58" width="110" height="118" rx="52" fill="url(#shine)" />
-            <rect x="64" y="150" width="92" height="18" rx="9" fill="#000" opacity="0.18" />
-          </g>
-        </svg>
+          <!-- bouchon réel (se retire au scroll) -->
+          <img class="vapo__cap" id="cap" src="img/product-cap.png" alt="" aria-hidden="true" />
+        </div>
       </div>
 
       <!-- textes synchronisés au scroll -->
@@ -164,33 +111,19 @@
     <section class="colors" id="colors">
       <div class="colors__visual">
         <div class="colors__glow" aria-hidden="true"></div>
-        <svg viewBox="0 0 220 320" class="mini-vapo" id="miniVapo" aria-hidden="true">
-          <defs>
-            <linearGradient id="bodyGrad2" x1="0" y1="0" x2="1" y2="0">
-              <stop class="m1" offset="0" /><stop class="m2" offset="0.45" /><stop class="m3" offset="1" />
-            </linearGradient>
-            <radialGradient id="shine2" cx="0.35" cy="0.2" r="0.8">
-              <stop offset="0" stop-color="#fff" stop-opacity="0.5" /><stop offset="0.5" stop-color="#fff" stop-opacity="0" />
-            </radialGradient>
-          </defs>
-          <rect x="55" y="80" width="110" height="118" rx="52" fill="url(#bodyGrad2)" />
-          <rect x="55" y="80" width="110" height="118" rx="52" fill="url(#shine2)" />
-          <rect x="55" y="120" width="110" height="180" rx="55" fill="url(#bodyGrad2)" />
-          <rect x="55" y="120" width="110" height="180" rx="55" fill="url(#shine2)" />
-          <rect x="100" y="165" width="20" height="115" rx="10" fill="#0a0a0c" opacity="0.5" />
-        </svg>
+        <img class="mini-vapo" id="miniVapo" src="img/product-body.png" alt="" aria-hidden="true" />
       </div>
       <div class="colors__panel">
         <p class="eyebrow">Choisissez la vôtre</p>
         <h2 class="section-title reveal">Cinq teintes,<br />une même rondeur.</h2>
         <div class="swatches" role="listbox" aria-label="Couleurs">
-          <button class="swatch is-active" data-name="Titane"     style="--s:#b9bcc4" data-c1="#e7eaef" data-c2="#a9adb6" data-c3="#6f737c"></button>
-          <button class="swatch" data-name="Champagne"  style="--s:#e7c98f" data-c1="#f6e3b6" data-c2="#d9b779" data-c3="#9c7c44"></button>
-          <button class="swatch" data-name="Noir mat"   style="--s:#2c2c33" data-c1="#43434c" data-c2="#26262d" data-c3="#101014"></button>
-          <button class="swatch" data-name="Rose poudré" style="--s:#e9b8b0" data-c1="#f7d8d2" data-c2="#e2a59b" data-c3="#a86a61"></button>
-          <button class="swatch" data-name="Bleu nuit"  style="--s:#5a6f9c" data-c1="#8ba0c8" data-c2="#4f6493" data-c3="#2b3556"></button>
+          <button class="swatch is-active" data-name="Titane iridescent" style="--s:#7d8aa6" data-filter="none"></button>
+          <button class="swatch" data-name="Champagne" style="--s:#e7c98f" data-filter="sepia(0.5) saturate(1.7) hue-rotate(-18deg) brightness(1.08)"></button>
+          <button class="swatch" data-name="Or rosé" style="--s:#e9b8b0" data-filter="sepia(0.6) saturate(1.8) hue-rotate(-35deg) brightness(1.05)"></button>
+          <button class="swatch" data-name="Noir mat" style="--s:#2c2c33" data-filter="grayscale(1) brightness(0.72) contrast(1.12)"></button>
+          <button class="swatch" data-name="Vert sapin" style="--s:#5a8a6f" data-filter="hue-rotate(80deg) saturate(1.3)"></button>
         </div>
-        <p class="swatch-name">Teinte : <strong id="colorName">Titane</strong></p>
+        <p class="swatch-name">Teinte : <strong id="colorName">Titane iridescent</strong></p>
       </div>
     </section>
 

@@ -1,11 +1,11 @@
 /* =========================================================
-   EasyVapo — animations GSAP
+   EasyVapo — animations GSAP (produit photographié réel)
    - registerPlugin(ScrollTrigger) une fois
-   - section épinglée + scrub : le bouchon se retire au scroll,
+   - section épinglée + scrub : le vrai bouchon se retire au scroll,
      le gicleur apparaît, une vaporisation jaillit, le niveau se recharge
    - textes synchronisés (steps) avec le défilement
    - gsap.matchMedia() pour respecter prefers-reduced-motion
-   - transforms / autoAlpha plutôt que propriétés de layout
+   - transforms / autoAlpha uniquement
    ========================================================= */
 
 document.documentElement.classList.add("js");
@@ -24,113 +24,106 @@ mm.add(
 
     /* --- Révélations génériques --- */
     gsap.utils.toArray(".reveal").forEach((el) => {
-      if (reduce) {
-        gsap.set(el, { autoAlpha: 1, y: 0 });
-        return;
-      }
+      if (reduce) return gsap.set(el, { autoAlpha: 1, y: 0 });
       gsap.fromTo(
         el,
         { autoAlpha: 0, y: 40 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.9,
-          scrollTrigger: { trigger: el, start: "top 85%" },
-        }
+        { autoAlpha: 1, y: 0, duration: 0.9, scrollTrigger: { trigger: el, start: "top 85%" } }
       );
     });
 
-    /* =========================================================
-       SCÈNE ÉPINGLÉE : le bouchon se retire au défilement
-       ========================================================= */
     const steps = gsap.utils.toArray(".step");
+    const particles = gsap.utils.toArray(".spray i");
 
+    /* --- Mode accessibilité : pas d'animation au scroll --- */
     if (reduce) {
-      // Accessibilité : pas d'animation au scroll, on montre l'état final
-      gsap.set("#cap", { autoAlpha: 0 });
+      gsap.set("#cap", { xPercent: 46, yPercent: -58, rotation: 16 }); // bouchon retiré
       gsap.set(".spray", { autoAlpha: 0 });
+      gsap.set("#level", { scaleY: 1, rotation: -3, transformOrigin: "50% 100%" });
       gsap.set(steps, { autoAlpha: 0 });
       gsap.set('[data-step="0"]', { autoAlpha: 1 });
-      gsap.set("#liquid", { attr: { y: 215, height: 187 } });
       return;
     }
 
-    // états initiaux
+    /* --- états initiaux --- */
     gsap.set(steps, { autoAlpha: 0, y: 24 });
     gsap.set('[data-step="0"]', { autoAlpha: 1, y: 0 });
     gsap.set(".spray", { autoAlpha: 0 });
-    gsap.set(".spray circle", { transformOrigin: "110px 96px", scale: 0 });
+    gsap.set(particles, { x: 0, y: 0, scale: 0, transformOrigin: "50% 50%" });
+    gsap.set("#level", { scaleY: 0, rotation: -3, transformOrigin: "50% 100%" });
 
     const tl = gsap.timeline({
       defaults: { ease: "none" },
       scrollTrigger: {
         trigger: "#stage",
         start: "top top",
-        end: "+=2400",
+        end: "+=2600",
         pin: true,
         scrub: 1,
         anticipatePin: 1,
       },
     });
 
-    // 1) Le bouchon se soulève et s'efface
-    tl.to(".stage__hint", { autoAlpha: 0, duration: 0.08 }, 0)
-      .to("#cap", { y: -170, rotation: 7, transformOrigin: "50% 50%", duration: 0.28 }, 0)
+    // 1) Le bouchon se retire (translation + légère rotation)
+    tl.to(".stage__hint", { autoAlpha: 0, duration: 0.06 }, 0)
+      .to("#cap", { xPercent: 46, yPercent: -58, rotation: 16, duration: 0.34, ease: "power2.inOut" }, 0)
       .to('[data-step="0"]', { autoAlpha: 0, y: -24, duration: 0.12 }, 0.06)
-      .fromTo('[data-step="1"]', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.12 }, 0.14)
-      .to("#cap", { y: -300, autoAlpha: 0, duration: 0.2 }, 0.2)
-      .fromTo("#nozzle", { y: 8 }, { y: 0, duration: 0.18 }, 0.18)
+      .fromTo('[data-step="1"]', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.12 }, 0.16)
+      .to("#cap", { xPercent: 90, yPercent: -90, rotation: 26, autoAlpha: 0, duration: 0.18 }, 0.34)
 
-      // 2) La vaporisation jaillit
-      .to('[data-step="1"]', { autoAlpha: 0, y: -24, duration: 0.1 }, 0.4)
-      .fromTo('[data-step="2"]', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.12 }, 0.46)
-      .to(".spray", { autoAlpha: 1, duration: 0.05 }, 0.43)
-      .to(".spray circle", { scale: 1, duration: 0.12, stagger: 0.012 }, 0.44)
+      // 2) La vaporisation jaillit du gicleur
+      .to('[data-step="1"]', { autoAlpha: 0, y: -24, duration: 0.1 }, 0.42)
+      .fromTo('[data-step="2"]', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.12 }, 0.48)
+      .set(".spray", { autoAlpha: 1 }, 0.44)
+      .to(particles, { scale: 1, duration: 0.08, stagger: 0.008 }, 0.45)
       .to(
-        ".spray circle",
-        { y: -34, x: (i) => (i - 3) * 12, autoAlpha: 0, duration: 0.22, stagger: 0.012 },
-        0.54
+        particles,
+        {
+          x: (i) => (i - 3) * 26 + gsap.utils.random(-10, 10),
+          y: () => gsap.utils.random(-70, -150),
+          scale: 0,
+          autoAlpha: 0,
+          duration: 0.22,
+          ease: "power2.out",
+          stagger: 0.01,
+        },
+        0.5
       )
       .set(".spray", { autoAlpha: 0 }, 0.78)
 
-      // 3) La recharge : le niveau remonte
-      .to('[data-step="2"]', { autoAlpha: 0, y: -24, duration: 0.1 }, 0.74)
-      .fromTo('[data-step="3"]', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.12 }, 0.8)
-      .fromTo(
-        "#liquid",
-        { attr: { y: 392, height: 10 } },
-        { attr: { y: 215, height: 187 }, duration: 0.24 },
-        0.78
-      );
+      // 3) La recharge : le niveau remonte dans la fenêtre
+      .to('[data-step="2"]', { autoAlpha: 0, y: -24, duration: 0.1 }, 0.76)
+      .fromTo('[data-step="3"]', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.12 }, 0.82)
+      .to("#level", { scaleY: 1, duration: 0.22 }, 0.8);
 
     return () => tl.kill();
   }
 );
 
 /* =========================================================
-   Sélecteur de couleurs (recolore le produit instantanément
-   + petit rebond) — hors matchMedia, simple et fiable
+   Sélecteur de couleurs : filtres CSS appliqués à la vraie photo
    ========================================================= */
 const root = document.documentElement;
 const colorName = document.getElementById("colorName");
 const miniVapo = document.getElementById("miniVapo");
+const reduceMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 document.querySelectorAll(".swatch").forEach((sw) => {
   sw.addEventListener("click", () => {
     document.querySelector(".swatch.is-active")?.classList.remove("is-active");
     sw.classList.add("is-active");
 
-    root.style.setProperty("--c1", sw.dataset.c1);
-    root.style.setProperty("--c2", sw.dataset.c2);
-    root.style.setProperty("--c3", sw.dataset.c3);
+    const filter = sw.dataset.filter === "none" ? "none" : sw.dataset.filter;
+    if (miniVapo) miniVapo.style.filter =
+      "drop-shadow(0 30px 40px rgba(0,0,0,0.5)) " + (filter === "none" ? "" : filter);
+    root.style.setProperty("--glow", sw.style.getPropertyValue("--s") || "#7d8aa6");
     if (colorName) colorName.textContent = sw.dataset.name;
 
-    // petit rebond du flacon (respecte reduced-motion)
-    if (miniVapo && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (miniVapo && !reduceMQ.matches) {
       gsap.fromTo(miniVapo, { scale: 0.94 }, { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.5)" });
     }
   });
 });
 
-/* Recalcule les positions une fois la police chargée */
+/* Recalcule les positions une fois les images/police chargées */
 window.addEventListener("load", () => ScrollTrigger.refresh());

@@ -86,21 +86,41 @@ a { color: inherit; text-decoration: none; }
   filter: blur(20px); z-index: 0;
 }
 .stage__product {
-  position: relative; z-index: 2; height: 78vh; max-height: 720px;
+  position: relative; z-index: 2; height: 82vh; max-height: 780px;
   display: flex; align-items: center; justify-content: center;
 }
-#vapo { height: 100%; width: auto; overflow: visible; }
-#vapo .spray circle { fill: var(--accent); }
+/* produit réel = calques image superposés */
+.vapo { position: relative; height: 100%; aspect-ratio: 331 / 428; }
+.vapo__body {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+  filter: drop-shadow(0 42px 52px rgba(0, 0, 0, 0.6));
+}
+.vapo__cap {
+  position: absolute; width: 54%; left: 26%; top: -9%;
+  transform-origin: 50% 72%; will-change: transform;
+  filter: drop-shadow(0 20px 26px rgba(0, 0, 0, 0.55));
+}
+/* vaporisation (jaillit du gicleur) */
+.spray {
+  position: absolute; left: 52%; top: 4%; width: 0; height: 0; z-index: 3;
+  opacity: 0; pointer-events: none;
+}
+.spray i {
+  position: absolute; left: 0; top: 0; width: 9px; height: 9px; border-radius: 50%;
+  background: radial-gradient(circle, #ffe9bf, var(--accent)); will-change: transform, opacity;
+}
+/* voile d'or sur la fenêtre de niveau (recharge) */
+.vapo__level {
+  position: absolute; left: 45%; top: 57%; width: 7.5%; height: 21%;
+  border-radius: 40px; z-index: 2;
+  background: linear-gradient(0deg, #f4d79b, rgba(244, 215, 155, 0.1));
+  mix-blend-mode: screen; transform: scaleY(0) rotate(-3deg); transform-origin: 50% 100%;
+}
 
 /* lévitation douce (désactivée si reduced-motion) */
 .product-float { animation: float 6s ease-in-out infinite; }
 @keyframes float { 0%,100% { transform: translateY(-10px); } 50% { transform: translateY(10px); } }
 @media (prefers-reduced-motion: reduce) { .product-float { animation: none; } }
-
-/* gradients produit pilotés par variables CSS */
-#bodyGrad .m1, #capGrad .m1, #bodyGrad2 .m1 { stop-color: var(--c1); }
-#bodyGrad .m2, #capGrad .m2, #bodyGrad2 .m2 { stop-color: var(--c2); }
-#bodyGrad .m3, #capGrad .m3, #bodyGrad2 .m3 { stop-color: var(--c3); }
 
 .stage__copy {
   position: absolute; z-index: 3; left: 50%; top: 18%;
@@ -181,11 +201,10 @@ a { color: inherit; text-decoration: none; }
 .colors__visual { position: relative; display: flex; justify-content: center; align-items: center; min-height: 360px; }
 .colors__glow {
   position: absolute; width: 70%; aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--c1) 45%, transparent), transparent 65%);
-  filter: blur(30px); transition: background 0.6s var(--ease);
+  background: radial-gradient(circle, var(--glow, #7d8aa6), transparent 65%);
+  opacity: 0.5; filter: blur(34px); transition: background 0.6s var(--ease);
 }
-.mini-vapo { width: min(60%, 260px); height: auto; position: relative; filter: drop-shadow(0 30px 40px rgba(0,0,0,0.5)); }
-#bodyGrad2 .m1 { stop-color: var(--c1); } /* (redondance volontaire pour le mini) */
+.mini-vapo { width: min(58%, 240px); height: auto; position: relative; transition: filter 0.5s var(--ease); filter: drop-shadow(0 30px 40px rgba(0,0,0,0.5)); }
 .swatches { display: flex; gap: 0.9rem; margin: 1.8rem 0 1rem; flex-wrap: wrap; }
 .swatch {
   width: 46px; height: 46px; border-radius: 50%; cursor: pointer;
