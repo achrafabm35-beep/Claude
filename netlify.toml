@@ -5,3 +5,5 @@
 
 [build.processing]
   skip_processing = false
+
+# redeploy: activation de la detection de formulaires Netlify
