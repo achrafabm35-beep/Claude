@@ -37,7 +37,8 @@ jobs:
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./site
+          # Le site d'agence est publié à la racine du domaine asagency.store.
+          path: ./site/asagency
 
       - name: Deploy to GitHub Pages
         id: deployment
