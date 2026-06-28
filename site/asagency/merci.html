@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merci — AS Marketing Agency</title>
+  <link rel="icon" href="img/logo-mark.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .thanks { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+    .thanks__card { max-width: 560px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(2.5rem, 6vw, 4rem); box-shadow: var(--shadow); }
+    .thanks__logo { height: 56px; margin: 0 auto 1.5rem; }
+    .thanks h1 { font-family: var(--display); font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.02em; margin-bottom: 0.8rem; }
+    .thanks p { color: var(--muted); margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span>
+  </div>
+  <main class="thanks">
+    <div class="thanks__card">
+      <img class="thanks__logo" src="img/logo-mark.png" alt="AS Marketing Agency" />
+      <h1>Merci ! <span class="grad">Message reçu.</span></h1>
+      <p>Votre demande a bien été envoyée. Nous revenons vers vous avec une proposition sur mesure sous 24h.</p>
+      <a href="index.html" class="btn btn--ink btn--lg">Retour à l'accueil</a>
+    </div>
+  </main>
+</body>
+</html>

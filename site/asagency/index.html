@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AS._agency — Agence digitale propulsée par l'IA. Réseaux sociaux, branding, sites web, automatisations, apps et email marketing. Votre présence digitale, boostée." />
-  <title>AS._agency — Agence digitale propulsée par l'IA</title>
+  <meta name="description" content="AS Marketing Agency — Réseaux sociaux, branding, sites web, automatisations, apps et email marketing. Votre présence digitale, boostée." />
+  <title>AS Marketing Agency — Votre présence digitale, boostée</title>
+  <link rel="icon" href="img/logo-mark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -15,41 +16,58 @@
     <span class="blob blob--1"></span>
     <span class="blob blob--2"></span>
     <span class="blob blob--3"></span>
-    <div class="grid-overlay"></div>
   </div>
 
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- NAV -->
   <header class="nav" id="nav">
-    <a href="#top" class="logo">AS<span>._</span>agency</a>
+    <a href="#top" class="logo" aria-label="AS Marketing Agency">
+      <img src="img/logo-mark.png" alt="AS Marketing Agency" />
+    </a>
     <nav class="nav__links">
       <a href="#services">Services</a>
       <a href="#tarifs">Tarifs</a>
       <a href="#demande">À la demande</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="btn btn--accent nav__cta">Commencer</a>
+    <a href="#contact" class="btn btn--ink nav__cta">Commencer</a>
   </header>
 
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <div class="hero__inner">
-        <span class="pill" data-anim>● Propulsé par l'IA</span>
+      <div class="hero__text">
+        <span class="pill" data-anim>Agence marketing &amp; création</span>
         <h1 class="hero__title">
-          <span class="line"><span class="word">Agence</span> <span class="word">digitale</span></span>
-          <span class="line"><span class="word grad">propulsée</span> <span class="word grad">par</span> <span class="word grad">l'IA</span></span>
+          <span class="line"><span class="word">Votre</span> <span class="word">présence</span></span>
+          <span class="line"><span class="word">digitale,</span></span>
+          <span class="rotator" aria-label="boostée">
+            <span class="rot" data-words='["boostée.","magnifiée.","amplifiée.","propulsée."]'>boostée.</span>
+          </span>
         </h1>
         <p class="hero__lead" data-anim>
-          Votre présence digitale, <strong>boostée</strong>. Tout ce qu'il faut
-          pour exister en ligne et convertir — réseaux sociaux, branding, web,
-          automatisations — amplifié par l'intelligence artificielle.
+          Réseaux sociaux, branding, sites web et automatisations.
+          Tout ce qu'il faut pour exister en ligne — et convertir.
         </p>
         <div class="hero__cta" data-anim>
-          <a href="#tarifs" class="btn btn--accent btn--lg">Voir les offres</a>
+          <a href="#tarifs" class="btn btn--ink btn--lg">Voir les offres</a>
           <a href="#contact" class="btn btn--ghost btn--lg">Nous contacter</a>
         </div>
+        <div class="hero__trust" data-anim>
+          <span><b>+340%</b> engagement</span><i></i>
+          <span><b>72h</b> pour un site</span><i></i>
+          <span><b>24h</b> de réponse</span>
+        </div>
+      </div>
+
+      <div class="hero__visual" data-anim>
+        <div class="hero__halo"></div>
+        <img class="hero__logo" src="img/logo-full.png" alt="AS Marketing Agency" />
+        <span class="chip chip--1">Instagram</span>
+        <span class="chip chip--2">Branding</span>
+        <span class="chip chip--3">Site web</span>
+        <span class="chip chip--4">Automatisation</span>
       </div>
     </section>
 
@@ -67,22 +85,10 @@
 
     <!-- STATS -->
     <section class="stats">
-      <div class="stat" data-reveal>
-        <span class="stat__val"><b data-count="340" data-prefix="+" data-suffix="%">0</b></span>
-        <p>d'engagement Instagram</p>
-      </div>
-      <div class="stat" data-reveal>
-        <span class="stat__val"><b data-count="72" data-suffix="h">0</b></span>
-        <p>pour livrer un site</p>
-      </div>
-      <div class="stat" data-reveal>
-        <span class="stat__val"><b data-count="8" data-prefix="−" data-suffix="h">0</b></span>
-        <p>par semaine grâce à l'automatisation</p>
-      </div>
-      <div class="stat" data-reveal>
-        <span class="stat__val"><b data-count="24" data-suffix="h">0</b></span>
-        <p>pour une proposition sur mesure</p>
-      </div>
+      <div class="stat" data-reveal><span class="stat__val"><b data-count="340" data-prefix="+" data-suffix="%">0</b></span><p>d'engagement Instagram</p></div>
+      <div class="stat" data-reveal><span class="stat__val"><b data-count="72" data-suffix="h">0</b></span><p>pour livrer un site</p></div>
+      <div class="stat" data-reveal><span class="stat__val"><b data-count="8" data-prefix="−" data-suffix="h">0</b></span><p>économisées / semaine</p></div>
+      <div class="stat" data-reveal><span class="stat__val"><b data-count="24" data-suffix="h">0</b></span><p>pour une proposition</p></div>
     </section>
 
     <!-- SERVICES -->
@@ -95,7 +101,7 @@
         <article class="card" data-card>
           <span class="card__ico">◎</span>
           <h3>Réseaux sociaux</h3>
-          <p>Stratégie, création et gestion de vos comptes. L'IA booste vos textes et visuels — votre ton reste le vôtre.</p>
+          <p>Stratégie, création et gestion de vos comptes. Des contenus qui captent l'attention — et qui vous ressemblent.</p>
         </article>
         <article class="card" data-card>
           <span class="card__ico">◈</span>
@@ -110,7 +116,7 @@
         <article class="card" data-card>
           <span class="card__ico">⚙</span>
           <h3>Automatisations</h3>
-          <p>Workflows qui vous font gagner des heures chaque semaine.</p>
+          <p>Des workflows sur mesure qui vous font gagner des heures chaque semaine.</p>
         </article>
         <article class="card" data-card>
           <span class="card__ico">◳</span>
@@ -120,7 +126,7 @@
         <article class="card" data-card>
           <span class="card__ico">✉</span>
           <h3>Email marketing</h3>
-          <p>Newsletters, séquences automatisées et campagnes promo rédigées par l'IA.</p>
+          <p>Newsletters, séquences automatisées et campagnes promo qui convertissent.</p>
         </article>
       </div>
     </section>
@@ -138,7 +144,7 @@
           <ul class="plan__list">
             <li>1 réseau social</li>
             <li>8 posts / mois</li>
-            <li>Création visuels + textes IA</li>
+            <li>Création visuels + textes</li>
             <li>Reporting mensuel</li>
           </ul>
           <a href="#contact" class="btn btn--ghost btn--block">Je veux ce plan</a>
@@ -154,7 +160,7 @@
             <li>Automatisations incluses</li>
             <li>Support prioritaire</li>
           </ul>
-          <a href="#contact" class="btn btn--accent btn--block">Je veux ce plan</a>
+          <a href="#contact" class="btn btn--ink btn--block">Je veux ce plan</a>
         </article>
       </div>
     </section>
@@ -179,13 +185,18 @@
         <p class="eyebrow">Contact</p>
         <h2 class="section__title">Parlons de votre projet.</h2>
         <p class="contact__lead">Réponse et proposition sur mesure sous 24h.</p>
-        <form class="contact__form" onsubmit="return false;">
+        <form class="contact__form" action="https://formsubmit.co/contact@asagency.fr" method="POST">
+          <input type="hidden" name="_subject" value="Nouvelle demande — AS Marketing Agency" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="https://achrafabm35-beep.github.io/Claude/asagency/merci.html" />
+          <input type="text" name="_honey" style="display:none" />
           <div class="row">
-            <input type="text" placeholder="Votre nom" aria-label="Nom" required />
-            <input type="email" placeholder="Votre email" aria-label="Email" required />
+            <input type="text" name="Nom" placeholder="Votre nom" aria-label="Nom" required />
+            <input type="email" name="Email" placeholder="Votre email" aria-label="Email" required />
           </div>
-          <textarea rows="4" placeholder="Votre projet en quelques mots…" aria-label="Message"></textarea>
-          <button type="submit" class="btn btn--accent btn--lg btn--block">Envoyer ma demande →</button>
+          <textarea name="Message" rows="4" placeholder="Votre projet en quelques mots…" aria-label="Message" required></textarea>
+          <button type="submit" class="btn btn--ink btn--lg btn--block">Envoyer ma demande →</button>
         </form>
         <p class="contact__or">ou écrivez-nous à <a href="mailto:contact@asagency.fr">contact@asagency.fr</a></p>
       </div>
@@ -193,13 +204,13 @@
   </main>
 
   <footer class="footer">
-    <span class="logo">AS<span>._</span>agency</span>
+    <img class="footer__logo" src="img/logo-mark.png" alt="AS Marketing Agency" />
     <p>Votre présence digitale, boostée.</p>
     <div class="footer__links">
       <a href="#services">Services</a><a href="#tarifs">Tarifs</a>
       <a href="#demande">À la demande</a><a href="mailto:contact@asagency.fr">contact@asagency.fr</a>
     </div>
-    <small>© 2026 AS._agency — Propulsé par l'IA</small>
+    <small>© 2026 AS Marketing Agency</small>
   </footer>
 
   <script src="../assets/gsap.min.js"></script>
