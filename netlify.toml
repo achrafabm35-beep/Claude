@@ -1,0 +1,7 @@
+# Configuration Netlify — AS Marketing Agency
+# Le site à publier se trouve dans site/asagency (site statique, aucun build).
+[build]
+  publish = "site/asagency"
+
+[build.processing]
+  skip_processing = false

@@ -188,12 +188,9 @@
         <p class="eyebrow">Contact</p>
         <h2 class="section__title">Parlons de votre projet.</h2>
         <p class="contact__lead">Réponse et proposition sur mesure sous 24h.</p>
-        <form class="contact__form" action="https://formsubmit.co/47b404d83ccfec14e5f1a4be344b75d8" method="POST">
-          <input type="hidden" name="_subject" value="Nouvelle demande — AS Marketing Agency" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value="https://asagency.store/merci.html" />
-          <input type="text" name="_honey" style="display:none" />
+        <form class="contact__form" name="contact" method="POST" action="/merci.html" data-netlify="true" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden><label>Ne pas remplir : <input name="bot-field" /></label></p>
           <div class="row">
             <input type="text" name="Nom" placeholder="Votre nom" aria-label="Nom" required />
             <input type="email" name="Email" placeholder="Votre email" aria-label="Email" required />
