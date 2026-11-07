@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pilote — Gestion de projets (exemple)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="app.css" />
+<style>
+  :root { --accent:#5b6cff; --accent2:#2fd2c9; --side:#0f1330; }
+  .verdict { display:flex; gap:1.2rem; align-items:center; background:linear-gradient(110deg,#0f1330,#2a3480 60%,#5b6cff); color:#fff; border-radius:16px; padding:1.3rem 1.5rem; margin-bottom:1rem; flex-wrap:wrap; }
+  .verdict .meteo { font-size:2.6rem; animation:float 4s ease-in-out infinite; }
+  @keyframes float { 50% { transform:translateY(-6px) rotate(-4deg); } }
+  .verdict h2 { font:700 1.3rem "Space Grotesk"; } .verdict p { opacity:.75; font-size:.86rem; }
+  .verdict .road { flex:1; min-width:260px; display:flex; align-items:center; gap:0; }
+  .road span { flex:1; height:4px; background:rgba(255,255,255,.25); position:relative; }
+  .road span.done { background:#2fd2c9; }
+  .road span::after { content:attr(data-l); position:absolute; top:12px; left:0; font-size:.68rem; opacity:.8; white-space:nowrap; }
+  .road span::before { content:""; position:absolute; left:-6px; top:-5px; width:14px; height:14px; border-radius:50%; background:#fff; border:3px solid #2fd2c9; }
+  .proj { display:flex; flex-direction:column; gap:.6rem; cursor:pointer; }
+  .proj:hover { transform:translateY(-4px); }
+  .proj header { display:flex; justify-content:space-between; align-items:center; }
+  .proj h4 { font:600 1rem "Space Grotesk"; }
+  .proj small { color:var(--muted); font-size:.78rem; }
+  .gantt { position:relative; font-size:.8rem; }
+  .gantt .row { display:grid; grid-template-columns:150px 1fr; align-items:center; height:34px; border-bottom:1px dashed var(--line); }
+  .gantt .lane { position:relative; height:100%; }
+  .gantt .b { position:absolute; top:8px; height:18px; border-radius:6px; background:linear-gradient(90deg,var(--accent),#8c97ff); transform-origin:left; animation:grow 1.2s cubic-bezier(.2,.7,.2,1) both; box-shadow:0 4px 10px -4px rgba(91,108,255,.6); }
+  .gantt .b em { position:absolute; inset:0 auto 0 0; background:rgba(255,255,255,.35); border-radius:6px; }
+  .gantt .b.late { background:linear-gradient(90deg,#ef4b5a,#ff8a95); }
+  .gantt .b.ok { background:linear-gradient(90deg,#22c08a,#6be3b4); }
+  .gantt .ms { position:absolute; top:9px; width:14px; height:14px; background:#0f1330; transform:rotate(45deg); }
+  .gantt .today { position:absolute; top:0; bottom:0; left:calc(150px + (100% - 150px) * .56); width:2px; background:#ef4b5a; }
+  .gantt .today::before { content:"Aujourd'hui"; position:absolute; top:-18px; left:-30px; font-size:.68rem; color:#ef4b5a; font-weight:600; }
+  .months { display:grid; grid-template-columns:150px repeat(6,1fr); color:var(--muted); font-size:.72rem; margin:1.2rem 0 .3rem; }
+  .matrix { display:grid; grid-template-columns:repeat(5,1fr); gap:3px; aspect-ratio:1; position:relative; }
+  .matrix div { border-radius:4px; }
+  .bub { position:absolute; width:26px; height:26px; border-radius:50%; background:#0f1330; color:#fff; font-size:.7rem; font-weight:700; display:grid; place-items:center; transform:translate(-50%,-50%); box-shadow:0 0 0 3px #fff; transition:transform .3s; animation:rise .6s both; }
+  .bub:hover { transform:translate(-50%,-50%) scale(1.25); }
+  .hl li { list-style:none; display:flex; gap:.6rem; font-size:.84rem; padding:.5rem 0; border-bottom:1px solid var(--line); }
+  .hl li b { width:22px; height:22px; flex:none; border-radius:6px; display:grid; place-items:center; font-size:.75rem; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="logo"><i>▲</i>Pilote</div>
+    <a class="on" data-view="dash">◉ Tableau de bord</a><a data-view="hebdo">◷ Suivi hebdo</a><a>▤ Planning</a><a>◈ Budget</a><a>⚠ Risques</a><a>☰ Documents</a>
+    <span class="grow"></span>
+    <div class="user"><b>CP</b><div>Chef de projet<br><small style="opacity:.6">Portefeuille 2026</small></div></div>
+  </aside>
+  <main class="main">
+    <div class="top">
+      <div><h1>Nouvelle ligne de production</h1><p>Code PRJ-24 · Sponsor : Direction industrielle</p></div>
+      <div style="display:flex;gap:.5rem"><button class="chip">One pager</button><button class="btn">Exporter PPT</button></div>
+    </div>
+
+    <section class="view on" id="v-dash">
+      <div class="verdict">
+        <span class="meteo">⛅</span>
+        <div><h2>Sous contrôle, vigilance planning</h2><p>Avancement 62 % · 2 risques à traiter cette semaine</p></div>
+        <div class="road"><span class="done" data-l="Cadrage"></span><span class="done" data-l="Études"></span><span class="done" data-l="Achats"></span><span data-l="Installation"></span><span data-l="Recette"></span></div>
+      </div>
+      <div class="grid g4 rise" style="margin-bottom:1rem">
+        <div class="card kpi"><small>Avancement pondéré</small><b data-n="62" data-suf=" %">0</b><div class="bar" style="margin-top:.6rem"><i style="width:62%"></i></div></div>
+        <div class="card kpi"><small>Budget consommé</small><b data-n="71" data-suf=" %">0</b><div class="bar" style="margin-top:.6rem"><i style="width:71%;background:linear-gradient(90deg,#f5a623,#ffd27a)"></i></div></div>
+        <div class="card kpi"><small>Prochain jalon</small><b>J-12</b><small>Mise en service ligne 2</small></div>
+        <div class="card kpi"><small>Risques ouverts</small><b data-n="9">0</b><span class="delta down">2 critiques</span></div>
+      </div>
+      <div class="grid g21">
+        <div class="card"><h3>Planning & Gantt <span class="pill p-info">Baseline figée</span></h3>
+          <div class="gantt">
+            <div class="months"><span></span><span>Mai</span><span>Juin</span><span>Juil.</span><span>Août</span><span>Sept.</span><span>Oct.</span></div>
+            <div class="row"><span>Cadrage</span><div class="lane"><i class="b ok" style="left:0;width:16%"></i></div></div>
+            <div class="row"><span>Études techniques</span><div class="lane"><i class="b ok" style="left:10%;width:24%;animation-delay:.1s"></i></div></div>
+            <div class="row"><span>Achats équipements</span><div class="lane"><i class="b" style="left:28%;width:26%;animation-delay:.2s"><em style="width:80%"></em></i></div></div>
+            <div class="row"><span>Installation</span><div class="lane"><i class="b late" style="left:46%;width:28%;animation-delay:.3s"><em style="width:30%"></em></i></div></div>
+            <div class="row"><span>Formation équipes</span><div class="lane"><i class="b" style="left:62%;width:18%;animation-delay:.4s"></i></div></div>
+            <div class="row"><span>Recette & démarrage</span><div class="lane"><i class="b" style="left:78%;width:20%;animation-delay:.5s"></i><i class="ms" style="left:97%"></i></div></div>
+            <span class="today"></span>
+          </div>
+        </div>
+        <div class="card"><h3>Matrice des risques <span class="pill p-bad">P × I</span></h3>
+          <div class="matrix" id="mx"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="v-hebdo">
+      <div class="grid g2 rise">
+        <div class="card"><h3>Highlights · S41</h3><ul class="hl">
+          <li><b class="p-ok">✓</b>Réception des convoyeurs avec 3 jours d'avance</li>
+          <li><b class="p-ok">✓</b>Validation du plan de formation par les RH</li>
+          <li><b class="p-ok">✓</b>Économie de 8 % négociée sur la maintenance</li></ul></div>
+        <div class="card"><h3>Lowlights · S41</h3><ul class="hl">
+          <li><b class="p-bad">!</b>Retard fournisseur sur l'armoire électrique</li>
+          <li><b class="p-warn">~</b>Disponibilité réduite de l'équipe méthodes</li></ul></div>
+        <div class="card"><h3>Décisions attendues</h3><ul class="hl"><li><b class="p-info">?</b>Arbitrer le décalage de la recette d'une semaine</li><li><b class="p-info">?</b>Valider l'avenant de prestation</li></ul></div>
+        <div class="card"><h3>Prochaines étapes</h3><ul class="hl"><li><b class="p-info">→</b>Câblage ligne 2 (S42)</li><li><b class="p-info">→</b>Essais à vide (S43)</li></ul></div>
+      </div>
+    </section>
+  </main>
+</div>
+<a class="as-ribbon" href="../../index.html#apps"><i></i>Démo conçue par AS Marketing Agency</a>
+<script src="app.js"></script>
+<script>
+  const mx = document.getElementById('mx');
+  for (let r = 5; r >= 1; r--) for (let c = 1; c <= 5; c++) {
+    const s = r * c, d = document.createElement('div');
+    d.style.background = s >= 20 ? '#ef4b5a' : s >= 12 ? '#f78a5a' : s >= 6 ? '#f5c35a' : '#9fe0b9';
+    d.style.opacity = .35 + s / 40; mx.appendChild(d);
+  }
+  [[4,5,'R1'],[4,4,'R2'],[2,4,'R3'],[3,3,'R4'],[1,2,'R5'],[5,2,'R6']].forEach(([p,i,l],k) => {
+    const b = document.createElement('span'); b.className = 'bub'; b.textContent = l;
+    b.style.left = ((i - .5) * 20) + '%'; b.style.top = ((5 - p + .5) * 20) + '%'; b.style.animationDelay = (.4 + k * .1) + 's';
+    mx.appendChild(b);
+  });
+</script>
+</body>
+</html>

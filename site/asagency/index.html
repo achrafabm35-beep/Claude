@@ -3,191 +3,236 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AS Marketing Agency — Réseaux sociaux, branding, sites web, automatisations, apps et email marketing. Votre présence digitale, boostée." />
-  <title>AS Marketing Agency — Votre présence digitale, boostée</title>
-  <link rel="icon" href="img/logo-mark.png" />
+  <meta name="description" content="AS Marketing Agency — Sites web, applications, logos, réseaux sociaux et publicités digitales. On réalise une première version de votre projet avant de vous demander quoi que ce soit." />
+  <title>AS Marketing Agency — On fait d'abord, vous payez ensuite</title>
+  <link rel="icon" href="img/logo-mark-sm.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;800&family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,400&family=Syne:wght@700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@500;600&family=Anton&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add(/[?&]shot/.test(location.search) ? "shot" : "js"); if (/[?&]shot/.test(location.search)) document.addEventListener("DOMContentLoaded", () => document.querySelectorAll("img[loading]").forEach((i) => (i.loading = "eager")));</script>
 </head>
 <body>
-  <div class="bg" aria-hidden="true">
-    <span class="blob blob--1"></span>
-    <span class="blob blob--2"></span>
-    <span class="blob blob--3"></span>
-  </div>
-
+  <div class="curtain" id="curtain" aria-hidden="true"><img src="img/logo-mark.webp" alt="" /></div>
+  <div class="bg" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- NAV -->
   <header class="nav" id="nav">
-    <a href="#top" class="logo" aria-label="AS Marketing Agency">
-      <img src="img/logo-mark.png" alt="AS Marketing Agency" />
-    </a>
+    <a href="#top" class="logo" aria-label="AS Marketing Agency"><img src="img/logo-mark.webp" alt="AS Marketing Agency" /></a>
     <nav class="nav__links">
+      <a href="#methode">Notre méthode</a>
+      <a href="#realisations">Sites</a>
+      <a href="#apps">Applications</a>
+      <a href="#studio">Logos &amp; pubs</a>
       <a href="#services">Services</a>
-      <a href="#tarifs">Tarifs</a>
-      <a href="#demande">À la demande</a>
-      <a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="btn btn--ink nav__cta">Commencer</a>
+    <a href="#contact" class="btn btn--ink nav__cta" data-magnet>Mon projet</a>
   </header>
 
   <main id="top">
     <!-- HERO -->
     <section class="hero">
       <div class="hero__intro">
-        <span class="pill" data-anim>Agence marketing &amp; création</span>
+        <span class="pill" data-anim><b>0 € d'avance</b> On réalise d'abord, vous décidez ensuite</span>
         <h1 class="hero__title">
-          <span class="line"><span class="word">Votre</span> <span class="word">présence</span></span>
-          <span class="line"><span class="word">digitale,</span></span>
-          <span class="rotator" aria-label="boostée">
-            <span class="rot" data-words='["boostée.","magnifiée.","amplifiée.","propulsée."]'>boostée.</span>
-          </span>
+          <span class="line"><span class="word">On</span> <span class="word">le</span> <span class="word">fait.</span></span>
+          <span class="line"><span class="word">Vous</span> <span class="word">l'aimez.</span></span>
+          <span class="rotator"><span class="rot" data-words='["On lance.","Ça décolle.","On en parle."]'>On lance.</span></span>
         </h1>
         <p class="hero__lead" data-anim>
-          Réseaux sociaux, branding, sites web et automatisations.
-          Tout ce qu'il faut pour exister en ligne — et convertir.
+          Sites web, applications, logos, réseaux sociaux et publicités digitales.
+          Avant de vous demander quoi que ce soit, on vous montre une première version concrète de votre projet.
         </p>
-      </div>
-
-      <div class="hero__visual" data-anim>
-        <div class="hero__halo"></div>
-        <img class="hero__logo" src="img/logo-full.png" alt="AS Marketing Agency" />
-        <span class="chip chip--1">Instagram</span>
-        <span class="chip chip--2">Branding</span>
-        <span class="chip chip--3">Site web</span>
-        <span class="chip chip--4">Automatisation</span>
-      </div>
-
-      <div class="hero__actions">
         <div class="hero__cta" data-anim>
-          <a href="#tarifs" class="btn btn--ink btn--lg">Voir les offres</a>
-          <a href="#contact" class="btn btn--ghost btn--lg">Nous contacter</a>
+          <a href="#contact" class="btn btn--ink btn--lg" data-magnet>Recevoir ma première version</a>
+          <a href="#realisations" class="btn btn--ghost btn--lg" data-magnet>Voir nos réalisations</a>
         </div>
         <div class="hero__trust" data-anim>
-          <span><b>+340%</b> engagement</span><i></i>
-          <span><b>72h</b> pour un site</span><i></i>
-          <span><b>24h</b> de réponse</span>
+          <span><b>0 €</b> avant validation</span><i></i>
+          <span><b>72 h</b> pour une maquette</span><i></i>
+          <span><b>24 h</b> pour vous répondre</span>
         </div>
+      </div>
+
+      <div class="hero__board" id="heroBoard" aria-label="Aperçu de nos réalisations">
+        <div class="layer" data-depth="1.6"><img class="sticker" src="img/logo-full.webp" alt="AS Marketing Agency" /></div>
+        <div class="layer" data-depth="0.6"><figure class="note n1"><div class="note__img"><img src="img/shots/site-velora.jpg" alt="Site e-commerce Velora" /></div><figcaption class="note__cap">Velora <small>e-shop</small></figcaption></figure></div>
+        <div class="layer" data-depth="1"><figure class="note n2"><div class="note__img"><img src="img/shots/app-pilote.jpg" alt="Application Pilote" /></div><figcaption class="note__cap">Pilote <small>app de gestion</small></figcaption></figure></div>
+        <div class="layer" data-depth="1.3"><figure class="note n3 note--pin"><div class="note__img"><img src="img/shots/site-kinetik.jpg" alt="Site Kinetik" /></div><figcaption class="note__cap">Kinetik <small>site vitrine</small></figcaption></figure></div>
+        <div class="layer" data-depth="2"><span class="tag tag--1">fait avant<br>d'être payé ✓</span></div>
+        <div class="layer" data-depth="1.8"><span class="tag tag--2">livré en 72 h !</span></div>
       </div>
     </section>
 
     <!-- MARQUEE -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track" id="marquee">
-        <span>Réseaux sociaux</span><i>✦</i><span>Branding</span><i>✦</i>
-        <span>Sites web</span><i>✦</i><span>Automatisations</span><i>✦</i>
-        <span>Apps sur mesure</span><i>✦</i><span>Email marketing</span><i>✦</i>
-        <span>Réseaux sociaux</span><i>✦</i><span>Branding</span><i>✦</i>
-        <span>Sites web</span><i>✦</i><span>Automatisations</span><i>✦</i>
-        <span>Apps sur mesure</span><i>✦</i><span>Email marketing</span><i>✦</i>
+        <span>Sites web</span><i>✦</i><span>Applications</span><i>✦</i><span>Logos</span><i>✦</i><span>Publicités digitales</span><i>✦</i><span>Réseaux sociaux</span><i>✦</i><span>Automatisations</span><i>✦</i>
+        <span>Sites web</span><i>✦</i><span>Applications</span><i>✦</i><span>Logos</span><i>✦</i><span>Publicités digitales</span><i>✦</i><span>Réseaux sociaux</span><i>✦</i><span>Automatisations</span><i>✦</i>
       </div>
     </div>
 
-    <!-- STATS -->
-    <section class="stats">
-      <div class="stat" data-reveal><span class="stat__val"><b data-count="340" data-prefix="+" data-suffix="%">0</b></span><p>d'engagement Instagram</p></div>
-      <div class="stat" data-reveal><span class="stat__val"><b data-count="72" data-suffix="h">0</b></span><p>pour livrer un site</p></div>
-      <div class="stat" data-reveal><span class="stat__val"><b data-count="8" data-prefix="−" data-suffix="h">0</b></span><p>économisées / semaine</p></div>
-      <div class="stat" data-reveal><span class="stat__val"><b data-count="24" data-suffix="h">0</b></span><p>pour une proposition</p></div>
+    <!-- MÉTHODE -->
+    <section id="methode">
+      <div class="manifesto">
+        <p class="eyebrow">Notre philosophie</p>
+        <p id="manifesto">Une agence vous demande souvent de payer avant de voir quoi que ce soit. Nous, on fait l'inverse : on crée d'abord une vraie première version de votre projet. Vous la voyez, vous la testez, et vous décidez ensuite, en toute confiance.</p>
+      </div>
+      <div class="steps">
+        <article class="step" style="--i:0"><span class="step__n grad">01</span><div><h3>Vous nous parlez de votre projet</h3><p>Un échange de 20 minutes, par message, téléphone ou visio. Votre activité, vos objectifs, vos goûts. Pas de cahier des charges à rédiger.</p></div><span class="step__ico">💬</span></article>
+        <article class="step step--free" style="--i:1"><span class="step__n grad">02</span><div><span class="badge">Offert</span><h3>On réalise une première version</h3><p>Maquette de site, prototype d'application, pistes de logo ou visuels de pub : vous recevez du concret sous 72 h, sans rien avoir payé.</p></div><span class="step__ico">⚡</span></article>
+        <article class="step" style="--i:2"><span class="step__n grad">03</span><div><h3>Vous validez, ou pas</h3><p>Ça vous plaît ? On continue ensemble. Ça ne vous convient pas ? Vous ne nous devez rien. C'est aussi simple que ça.</p></div><span class="step__ico">✓</span></article>
+        <article class="step" style="--i:3"><span class="step__n grad">04</span><div><h3>On lance et on vous accompagne</h3><p>Mise en ligne, réglages, suivi des résultats et ajustements. On reste à vos côtés pour faire grandir votre présence digitale.</p></div><span class="step__ico">🚀</span></article>
+      </div>
+    </section>
+
+    <!-- PLONGÉE ZOOM -->
+    <section class="dive" id="dive" aria-label="Plongée dans nos réalisations">
+      <div class="dive__screen" id="diveScreen">
+        <img class="dv" src="img/shots/site-lumen.jpg" alt="Site Lumen" />
+        <img class="dv" src="img/shots/site-verdi.jpg" alt="Site Verdi Architectes" />
+        <img class="dv" src="img/shots/app-stockly.jpg" alt="Application Stockly" />
+      </div>
+      <div class="dive__text" id="diveText"><h2>Plongez dans<br /><span class="grad">nos réalisations.</span></h2><p>Tout ce qui suit a été conçu par AS Marketing Agency.</p></div>
+    </section>
+
+    <!-- SITES -->
+    <section class="section" id="realisations">
+      <header class="section__head">
+        <p class="eyebrow" data-reveal>Sites web</p>
+        <h2 class="section__title" data-split>Des sites qui bougent, qui zooment et qui convertissent.</h2>
+        <p class="section__lead" data-reveal>Survolez un billet pour faire défiler la page, ou ouvrez la version en ligne pour découvrir toutes les animations.</p>
+      </header>
+      <div class="board">
+        <figure class="note" data-stick>
+          <div class="browser"><div class="browser__bar"><i></i><i></i><i></i><span>lumen-brasserie.fr</span></div><div class="scrollshot"><img src="img/shots/site-lumen-full.jpg" alt="Page complète du site Lumen" loading="lazy" /></div></div>
+          <figcaption class="note__cap">Lumen, brasserie de saison <small>site vitrine</small></figcaption>
+          <div class="note__actions"><span class="hint">zoom, parallax, carte qui défile →</span><a class="live" href="exemples/sites/lumen.html" target="_blank" rel="noopener" data-cursor="Voir">Voir en live</a></div>
+        </figure>
+        <figure class="note" data-stick>
+          <div class="browser"><div class="browser__bar"><i></i><i></i><i></i><span>verdi-architectes.fr</span></div><div class="scrollshot"><img src="img/shots/site-verdi-full.jpg" alt="Page complète du site Verdi Architectes" loading="lazy" /></div></div>
+          <figcaption class="note__cap">Verdi Architectes <small>portfolio</small></figcaption>
+          <div class="note__actions"><span class="hint">titre qui traverse l'écran →</span><a class="live" href="exemples/sites/verdi.html" target="_blank" rel="noopener" data-cursor="Voir">Voir en live</a></div>
+        </figure>
+        <figure class="note" data-stick>
+          <div class="browser"><div class="browser__bar"><i></i><i></i><i></i><span>velora-soins.fr</span></div><div class="scrollshot"><img src="img/shots/site-velora-full.jpg" alt="Page complète du site Velora" loading="lazy" /></div></div>
+          <figcaption class="note__cap">Velora, soins naturels <small>e-commerce</small></figcaption>
+          <div class="note__actions"><span class="hint">produits en 3D au survol →</span><a class="live" href="exemples/sites/velora.html" target="_blank" rel="noopener" data-cursor="Voir">Voir en live</a></div>
+        </figure>
+        <figure class="note" data-stick>
+          <div class="browser"><div class="browser__bar"><i></i><i></i><i></i><span>kinetik-club.fr</span></div><div class="scrollshot"><img src="img/shots/site-kinetik-full.jpg" alt="Page complète du site Kinetik" loading="lazy" /></div></div>
+          <figcaption class="note__cap">Kinetik, club de training <small>site + app</small></figcaption>
+          <div class="note__actions"><span class="hint">énergie et compteurs animés →</span><a class="live" href="exemples/sites/kinetik.html" target="_blank" rel="noopener" data-cursor="Voir">Voir en live</a></div>
+        </figure>
+      </div>
+      <div class="phones" id="phones" aria-label="Versions mobiles">
+        <div class="phone"><img src="img/shots/mobile-lumen.jpg" alt="Lumen sur mobile" loading="lazy" /></div>
+        <div class="phone"><img src="img/shots/mobile-velora.jpg" alt="Velora sur mobile" loading="lazy" /></div>
+        <div class="phone"><img src="img/shots/mobile-kinetik.jpg" alt="Kinetik sur mobile" loading="lazy" /></div>
+        <div class="phone"><img src="img/shots/mobile-verdi.jpg" alt="Verdi sur mobile" loading="lazy" /></div>
+      </div>
+    </section>
+
+    <!-- APPS -->
+    <section class="apps" id="apps">
+      <div class="apps__head">
+        <p class="eyebrow" data-reveal>Applications sur mesure</p>
+        <h2 class="section__title" data-split>Des outils que vos équipes ont envie d'utiliser.</h2>
+        <p class="section__lead" data-reveal>Tableaux de bord, gestion de projets, réservation, CRM, stocks… Chaque démo est cliquable : ouvrez-la et testez.</p>
+      </div>
+      <div class="apps__track" id="appsTrack">
+        <a class="note" href="exemples/apps/ergomap.html" target="_blank" rel="noopener" data-cursor="Tester"><div class="note__img"><img src="img/shots/app-ergomap.jpg" alt="ErgoMap" loading="lazy" /></div><div class="note__cap">ErgoMap <small>santé au travail</small></div><p class="note__desc">Plan de l'usine interactif, zoom par atelier, mannequin des zones de douleur et dashboard des risques.</p><div class="note__tags"><span>Industrie</span><span>Cartographie</span><span>Dashboard</span></div></a>
+        <a class="note" href="exemples/apps/pilote.html" target="_blank" rel="noopener" data-cursor="Tester"><div class="note__img"><img src="img/shots/app-pilote.jpg" alt="Pilote" loading="lazy" /></div><div class="note__cap">Pilote <small>gestion de projets</small></div><p class="note__desc">Météo projet, Gantt, matrice des risques, suivi hebdo et export PowerPoint en un clic.</p><div class="note__tags"><span>PMO</span><span>Gantt</span><span>Reporting</span></div></a>
+        <a class="note" href="exemples/apps/kaizen.html" target="_blank" rel="noopener" data-cursor="Tester"><div class="note__img"><img src="img/shots/app-kaizen.jpg" alt="Kaizen Hub" loading="lazy" /></div><div class="note__cap">Kaizen Hub <small>amélioration continue</small></div><p class="note__desc">Suivi des idées, photos avant / après, audits 5S en radar et achats comparés au budget.</p><div class="note__tags"><span>Lean</span><span>5S</span><span>Import Excel</span></div></a>
+        <a class="note" href="exemples/apps/reserva.html" target="_blank" rel="noopener" data-cursor="Tester"><div class="note__img"><img src="img/shots/app-reserva.jpg" alt="Réserva" loading="lazy" /></div><div class="note__cap">Réserva <small>prise de rendez-vous</small></div><p class="note__desc">Agenda d'équipe, réservation en ligne 24 h/24 et rappels SMS automatiques.</p><div class="note__tags"><span class="new">Nouveau</span><span>Instituts</span><span>Santé</span></div></a>
+        <a class="note" href="exemples/apps/stockly.html" target="_blank" rel="noopener" data-cursor="Tester"><div class="note__img"><img src="img/shots/app-stockly.jpg" alt="Stockly" loading="lazy" /></div><div class="note__cap">Stockly <small>ventes &amp; stocks</small></div><p class="note__desc">Ventes en direct, meilleures ventes et réassort automatique avant la rupture.</p><div class="note__tags"><span class="new">Nouveau</span><span>E-commerce</span><span>Automatisation</span></div></a>
+        <a class="note" href="exemples/apps/closr.html" target="_blank" rel="noopener" data-cursor="Tester"><div class="note__img"><img src="img/shots/app-closr.jpg" alt="Closr" loading="lazy" /></div><div class="note__cap">Closr <small>CRM commercial</small></div><p class="note__desc">Pipeline en glisser-déposer, relances automatiques et entonnoir de conversion.</p><div class="note__tags"><span class="new">Nouveau</span><span>Ventes</span><span>Relances</span></div></a>
+        <div class="apps__end"><h3>Votre outil sera le prochain billet sur ce mur.</h3><a href="#contact" class="btn btn--grad btn--lg" data-magnet>Je décris mon app</a></div>
+      </div>
+    </section>
+
+    <!-- STUDIO -->
+    <section class="section" id="studio">
+      <header class="section__head">
+        <p class="eyebrow" data-reveal>Logos &amp; identité</p>
+        <h2 class="section__title" data-split>Des marques qui se dessinent sous vos yeux.</h2>
+      </header>
+      <div class="logos">
+        <figure class="note" data-stick><div class="logo-card" style="background:#14100c">
+          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#d9a24a" stroke-width="3" stroke-linecap="round"><circle cx="58" cy="60" r="24"/><path d="M58 22v-10M58 108v-10M20 60H10M106 60H96M31 33l-7-7M92 94l-7-7M85 33l7-7M24 94l7-7"/></g><text x="104" y="74" font-family="Fraunces" font-weight="300" font-size="46" fill="#f4ead8">Lu<tspan fill="#d9a24a" font-style="italic">m</tspan>en</text></svg>
+        </div><figcaption class="note__cap">Lumen <small>restauration</small></figcaption></figure>
+        <figure class="note" data-stick><div class="logo-card" style="background:#efede7">
+          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#3f5a43" stroke-width="3.5"><rect x="22" y="30" width="56" height="56"/><path d="M30 78C38 48 58 36 74 34C70 56 56 74 30 78ZM30 78L58 50"/></g><text x="94" y="72" font-family="Syne" font-weight="800" font-size="34" letter-spacing="2" fill="#1b1c1a">VERDI</text><text x="96" y="92" font-family="Inter" font-size="11" letter-spacing="5" fill="#3f5a43">ARCHITECTES</text></svg>
+        </div><figcaption class="note__cap">Verdi <small>architecture</small></figcaption></figure>
+        <figure class="note" data-stick><div class="logo-card" style="background:#fbe9e1">
+          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#c46a6a" stroke-width="3"><path d="M60 18C80 44 88 60 88 74a28 28 0 0 1-56 0c0-14 8-30 28-56Z"/><path d="M60 50v44M60 72c8-4 12-10 14-16M60 80c-8-4-12-10-14-16"/></g><text x="104" y="76" font-family="DM Serif Display" font-size="46" fill="#2b1f24">Velora</text></svg>
+        </div><figcaption class="note__cap">Velora <small>cosmétique</small></figcaption></figure>
+        <figure class="note" data-stick><div class="logo-card" style="background:#0b0b0d">
+          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#c6ff3d" stroke-width="3.5" stroke-linejoin="round"><path d="M30 36h44l-12 14H18ZM42 54h44l-12 14H30ZM54 72h44l-12 14H42Z"/></g><text x="112" y="80" font-family="Anton" font-size="44" letter-spacing="1" fill="#f2f2f2">KINE<tspan fill="#c6ff3d">TIK</tspan></text></svg>
+        </div><figcaption class="note__cap">Kinetik <small>sport</small></figcaption></figure>
+        <figure class="note" data-stick><div class="logo-card" style="background:linear-gradient(135deg,#2a1438,#5b2a6e)">
+          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#f5b8dc" stroke-width="3" stroke-linejoin="round"><path d="M60 20C64 46 74 56 100 60C74 64 64 74 60 100C56 74 46 64 20 60C46 56 56 46 60 20Z"/><circle cx="92" cy="28" r="6"/></g><text x="114" y="72" font-family="Fraunces" font-style="italic" font-size="44" fill="#fff">nova</text><text x="116" y="92" font-family="Inter" font-size="10" letter-spacing="4" fill="#f5b8dc">INSTITUT DE BEAUTÉ</text></svg>
+        </div><figcaption class="note__cap">Institut Nova <small>beauté</small></figcaption></figure>
+        <figure class="note" data-stick><div class="logo-card" style="background:#f6efe3">
+          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#7a4b24" stroke-width="3.5" stroke-linejoin="round"><path d="M22 92V54L54 28L86 54V92Z"/><path d="M54 92V64M54 70L42 58M54 76L66 64"/></g><text x="102" y="68" font-family="Syne" font-weight="700" font-size="30" fill="#3b2412">Bois &amp; Co</text><text x="104" y="88" font-family="Inter" font-size="10" letter-spacing="4" fill="#7a4b24">MAISON · DÉCO</text></svg>
+        </div><figcaption class="note__cap">Bois &amp; Co <small>déco</small></figcaption></figure>
+      </div>
+
+      <header class="section__head" style="margin-top:clamp(5rem,10vw,8rem);margin-bottom:0">
+        <p class="eyebrow" data-reveal>Publicités digitales</p>
+        <h2 class="section__title" data-split>Des pubs qui arrêtent le pouce.</h2>
+        <p class="section__lead" data-reveal>Stories, posts, bannières : des formats animés pensés pour Instagram, Facebook, TikTok et le web.</p>
+      </header>
+      <div class="ads">
+        <figure class="note" data-stick><div class="ad ad--story">
+          <div class="bars"><i></i><i></i></div><div class="acct"><b>V</b>velora · Sponsorisé</div>
+          <span class="sun"></span><span class="btl"></span>
+          <h4>Le sérum <em>éclat</em><br />est arrivé</h4><span class="swipe">Découvrir ↑</span>
+        </div><figcaption class="note__cap">Story Instagram <small>9:16</small></figcaption></figure>
+        <figure class="note" data-stick><div class="ad ad--square">
+          <span class="glow"></span><span class="streak s1"></span><span class="streak s2"></span><span class="streak s3"></span>
+          <span class="brand">KINE<i>TIK</i></span><h4>Ta 1<sup>re</sup> séance<br /><span>offerte</span></h4><p>RÉSERVE MAINTENANT</p>
+        </div><figcaption class="note__cap">Post sponsorisé <small>1:1</small></figcaption></figure>
+        <figure class="note" data-stick><div class="ad ad--banner">
+          <span class="plate p1"></span><span class="plate p2"></span>
+          <div class="copy"><small>Brasserie Lumen</small><h4>Le menu <em>d'automne</em> est servi</h4><span class="cta">Réserver une table</span></div>
+        </div><figcaption class="note__cap">Bannière web &amp; Facebook <small>16:9</small></figcaption></figure>
+      </div>
     </section>
 
     <!-- SERVICES -->
     <section class="section" id="services">
       <header class="section__head">
         <p class="eyebrow" data-reveal>Services</p>
-        <h2 class="section__title" data-reveal>Tout pour exister<br />en ligne — et convertir.</h2>
+        <h2 class="section__title" data-split>Tout pour exister en ligne, et convertir.</h2>
       </header>
       <div class="cards">
-        <article class="card" data-card>
-          <span class="card__ico">◎</span>
-          <h3>Réseaux sociaux</h3>
-          <p>Stratégie, création et gestion de vos comptes. Des contenus qui captent l'attention — et qui vous ressemblent.</p>
-        </article>
-        <article class="card" data-card>
-          <span class="card__ico">◈</span>
-          <h3>Branding &amp; identité</h3>
-          <p>Logo, charte graphique, templates documents et présentations, éléments visuels. Une identité cohérente sur tous vos supports.</p>
-        </article>
-        <article class="card" data-card>
-          <span class="card__ico">◍</span>
-          <h3>Création de sites web</h3>
-          <p>Sites vitrines, landing pages et e-commerce. Livrés rapidement, optimisés SEO et conçus pour convertir.</p>
-        </article>
-        <article class="card" data-card>
-          <span class="card__ico">⚙</span>
-          <h3>Automatisations</h3>
-          <p>Des workflows sur mesure qui vous font gagner des heures chaque semaine.</p>
-        </article>
-        <article class="card" data-card>
-          <span class="card__ico">◳</span>
-          <h3>Développement d'apps</h3>
-          <p>Applications web sur mesure : outil interne, SaaS, portail client, dashboard.</p>
-        </article>
-        <article class="card" data-card>
-          <span class="card__ico">✉</span>
-          <h3>Email marketing</h3>
-          <p>Newsletters, séquences automatisées et campagnes promo qui convertissent.</p>
-        </article>
+        <article class="card" data-card><span class="card__ico">◍</span><h3>Sites web</h3><p>Vitrines, landing pages et e-commerce animés, rapides et optimisés pour Google.</p><a href="#realisations">Voir les sites →</a></article>
+        <article class="card" data-card><span class="card__ico">◳</span><h3>Applications</h3><p>Outils internes, tableaux de bord, réservation, CRM : des apps sur mesure pour votre métier.</p><a href="#apps">Voir les apps →</a></article>
+        <article class="card" data-card><span class="card__ico">◈</span><h3>Logo &amp; identité</h3><p>Logo, charte graphique, cartes de visite, templates de documents et de présentations.</p><a href="#studio">Voir les logos →</a></article>
+        <article class="card" data-card><span class="card__ico">▶</span><h3>Publicités digitales</h3><p>Stories, posts sponsorisés, bannières et vidéos courtes qui donnent envie de cliquer.</p><a href="#studio">Voir les pubs →</a></article>
+        <article class="card" data-card><span class="card__ico">◎</span><h3>Réseaux sociaux</h3><p>Stratégie, création et gestion de vos comptes, avec un calendrier éditorial clair.</p></article>
+        <article class="card" data-card><span class="card__ico">⚙</span><h3>Automatisations &amp; emailing</h3><p>Relances, newsletters et workflows qui vous font gagner des heures chaque semaine.</p></article>
       </div>
     </section>
 
-    <!-- TARIFS -->
-    <section class="section" id="tarifs">
-      <header class="section__head">
-        <p class="eyebrow" data-reveal>Tarifs · <span class="grad">−50% lancement</span></p>
-        <h2 class="section__title" data-reveal>Des abonnements<br />simples et clairs.</h2>
-      </header>
-      <div class="plans">
-        <article class="plan" data-card>
-          <h3 class="plan__name">Starter</h3>
-          <p class="plan__price"><s>199€</s> <b>99€</b><span>/mois</span></p>
-          <ul class="plan__list">
-            <li>1 réseau social</li>
-            <li>8 posts / mois</li>
-            <li>Création visuels + textes</li>
-            <li>Reporting mensuel</li>
-          </ul>
-          <a href="#contact" class="btn btn--ghost btn--block">Je veux ce plan</a>
-        </article>
-        <article class="plan plan--featured" data-card>
-          <span class="plan__badge">Le plus choisi</span>
-          <h3 class="plan__name">Pro</h3>
-          <p class="plan__price"><s>499€</s> <b>249€</b><span>/mois</span></p>
-          <ul class="plan__list">
-            <li>3 réseaux sociaux</li>
-            <li>20 posts / mois</li>
-            <li>Stratégie + calendrier éditorial</li>
-            <li>Automatisations incluses</li>
-            <li>Support prioritaire</li>
-          </ul>
-          <a href="#contact" class="btn btn--ink btn--block">Je veux ce plan</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- À LA DEMANDE -->
-    <section class="section" id="demande">
-      <header class="section__head">
-        <p class="eyebrow" data-reveal>À la demande</p>
-        <h2 class="section__title" data-reveal>Un projet ponctuel ?<br />Prix fixes, sans surprise.</h2>
-      </header>
-      <div class="ondemand">
-        <article class="od" data-card><span class="od__price">110€</span><h3>Logo &amp; identité</h3><a href="#contact" class="od__link">Commencer →</a></article>
-        <article class="od" data-card><span class="od__price">110€</span><h3>Site one-page</h3><a href="#contact" class="od__link">Commencer →</a></article>
-        <article class="od" data-card><span class="od__price">230€</span><h3>Site multi-pages</h3><a href="#contact" class="od__link">Commencer →</a></article>
-        <article class="od" data-card><span class="od__price">290€</span><h3>Automatisation sur mesure</h3><a href="#contact" class="od__link">Commencer →</a></article>
-      </div>
+    <!-- PROMESSES -->
+    <section class="promises">
+      <div class="promise" data-card><b data-count="0" data-suffix=" €">0 €</b><p>à payer avant d'avoir vu votre projet</p></div>
+      <div class="promise" data-card><b data-count="72" data-suffix=" h">72 h</b><p>pour recevoir une première version</p></div>
+      <div class="promise" data-card><b data-count="24" data-suffix=" h">24 h</b><p>pour une réponse à votre demande</p></div>
+      <div class="promise" data-card><b data-count="100" data-suffix=" %">100 %</b><p>sur mesure, rien n'est un template</p></div>
     </section>
 
     <!-- CONTACT -->
     <section class="section contact" id="contact">
       <div class="contact__card" data-reveal>
-        <p class="eyebrow">Contact</p>
-        <h2 class="section__title">Parlons de votre projet.</h2>
-        <p class="contact__lead">Réponse et proposition sur mesure sous 24h.</p>
+        <p class="eyebrow">Votre projet</p>
+        <h2 class="section__title">Décrivez-le. <span class="grad">On vous le montre.</span></h2>
+        <p class="contact__lead">Dites-nous ce dont vous avez besoin. Vous recevez une première version sous 72 h, et vous ne payez que si elle vous plaît.</p>
         <form class="contact__form" action="https://formsubmit.co/47b404d83ccfec14e5f1a4be344b75d8" method="POST">
           <input type="hidden" name="_subject" value="Nouvelle demande — AS Marketing Agency" />
           <input type="hidden" name="_captcha" value="false" />
@@ -198,22 +243,23 @@
             <input type="text" name="Nom" placeholder="Votre nom" aria-label="Nom" required />
             <input type="email" name="Email" placeholder="Votre email" aria-label="Email" required />
           </div>
+          <select name="Besoin" aria-label="Type de projet">
+            <option>Site web</option><option>Application</option><option>Logo &amp; identité</option><option>Publicités digitales</option><option>Réseaux sociaux</option><option>Autre / je ne sais pas encore</option>
+          </select>
           <textarea name="Message" rows="4" placeholder="Votre projet en quelques mots…" aria-label="Message" required></textarea>
-          <button type="submit" class="btn btn--ink btn--lg btn--block">Envoyer ma demande →</button>
+          <button type="submit" class="btn btn--ink btn--lg btn--block">Recevoir ma première version →</button>
         </form>
+        <span class="contact__free">✓ Sans engagement · aucun paiement avant validation</span>
         <p class="contact__or">ou écrivez-nous à <a href="mailto:as.agency.off@gmail.com">as.agency.off@gmail.com</a></p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <img class="footer__logo" src="img/logo-mark.png" alt="AS Marketing Agency" />
-    <p>Votre présence digitale, boostée.</p>
-    <div class="footer__links">
-      <a href="#services">Services</a><a href="#tarifs">Tarifs</a>
-      <a href="#demande">À la demande</a><a href="mailto:as.agency.off@gmail.com">as.agency.off@gmail.com</a>
-    </div>
-    <small>© 2026 AS Marketing Agency</small>
+    <img class="footer__logo" src="img/logo-mark.webp" alt="AS Marketing Agency" />
+    <p>On le fait. Vous l'aimez. Ensuite, on parle.</p>
+    <div class="footer__links"><a href="#methode">Méthode</a><a href="#realisations">Sites</a><a href="#apps">Applications</a><a href="#studio">Logos &amp; pubs</a><a href="mailto:as.agency.off@gmail.com">as.agency.off@gmail.com</a></div>
+    <small>© 2026 AS Marketing Agency · Les marques présentées sont des exemples fictifs réalisés par l'agence.</small>
   </footer>
 
   <script src="assets/gsap.min.js"></script>

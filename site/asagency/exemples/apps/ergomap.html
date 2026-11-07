@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ErgoMap — Cartographie des risques TMS (exemple)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="app.css" />
+<style>
+  :root { --accent:#ff7a59; --accent2:#ffc15e; --side:#1a1420; }
+  .plan { position:relative; background:#fbfaf7; border-radius:12px; overflow:hidden; }
+  .plan svg { width:100%; height:auto; display:block; }
+  .plan svg .vb { transition: transform 1s cubic-bezier(.6,0,.2,1); transform-origin:0 0; }
+  .zone { cursor:pointer; transition:opacity .5s, filter .3s; }
+  .zone:hover { filter:brightness(1.08) drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
+  .dim .zone:not(.sel) { opacity:.25; }
+  .halo { transform-box:fill-box; transform-origin:center; animation:pulse 2.2s infinite; }
+  .zone text { font:600 13px Inter; fill:#1a1420; pointer-events:none; }
+  .zone .ir { font:700 18px "Space Grotesk"; }
+  .post { cursor:pointer; }
+  .post circle.r { transform-box:fill-box; transform-origin:center; animation:pulse 1.8s infinite; }
+  .back { position:absolute; top:10px; left:10px; background:#fff; border:1px solid var(--line); border-radius:8px; padding:.4rem .7rem; font-size:.8rem; display:none; }
+  .dim + .back { display:block; }
+  .body { background:radial-gradient(circle at 50% 30%, #2a2133, #140f19); border-radius:12px; padding:1rem; display:grid; place-items:center; }
+  .body svg { width:100%; max-width:230px; height:auto; }
+  .hot { transform-box:fill-box; transform-origin:center; animation:pulse 2s infinite; }
+  .rank li { list-style:none; display:grid; grid-template-columns:110px 1fr 40px; gap:.6rem; align-items:center; font-size:.84rem; padding:.42rem 0; }
+  .rank li span:last-child { text-align:right; font-weight:600; }
+  .gauge { display:grid; place-items:center; }
+  .gauge svg { width:150px; }
+  .legend { display:flex; gap:1rem; font-size:.76rem; color:var(--muted); margin-top:.6rem; }
+  .legend i { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:.3rem; vertical-align:-1px; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="logo"><i>◎</i>ErgoMap</div>
+    <a class="on">▦ Plan du site</a><a>◉ Ateliers</a><a>▤ Dashboard</a><a>☰ Données brutes</a><a>✎ Questionnaire</a>
+    <span class="grow"></span>
+    <div class="user"><b>RS</b><div>Responsable HSE<br><small style="opacity:.6">Site principal</small></div></div>
+  </aside>
+  <main class="main">
+    <div class="top">
+      <div><h1>Cartographie des risques TMS</h1><p>Cliquez sur un atelier pour zoomer et isoler ses postes.</p></div>
+      <div class="chips"><button class="chip on">Tous</button><button class="chip">Douleur actuelle</button><button class="chip">12 derniers mois</button></div>
+    </div>
+    <div class="grid g4 rise" style="margin-bottom:1rem">
+      <div class="card kpi"><small>Réponses collectées</small><b data-n="150">0</b><span class="delta up">+18</span></div>
+      <div class="card kpi"><small>Opérateurs avec douleur</small><b data-n="46" data-suf=" %">0</b><span class="delta down">+4 pts</span></div>
+      <div class="card kpi"><small>Indice de risque max</small><b data-n="7.8" data-d="1">0</b><span class="delta down">Élevé</span></div>
+      <div class="card kpi"><small>Postes cartographiés</small><b data-n="20">0</b><span class="delta up">5 ateliers</span></div>
+    </div>
+    <div class="grid g21">
+      <div class="card">
+        <h3>Plan de l'usine <span class="legend"><span><i style="background:#22c08a"></i>Faible</span><span><i style="background:#f5a623"></i>Modéré</span><span><i style="background:#ef4b5a"></i>Élevé</span></span></h3>
+        <div class="plan">
+          <svg viewBox="0 0 800 440" id="plan">
+            <defs>
+              <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 10L10 0" stroke="#e8e4dc" stroke-width="1"/></pattern>
+              <radialGradient id="gR"><stop offset="0" stop-color="#ef4b5a" stop-opacity=".55"/><stop offset="1" stop-color="#ef4b5a" stop-opacity=".12"/></radialGradient>
+              <radialGradient id="gO"><stop offset="0" stop-color="#f5a623" stop-opacity=".55"/><stop offset="1" stop-color="#f5a623" stop-opacity=".12"/></radialGradient>
+              <radialGradient id="gV"><stop offset="0" stop-color="#22c08a" stop-opacity=".5"/><stop offset="1" stop-color="#22c08a" stop-opacity=".1"/></radialGradient>
+            </defs>
+            <g class="vb" id="vb">
+              <rect x="10" y="10" width="780" height="420" rx="10" fill="url(#hatch)" stroke="#d8d3c9" stroke-width="2"/>
+              <g class="zone" data-z="0" data-box="30 30 300 200"><rect x="30" y="30" width="300" height="200" rx="8" fill="url(#gR)" stroke="#ef4b5a" stroke-width="2"/><circle class="halo" cx="180" cy="130" r="26" fill="none" stroke="#ef4b5a" stroke-width="2"/><text x="44" y="56">Assemblage</text><text class="ir" x="44" y="80">IR 7,8</text>
+                <g class="post"><circle class="r" cx="110" cy="170" r="9" fill="none" stroke="#ef4b5a"/><circle cx="110" cy="170" r="7" fill="#ef4b5a"/></g><g class="post"><circle cx="190" cy="190" r="7" fill="#f5a623"/></g><g class="post"><circle class="r" cx="270" cy="150" r="9" fill="none" stroke="#ef4b5a"/><circle cx="270" cy="150" r="7" fill="#ef4b5a"/></g><g class="post"><circle cx="240" cy="90" r="7" fill="#22c08a"/></g></g>
+              <g class="zone" data-z="1" data-box="350 30 220 200"><rect x="350" y="30" width="220" height="200" rx="8" fill="url(#gO)" stroke="#f5a623" stroke-width="2"/><text x="364" y="56">Conditionnement</text><text class="ir" x="364" y="80">IR 5,1</text><g class="post"><circle cx="420" cy="160" r="7" fill="#f5a623"/></g><g class="post"><circle cx="500" cy="120" r="7" fill="#22c08a"/></g><g class="post"><circle cx="520" cy="190" r="7" fill="#f5a623"/></g></g>
+              <g class="zone" data-z="2" data-box="590 30 180 390"><rect x="590" y="30" width="180" height="390" rx="8" fill="url(#gV)" stroke="#22c08a" stroke-width="2"/><text x="604" y="56">Logistique</text><text class="ir" x="604" y="80">IR 2,9</text><g class="post"><circle cx="660" cy="180" r="7" fill="#22c08a"/></g><g class="post"><circle cx="700" cy="300" r="7" fill="#22c08a"/></g><g class="post"><circle cx="650" cy="370" r="7" fill="#f5a623"/></g></g>
+              <g class="zone" data-z="3" data-box="30 250 330 170"><rect x="30" y="250" width="330" height="170" rx="8" fill="url(#gO)" stroke="#f5a623" stroke-width="2"/><text x="44" y="276">Usinage</text><text class="ir" x="44" y="300">IR 6,2</text><g class="post"><circle cx="120" cy="360" r="7" fill="#f5a623"/></g><g class="post"><circle class="r" cx="220" cy="330" r="9" fill="none" stroke="#ef4b5a"/><circle cx="220" cy="330" r="7" fill="#ef4b5a"/></g><g class="post"><circle cx="310" cy="380" r="7" fill="#22c08a"/></g></g>
+              <g class="zone" data-z="4" data-box="380 250 190 170"><rect x="380" y="250" width="190" height="170" rx="8" fill="url(#gV)" stroke="#22c08a" stroke-width="2"/><text x="394" y="276">Contrôle qualité</text><text class="ir" x="394" y="300">IR 3,4</text><g class="post"><circle cx="440" cy="360" r="7" fill="#22c08a"/></g><g class="post"><circle cx="520" cy="330" r="7" fill="#f5a623"/></g></g>
+            </g>
+          </svg>
+          <button class="back" id="back">← Vue d'ensemble</button>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Zones du corps <span id="zname" class="pill p-bad">Site complet</span></h3>
+          <div class="body">
+            <svg viewBox="0 0 200 360">
+              <defs><linearGradient id="skin" x1="0" x2="1"><stop offset="0" stop-color="#3a3145"/><stop offset=".5" stop-color="#5a4d6a"/><stop offset="1" stop-color="#3a3145"/></linearGradient></defs>
+              <g fill="url(#skin)"><circle cx="100" cy="34" r="22"/><rect x="66" y="60" width="68" height="110" rx="26"/><rect x="40" y="66" width="22" height="100" rx="11" transform="rotate(8 51 66)"/><rect x="138" y="66" width="22" height="100" rx="11" transform="rotate(-8 149 66)"/><rect x="70" y="160" width="26" height="170" rx="13"/><rect x="104" y="160" width="26" height="170" rx="13"/></g>
+              <g id="hots">
+                <circle class="hot" cx="128" cy="76" r="14" fill="rgba(239,75,90,.75)"/><circle cx="128" cy="76" r="9" fill="#ef4b5a"/>
+                <circle class="hot" cx="100" cy="130" r="16" fill="rgba(245,166,35,.7)" style="animation-delay:.5s"/><circle cx="100" cy="130" r="10" fill="#f5a623"/>
+                <circle class="hot" cx="44" cy="160" r="11" fill="rgba(239,75,90,.7)" style="animation-delay:1s"/><circle cx="44" cy="160" r="7" fill="#ef4b5a"/>
+                <circle cx="117" cy="250" r="7" fill="#22c08a"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="card"><h3>Classement des zones</h3>
+          <ul class="rank" id="rank">
+            <li><span>Épaule droite</span><div class="bar"><i style="width:82%;background:linear-gradient(90deg,#ef4b5a,#ff8a7a)"></i></div><span>38</span></li>
+            <li><span>Bas du dos</span><div class="bar"><i style="width:64%;background:linear-gradient(90deg,#f5a623,#ffc15e)"></i></div><span>29</span></li>
+            <li><span>Poignet gauche</span><div class="bar"><i style="width:48%;background:linear-gradient(90deg,#ef4b5a,#ff8a7a)"></i></div><span>22</span></li>
+            <li><span>Genou</span><div class="bar"><i style="width:21%"></i></div><span>9</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<a class="as-ribbon" href="../../index.html#apps"><i></i>Démo conçue par AS Marketing Agency</a>
+<script src="app.js"></script>
+<script>
+  const svg = document.getElementById('plan'), vb = document.getElementById('vb'), back = document.getElementById('back');
+  const names = ['Assemblage','Conditionnement','Logistique','Usinage','Contrôle qualité'];
+  const lvl = ['p-bad','p-warn','p-ok','p-warn','p-ok'];
+  function zoomTo(z) {
+    const [x,y,w,h] = z.dataset.box.split(' ').map(Number);
+    const k = Math.min(780 / w, 420 / h) * 0.9;
+    const tx = 400 - (x + w / 2) * k, ty = 220 - (y + h / 2) * k;
+    vb.style.transform = `translate(${tx}px,${ty}px) scale(${k})`;
+    svg.classList.add('dim'); svg.querySelectorAll('.zone').forEach(n => n.classList.toggle('sel', n === z));
+    const zn = document.getElementById('zname'); zn.textContent = names[z.dataset.z]; zn.className = 'pill ' + lvl[z.dataset.z];
+    document.querySelectorAll('#rank .bar i').forEach(i => { i.style.width = (15 + Math.random() * 70).toFixed(0) + '%'; });
+  }
+  svg.querySelectorAll('.zone').forEach(z => z.addEventListener('click', () => zoomTo(z)));
+  back.addEventListener('click', () => { vb.style.transform = ''; svg.classList.remove('dim'); const zn = document.getElementById('zname'); zn.textContent = 'Site complet'; zn.className = 'pill p-bad'; });
+</script>
+</body>
+</html>
