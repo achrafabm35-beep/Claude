@@ -48,5 +48,14 @@ const APPS = ['reserva', 'stockly', 'closr'];
     await mp.screenshot({ path: path.join(OUT, `mobile-${s}.jpg`), type: 'jpeg', quality: 80 });
     console.log('✓', `mobile-${s}.jpg`);
   }
+  // pubs du site, en images (mur d'accueil)
+  const ap = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1.5 });
+  await ap.goto('file://' + path.join(ROOT, 'index.html') + '?shot');
+  await ap.waitForLoadState('networkidle').catch(() => {});
+  await ap.waitForTimeout(1200);
+  for (const k of ['story', 'square', 'banner']) {
+    await (await ap.$('.ads .ad--' + k)).screenshot({ path: path.join(OUT, `ad-${k}.jpg`), type: 'jpeg', quality: 84 });
+    console.log('✓', `ad-${k}.jpg`);
+  }
   await browser.close();
 })();

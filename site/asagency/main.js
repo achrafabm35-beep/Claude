@@ -91,77 +91,43 @@ if (SHOT) {
 
       if (reduce) {
         curtain.classList.add("gone");
-        gsap.set("[data-anim], [data-reveal], .wi, .hero__title .word", { autoAlpha: 1, y: 0, yPercent: 0 });
+        gsap.set("[data-anim], [data-reveal], .wi, .hero__title .word, .htile, .hwall__plane", { autoAlpha: 1, y: 0, yPercent: 0 });
         document.querySelectorAll(".mw").forEach((w) => (w.style.opacity = 1));
         document.querySelectorAll(".draw-logo *").forEach((p) => (p.style.strokeDashoffset = 0));
         return;
       }
 
-      /* ---------- INTRO + HERO ---------- */
+      /* ---------- INTRO + ACCUEIL (mur de réalisations) ---------- */
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
       tl.to(curtain, { yPercent: -100, duration: 0.9, ease: "power4.inOut", delay: 0.75, onComplete: () => curtain.classList.add("gone") })
-        .from(".hero__title .word", { yPercent: 115, duration: 1, stagger: 0.07 }, "-=0.35")
-        .from(".rot", { yPercent: 115, duration: 0.9 }, "-=0.7")
-        .fromTo("[data-anim]", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, "-=0.8")
-        .from("#stage .layer > *", {
-          z: -600, y: 80, rotationX: 25, autoAlpha: 0, duration: 1.4, stagger: 0.15, ease: "power4.out", clearProps: "transform,opacity,visibility",
-        }, "-=1.1");
+        .from(".hwall__plane", { scale: 2.4, rotationX: 0, rotationZ: 0, autoAlpha: 0, duration: 2.2, ease: "expo.out" }, "-=0.6")
+        .from(".htile", { autoAlpha: 0, y: 120, duration: 1.4, stagger: { each: 0.025, from: "random" }, clearProps: "opacity,visibility,transform" }, "<0.1")
+        .from(".hero__title .word", { yPercent: 115, duration: 1.1, stagger: 0.12 }, "<0.5")
+        .from(".hero__scroll", { autoAlpha: 0, y: -10, duration: 0.8 }, "-=0.4");
 
-      /* parallax souris sur la scène 3D du hero */
-      const stage = document.getElementById("stage");
-      if (fine && stage) {
-        const items = [...stage.querySelectorAll(".layer")].map((el) => ({
-          d: +el.dataset.depth,
-          x: gsap.quickTo(el, "x", { duration: 0.9 }), y: gsap.quickTo(el, "y", { duration: 0.9 }),
-          ry: gsap.quickTo(el, "rotationY", { duration: 0.9 }),
-        }));
-        window.addEventListener("pointermove", (e) => {
-          const nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
-          items.forEach((i) => { i.x(nx * 26 * i.d); i.y(ny * 20 * i.d); i.ry(nx * 6); });
-        });
+      /* le mur suit légèrement la souris */
+      const wall = document.querySelector(".hwall");
+      if (fine && wall) {
+        const rx = gsap.quickTo(wall, "rotationX", { duration: 1.2 }), ry = gsap.quickTo(wall, "rotationY", { duration: 1.2 });
+        window.addEventListener("pointermove", (e) => { ry((e.clientX / innerWidth - 0.5) * 8); rx(-(e.clientY / innerHeight - 0.5) * 6); });
       }
-      /* ouverture au défilement : la scène s'éclate, l'application vient plein écran */
-      if (desktop && stage) {
-        const L = (d) => stage.querySelector(`.layer[data-depth="${d}"]`);
-        const main = stage.querySelector(".s-main"), hero = document.querySelector(".hero");
-        // point de zoom = centre de l'application ; on l'amène au centre de l'écran
-        const origin = () => [main.offsetLeft + main.offsetWidth / 2, main.offsetTop + main.offsetHeight / 2];
-        gsap.set(stage, { transformOrigin: () => origin().map((v) => v + "px").join(" ") });
-        const center = () => { const r = stage.getBoundingClientRect(); return innerWidth / 2 - (r.left + origin()[0]); };
-        const middle = () => { return innerHeight / 2 - (stage.getBoundingClientRect().top - hero.getBoundingClientRect().top + origin()[1]); };
-        const zoom = () => Math.min(2.1, (innerWidth * 0.86) / (stage.offsetWidth * 0.8));
-        const open = gsap.timeline({
-          defaults: { ease: "none" },
-          scrollTrigger: { trigger: ".hero", start: "top top", end: "+=130%", scrub: 0.6, pin: true, anticipatePin: 1, invalidateOnRefresh: true },
-        });
-        open.to(".hero__intro", { yPercent: -30, autoAlpha: 0, duration: 0.35 }, 0)
-          .to(".stage__tags, " + '.layer[data-depth="2.2"]', { autoAlpha: 0, duration: 0.2 }, 0)
-          .to(L("0.5"), { xPercent: 70, yPercent: -60, autoAlpha: 0, duration: 0.6 }, 0.05)
-          .to(L("1.5"), { xPercent: 120, yPercent: 40, rotation: 12, autoAlpha: 0, duration: 0.6 }, 0.05)
-          .to(L("1.9"), { xPercent: -120, yPercent: 60, rotation: -14, autoAlpha: 0, duration: 0.6 }, 0.05)
-          .to(stage, { "--ry": "0deg", "--rx": "0deg", x: center, y: middle, scale: zoom, duration: 0.75, ease: "power2.inOut" }, 0.1)
-          .to(stage, { autoAlpha: 0, scale: () => zoom() * 1.12, duration: 0.15, ease: "power1.in" }, 0.9);
-      } else {
-        gsap.to("#stage", { yPercent: -12, scale: 0.94, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
-      }
+
+      /* au défilement : on plonge dans le mur, la phrase s'envole */
+      const plunge = gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: "#hero", start: "top top", end: "+=80%", scrub: 0.6, pin: true, anticipatePin: 1 } });
+      plunge.to(".hwall__plane", { scale: 2.3, rotationX: 8, rotationZ: -4, duration: 1 }, 0)
+        .to(".hero__title", { scale: 1.6, autoAlpha: 0, filter: "blur(10px)", duration: 0.6 }, 0)
+        .to(".hero__scroll", { autoAlpha: 0, duration: 0.15 }, 0)
+        .to(".hero__veil", { opacity: 0.4, duration: 0.5 }, 0)
+        .to(".hwall", { autoAlpha: 0.35, duration: 0.4 }, 0.6);
+
+      /* barre de navigation claire sur l'accueil sombre */
+      const navEl = document.getElementById("nav");
+      ScrollTrigger.create({ trigger: "#hero", start: "top top", end: "bottom 60", onLeave: () => navEl.classList.remove("on-dark"), onEnterBack: () => navEl.classList.add("on-dark") });
 
       /* blobs */
       gsap.to(".blob--1", { x: -60, y: 50, scale: 1.1, duration: 14, repeat: -1, yoyo: true, ease: "sine.inOut" });
       gsap.to(".blob--2", { x: 70, y: -40, scale: 1.15, duration: 18, repeat: -1, yoyo: true, ease: "sine.inOut" });
       gsap.to(".blob--3", { x: -50, y: -60, duration: 12, repeat: -1, yoyo: true, ease: "sine.inOut" });
-
-      /* phrase rotative */
-      const rot = document.querySelector(".rot");
-      const words = JSON.parse(rot.dataset.words || "[]");
-      let wi = 0;
-      const cycle = () => {
-        const next = words[(wi + 1) % words.length];
-        gsap.timeline({ onComplete: () => { wi = (wi + 1) % words.length; gsap.delayedCall(2, cycle); } })
-          .to(rot, { yPercent: -110, autoAlpha: 0, duration: 0.45, ease: "power2.in" })
-          .add(() => { rot.textContent = next; })
-          .fromTo(rot, { yPercent: 110, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.55 });
-      };
-      gsap.delayedCall(3.6, cycle);
 
       /* marquee réactif à la vitesse de scroll */
       const marquee = document.getElementById("marquee");
