@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Stockly — Ventes & stocks e-commerce (exemple)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="app.css" />
 <style>
-  :root { --accent:#f59e0b; --accent2:#ef4444; --side:#17140f; --bg:#f7f5f1; }
+  :root { --accent:#6c63f5; --accent2:#22c08a; }
   .chart svg { width:100%; height:auto; display:block; }
   .area { opacity:0; animation:fade 1.2s .8s forwards; } @keyframes fade { to { opacity:1; } }
   .dot { transform-box:fill-box; transform-origin:center; animation:pulse 1.8s infinite; }
@@ -34,20 +34,20 @@
     <div class="top"><div><h1>Bonjour 👋 voici votre boutique</h1><p>Synchronisé avec la boutique et l'entrepôt il y a 2 min</p></div>
       <div class="chips"><button class="chip">7 j</button><button class="chip on">30 j</button><button class="chip">12 mois</button></div></div>
     <div class="grid g4 rise" style="margin-bottom:1rem">
-      <div class="card kpi"><small>Chiffre d'affaires</small><b data-n="48250" data-suf=" €">0</b><span class="delta up">+18 %</span></div>
-      <div class="card kpi"><small>Commandes</small><b data-n="612">0</b><span class="delta up">+9 %</span></div>
-      <div class="card kpi"><small>Panier moyen</small><b data-n="78.8" data-d="1" data-suf=" €">0</b><span class="delta up">+4 %</span></div>
-      <div class="card kpi"><small>Ruptures évitées</small><b data-n="23">0</b><span class="delta up">auto</span></div>
+      <div class="card kpi" style="--kc:#4a4fe0"><small>Chiffre d'affaires</small><b data-n="48250" data-suf=" €">0</b><span class="delta up">+18 %</span></div>
+      <div class="card kpi" style="--kc:#e5a426"><small>Commandes</small><b data-n="612">0</b><span class="delta up">+9 %</span></div>
+      <div class="card kpi" style="--kc:#22a06b"><small>Panier moyen</small><b data-n="78.8" data-d="1" data-suf=" €">0</b><span class="delta up">+4 %</span></div>
+      <div class="card kpi" style="--kc:#e2456a"><small>Ruptures évitées</small><b data-n="23">0</b><span class="delta up">auto</span></div>
     </div>
     <div class="grid g21" style="margin-bottom:1rem">
       <div class="card chart"><h3>Ventes des 30 derniers jours <span class="pill p-ok">+18 % vs mois précédent</span></h3>
         <svg viewBox="0 0 600 220">
-          <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f59e0b" stop-opacity=".35"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></linearGradient></defs>
+          <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a5ff0" stop-opacity=".35"/><stop offset="1" stop-color="#5a5ff0" stop-opacity="0"/></linearGradient></defs>
           <g stroke="#eee8de"><line x1="0" x2="600" y1="50" y2="50"/><line x1="0" x2="600" y1="110" y2="110"/><line x1="0" x2="600" y1="170" y2="170"/></g>
           <path class="area" d="M0 170 C40 160 60 150 90 140 S150 150 180 120 S240 110 270 100 S330 120 360 90 S420 70 450 80 S520 40 560 45 L600 30 L600 220 L0 220Z" fill="url(#ga)"/>
           <path d="M0 190 C40 185 70 180 100 176 S170 170 200 160 S260 160 300 150 S360 150 400 140 S480 130 520 128 L600 120" fill="none" stroke="#cbbfae" stroke-width="2" stroke-dasharray="5 5"/>
-          <path class="draw" d="M0 170 C40 160 60 150 90 140 S150 150 180 120 S240 110 270 100 S330 120 360 90 S420 70 450 80 S520 40 560 45 L600 30" fill="none" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round"/>
-          <circle class="dot" cx="600" cy="30" r="10" fill="rgba(245,158,11,.4)"/><circle cx="600" cy="30" r="5" fill="#f59e0b"/>
+          <path class="draw" d="M0 170 C40 160 60 150 90 140 S150 150 180 120 S240 110 270 100 S330 120 360 90 S420 70 450 80 S520 40 560 45 L600 30" fill="none" stroke="#5a5ff0" stroke-width="3.5" stroke-linecap="round"/>
+          <circle class="dot" cx="600" cy="30" r="10" fill="rgba(90,95,240,.35)"/><circle cx="600" cy="30" r="5" fill="#5a5ff0"/>
         </svg>
       </div>
       <div class="card"><h3>Commandes en direct <span class="live" style="font-size:.72rem;text-transform:none;letter-spacing:0">live</span></h3><ul class="feed" id="feed"></ul></div>

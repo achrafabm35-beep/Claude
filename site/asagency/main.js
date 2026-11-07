@@ -50,6 +50,22 @@ document.querySelectorAll(".draw-logo").forEach((svg) => {
   });
 });
 
+/* vitrine des applications */
+let appJump = null, curApp = -1;
+function setApp(i) {
+  if (i === curApp) return;
+  curApp = i;
+  const meta = (window.APPS || [])[i] || {};
+  document.querySelectorAll("#applist button").forEach((b) => b.classList.toggle("on", +b.dataset.i === i));
+  document.querySelectorAll("#screen .shot").forEach((im) => im.classList.toggle("on", +im.dataset.i === i));
+  document.querySelectorAll("#pip img").forEach((im) => im.classList.toggle("on", +im.dataset.i === i));
+  document.getElementById("pip")?.classList.toggle("hide", !meta.pip);
+  const cta = document.getElementById("screenCta");
+  if (cta) { cta.classList.toggle("show", !!meta.demo); if (meta.demo) document.getElementById("demoLink").href = meta.demo; }
+}
+document.querySelectorAll("#applist button").forEach((b) => b.addEventListener("click", () => (appJump ? appJump(+b.dataset.i) : setApp(+b.dataset.i))));
+setApp(0);
+
 if (SHOT) {
   document.getElementById("curtain")?.classList.add("gone");
   document.querySelectorAll(".mw").forEach((w) => (w.style.opacity = 1));
@@ -87,24 +103,24 @@ if (SHOT) {
         .from(".hero__title .word", { yPercent: 115, duration: 1, stagger: 0.07 }, "-=0.35")
         .from(".rot", { yPercent: 115, duration: 0.9 }, "-=0.7")
         .fromTo("[data-anim]", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, "-=0.8")
-        .from("#heroBoard .note, #heroBoard .sticker, #heroBoard .tag", {
-          y: () => gsap.utils.random(-260, -160), x: () => gsap.utils.random(-80, 80), rotation: () => gsap.utils.random(-30, 30),
-          scale: 1.25, autoAlpha: 0, duration: 1.1, stagger: 0.12, ease: "back.out(1.4)", clearProps: "transform,opacity,visibility",
-        }, "-=1");
+        .from("#stage .layer > *", {
+          z: -600, y: 80, rotationX: 25, autoAlpha: 0, duration: 1.4, stagger: 0.15, ease: "power4.out", clearProps: "opacity,visibility",
+        }, "-=1.1");
 
-      /* parallax souris sur le tableau du hero */
-      const board = document.getElementById("heroBoard");
-      if (fine && board) {
-        const items = [...board.querySelectorAll(".layer")].map((el) => ({
-          el, d: +el.dataset.depth,
-          x: gsap.quickTo(el, "x", { duration: 0.8 }), y: gsap.quickTo(el, "y", { duration: 0.8 }),
+      /* parallax souris sur la scène 3D du hero */
+      const stage = document.getElementById("stage");
+      if (fine && stage) {
+        const items = [...stage.querySelectorAll(".layer")].map((el) => ({
+          d: +el.dataset.depth,
+          x: gsap.quickTo(el, "x", { duration: 0.9 }), y: gsap.quickTo(el, "y", { duration: 0.9 }),
+          ry: gsap.quickTo(el, "rotationY", { duration: 0.9 }),
         }));
         window.addEventListener("pointermove", (e) => {
           const nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
-          items.forEach((i) => { i.x(nx * 30 * i.d); i.y(ny * 24 * i.d); });
+          items.forEach((i) => { i.x(nx * 26 * i.d); i.y(ny * 20 * i.d); i.ry(nx * 6); });
         });
       }
-      gsap.to("#heroBoard", { yPercent: -10, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+      gsap.to("#stage", { yPercent: -12, scale: 0.94, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
 
       /* blobs */
       gsap.to(".blob--1", { x: -60, y: 50, scale: 1.1, duration: 14, repeat: -1, yoyo: true, ease: "sine.inOut" });
@@ -165,36 +181,37 @@ if (SHOT) {
         .to("#diveScreen", { scale: 2.6, ease: "power2.in", duration: 1 }, 2.1)
         .to("#dive", { backgroundColor: "#f4f4f7", duration: 0.4 }, 2.6);
 
-      /* ---------- billets « collés » au scroll ---------- */
-      gsap.utils.toArray("[data-stick]").forEach((n, i) => {
+      /* ---------- éléments qui se redressent en 3D à l'apparition ---------- */
+      gsap.utils.toArray("[data-rise]").forEach((n, i) => {
         gsap.from(n, {
-          y: -140, x: gsap.utils.random(-60, 60), rotation: gsap.utils.random(-22, 22), scale: 1.18, autoAlpha: 0,
-          duration: 1, ease: "back.out(1.6)", delay: (i % 3) * 0.08, clearProps: "transform,opacity,visibility",
-          scrollTrigger: { trigger: n, start: "top 88%" },
+          y: 90, rotationX: 28, transformPerspective: 1200, transformOrigin: "50% 100%", autoAlpha: 0, scale: 0.94,
+          duration: 1.2, ease: "power4.out", delay: (i % 3) * 0.08, clearProps: "transform,opacity,visibility",
+          scrollTrigger: { trigger: n, start: "top 90%" },
         });
       });
+      gsap.from(".ads .ad", { y: 100, rotationX: 25, transformPerspective: 1200, autoAlpha: 0, stagger: 0.12, duration: 1.2, ease: "power4.out", clearProps: "transform,opacity,visibility", scrollTrigger: { trigger: ".ads", start: "top 85%" } });
 
-      /* téléphones qui s'ouvrent en éventail */
-      gsap.from("#phones .phone", { y: 160, rotation: 0, scale: 0.85, stagger: 0.1, duration: 1.1, ease: "back.out(1.3)", scrollTrigger: { trigger: "#phones", start: "top 85%" } });
-      gsap.to("#phones", { scale: 1.08, ease: "none", scrollTrigger: { trigger: "#phones", start: "top bottom", end: "bottom top", scrub: true } });
+      /* téléphones */
+      gsap.from("#phones .device", { y: 180, scale: 0.85, stagger: 0.1, duration: 1.2, ease: "power4.out", scrollTrigger: { trigger: "#phones", start: "top 88%" } });
 
-      /* ---------- apps : défilement horizontal ---------- */
+      /* ---------- applications : vitrine épinglée ---------- */
+      gsap.from("#screen .frame", { rotationX: 35, y: 120, scale: 0.85, autoAlpha: 0, duration: 1.4, ease: "power4.out", scrollTrigger: { trigger: "#showcase", start: "top 80%" } });
       if (desktop) {
-        const track = document.getElementById("appsTrack");
-        const hs = gsap.to(track, {
-          x: () => -(track.scrollWidth - innerWidth), ease: "none",
-          scrollTrigger: { trigger: "#apps", start: "top top", end: () => "+=" + (track.scrollWidth - innerWidth), scrub: 1, pin: true, invalidateOnRefresh: true },
+        const n = (window.APPS || []).length;
+        ScrollTrigger.create({
+          trigger: "#showcase", start: "top top", end: () => "+=" + n * 70 + "%", pin: true,
+          onUpdate: (self) => setApp(Math.min(n - 1, Math.floor(self.progress * n))),
         });
-        /* zoom dans chaque capture à mesure qu'elle arrive au centre */
-        track.querySelectorAll(".note").forEach((n) => {
-          gsap.fromTo(n.querySelector(".note__img img"), { scale: 1.45, transformOrigin: "50% 0%" }, {
-            scale: 1, ease: "none",
-            scrollTrigger: { trigger: n, containerAnimation: hs, start: "left right", end: "center center", scrub: true },
-          });
-        });
-      } else {
-        gsap.utils.toArray("#appsTrack .note").forEach((n) => gsap.from(n, { y: 80, rotation: 8, autoAlpha: 0, duration: 0.9, clearProps: "transform,opacity,visibility", scrollTrigger: { trigger: n, start: "top 88%" } }));
+        appJump = (i) => {
+          const st = ScrollTrigger.getAll().find((t) => t.pin === document.getElementById("showcase"));
+          if (st) window.scrollTo({ top: st.start + (st.end - st.start) * ((i + 0.5) / n), behavior: "smooth" });
+        };
       }
+      /* mur d'écrans qui glisse avec le scroll */
+      gsap.utils.toArray("[data-wall]").forEach((r) => {
+        const dir = +r.dataset.wall;
+        gsap.fromTo(r, { xPercent: dir > 0 ? -30 : 0 }, { xPercent: dir > 0 ? 0 : -30, ease: "none", scrollTrigger: { trigger: ".wall", start: "top bottom", end: "bottom top", scrub: true } });
+      });
 
       /* ---------- logos dessinés ---------- */
       gsap.utils.toArray(".draw-logo").forEach((svg) => {

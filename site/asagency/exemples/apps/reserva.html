@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Réserva — Prise de rendez-vous (exemple)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="app.css" />
 <style>
-  :root { --accent:#e85d9a; --accent2:#a78bfa; --side:#21122a; }
+  :root { --accent:#6c63f5; --accent2:#a78bfa; }
   .cal { display:grid; grid-template-columns:56px repeat(6,1fr); font-size:.78rem; border-top:1px solid var(--line); }
   .cal .h { padding:.6rem .4rem; text-align:center; color:var(--muted); font-weight:600; border-bottom:1px solid var(--line); }
   .cal .h b { display:block; font:700 1.2rem "Space Grotesk"; color:var(--ink); }
@@ -52,10 +52,10 @@
     <div class="top"><div><h1>Agenda de la semaine</h1><p>Les clientes réservent en ligne 24h/24, les rappels partent automatiquement.</p></div>
       <div class="chips"><button class="chip">Jour</button><button class="chip on">Semaine</button><button class="chip">Mois</button></div></div>
     <div class="grid g4 rise" style="margin-bottom:1rem">
-      <div class="card kpi"><small>Rendez-vous cette semaine</small><b data-n="64">0</b><span class="delta up">+12 %</span></div>
-      <div class="card kpi"><small>Réservés en ligne</small><b data-n="78" data-suf=" %">0</b><span class="delta up">+9 pts</span></div>
-      <div class="card kpi"><small>Absences évitées (rappels)</small><b data-n="11">0</b></div>
-      <div class="card kpi"><small>Taux de remplissage</small><b data-n="86" data-suf=" %">0</b></div>
+      <div class="card kpi" style="--kc:#4a4fe0"><small>Rendez-vous cette semaine</small><b data-n="64">0</b><span class="delta up">+12 %</span></div>
+      <div class="card kpi" style="--kc:#e5a426"><small>Réservés en ligne</small><b data-n="78" data-suf=" %">0</b><span class="delta up">+9 pts</span></div>
+      <div class="card kpi" style="--kc:#22a06b"><small>Absences évitées (rappels)</small><b data-n="11">0</b></div>
+      <div class="card kpi" style="--kc:#e2456a"><small>Taux de remplissage</small><b data-n="86" data-suf=" %">0</b></div>
     </div>
     <div class="grid g21">
       <div class="card"><h3>Novembre 2026</h3>

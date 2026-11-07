@@ -9,7 +9,7 @@ const OUT = path.join(ROOT, 'img/shots');
 fs.mkdirSync(OUT, { recursive: true });
 
 const SITES = ['lumen', 'verdi', 'velora', 'kinetik'];
-const APPS = ['ergomap', 'pilote', 'kaizen', 'reserva', 'stockly', 'closr'];
+const APPS = ['reserva', 'stockly', 'closr'];
 
 (async () => {
   const browser = await chromium.launch();
