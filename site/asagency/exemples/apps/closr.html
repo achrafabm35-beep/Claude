@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="app.css" />
 <style>
-  :root { --accent:#6c63f5; --accent2:#22c08a; }
+  :root { --indigo:#ef6b2f; --indigo2:#f7924f; --s1:#f0763a; --s2:#d2541c; --s3:#b54414; --accent:#ef6b2f; --accent2:#22c08a; }
   .board { display:grid; grid-template-columns:repeat(4,minmax(170px,1fr)); gap:1rem; overflow-x:auto; padding-bottom:.5rem; }
   .col { background:#eceef4; border-radius:16px; padding:.8rem; min-height:420px; transition:background .25s; }
   .col.over { background:#dff5e7; }
@@ -36,7 +36,7 @@
   <main class="main">
     <div class="top"><div><h1>Pipeline commercial</h1><p>Glissez une carte vers « Gagné » pour fêter la signature 🎉</p></div><button class="btn">+ Nouvelle opportunité</button></div>
     <div class="grid g4 rise" style="margin-bottom:1rem">
-      <div class="card kpi" style="--kc:#4a4fe0"><small>Opportunités ouvertes</small><b data-n="38">0</b></div>
+      <div class="card kpi" style="--kc:var(--indigo)"><small>Opportunités ouvertes</small><b data-n="38">0</b></div>
       <div class="card kpi" style="--kc:#e5a426"><small>Taux de transformation</small><b data-n="32" data-suf=" %">0</b><span class="delta up">+6 pts</span></div>
       <div class="card kpi" style="--kc:#22a06b"><small>Relances envoyées (auto)</small><b data-n="146">0</b></div>
       <div class="card kpi" style="--kc:#e2456a"><small>Délai moyen de signature</small><b data-n="11" data-suf=" j">0</b><span class="delta up">−3 j</span></div>

@@ -51,7 +51,9 @@ h2{font-size:32pt;font-weight:700}
 .fr .bar i{width:2mm;height:2mm;border-radius:50%;background:#d6d5dc}.fr .bar i:nth-child(1){background:#ff6b6b}.fr .bar i:nth-child(2){background:#ffc145}.fr .bar i:nth-child(3){background:#3ad29f}
 .fr .bar span{margin-left:3mm;flex:1;height:3mm;border-radius:99px;background:#fff;font-size:5.5pt;color:#9a98a3;line-height:3mm;padding-left:2mm}
 .fr .vp{overflow:hidden}.fr img{display:block;width:100%}
-.ph{position:absolute;border-radius:6mm;border:1.8mm solid #1d1c22;overflow:hidden;background:#000;box-shadow:0 26px 40px -18px rgba(20,19,24,.7)}
+.ph{position:absolute;z-index:4;border-radius:6mm;border:1.8mm solid #1d1c22;overflow:hidden;background:#000;box-shadow:0 26px 40px -18px rgba(20,19,24,.7)}
+.adimg{position:absolute;border-radius:3mm;box-shadow:0 26px 40px -18px rgba(20,19,24,.7);z-index:3}
+.ph::before{content:"";position:absolute;top:1.2mm;left:50%;width:9mm;height:2.2mm;margin-left:-4.5mm;border-radius:99px;background:#0d0c11;z-index:2}
 .ph img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .lbl{position:absolute;font:600 8pt 'Space Grotesk';letter-spacing:.04em;display:flex;align-items:center;gap:2mm}
 .lbl::before{content:"";width:6mm;height:1mm;border-radius:99px;background:var(--grad)}
@@ -72,15 +74,17 @@ const pages = [];
 
 /* 1. Couverture */
 pages.push(`<section class="page">
-  <div class="z" style="position:absolute;left:18mm;top:22mm;width:118mm">
-    <img src="${LOGO_FULL}" style="width:62mm;margin-bottom:12mm">
-    <h1 style="font-size:46pt;font-weight:700;letter-spacing:-.035em">On le fait.<br>Vous l'aimez.<br><span class="grad">Ensuite, on parle.</span></h1>
-    <p class="lead" style="margin-top:7mm">Applications, sites web, logos et publicités digitales. On vous montre d'abord, vous décidez ensuite.</p>
+  <div class="z" style="position:absolute;left:18mm;top:16mm;width:106mm">
+    <img src="${LOGO_FULL}" style="width:50mm;margin-bottom:8mm">
+    <h1 style="font-size:40pt;font-weight:700;letter-spacing:-.035em">On le fait.<br>Vous l'aimez.<br><span class="grad">Ensuite,<br>on parle.</span></h1>
+    <p class="lead" style="margin-top:6mm">On vous montre d'abord, vous décidez ensuite.</p>
+    <div style="display:flex;gap:2.4mm;margin-top:7mm">${['Applications', 'Sites web', 'Publicités', 'Logos'].map(t => `<span style="font:600 8.5pt 'Space Grotesk';padding:1.6mm 3.4mm;border-radius:99px;background:#fff;border:1px solid #e6e5ea">${t}</span>`).join('')}</div>
   </div>
-  ${fr('app-carto-dash.jpg', 'width:118mm;left:166mm;top:16mm;opacity:.96', '', 'cartographie.app')}
-  ${fr('app-projets-dash.jpg', 'width:138mm;left:140mm;top:62mm', '', 'pilotage.app')}
-  ${ph('mobile-velora.jpg', 'width:31mm;height:64mm;left:252mm;top:116mm')}
-  <span class="z" style="position:absolute;left:140mm;top:160mm;background:#141318;color:#fff;font:600 9pt 'Space Grotesk';padding:3mm 5mm;border-radius:99px;box-shadow:0 14px 26px -12px rgba(20,19,24,.6)"><b style="color:#5fe0d3">●</b>&nbsp; Première version en 72 h, offerte</span>
+  ${fr('site-velora.jpg', 'width:112mm;left:172mm;top:12mm', '', 'velora.fr')}
+  ${fr('app-projets-dash.jpg', 'width:132mm;left:140mm;top:52mm', '', 'app.votre-entreprise.fr')}
+  <img class="adimg" src="${url(path.join(TMP, 'ad-story.png'))}" style="width:36mm;left:128mm;top:112mm">
+  <img class="adimg" src="${url(path.join(TMP, 'ad-banner.png'))}" style="width:78mm;left:170mm;top:140mm">
+  ${ph('mobile-kinetik.jpg', 'width:30mm;height:63mm;left:254mm;top:110mm')}
 </section>`);
 
 /* 2. Philosophie */
@@ -223,6 +227,7 @@ const html = `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>
   await p.addStyleTag({ content: 'html,body{background:transparent!important}.bg,.grain{display:none!important}.logos,.ads{padding:24px 18px 30px}' });
   await (await p.$('.logos')).screenshot({ path: path.join(TMP, 'logos.png'), omitBackground: true });
   await (await p.$('.ads')).screenshot({ path: path.join(TMP, 'ads.png'), omitBackground: true });
+  for (const k of ['story', 'square', 'banner']) await (await p.$('.ads .ad--' + k)).screenshot({ path: path.join(TMP, 'ad-' + k + '.png'), omitBackground: true });
   await p.setViewportSize({ width: 1440, height: 900 });
   for (const dark of [false, true]) {
     await p.setViewportSize({ width: 1123, height: 794 });
@@ -233,11 +238,28 @@ const html = `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>
 
   const htmlPath = path.join(TMP, '06-presentation.html');
   fs.writeFileSync(htmlPath, html.replace('BG_LIGHT', url(path.join(TMP, 'bg-light.jpg'))).replace('BG_DARK', url(path.join(TMP, 'bg-dark.jpg'))));
-  const page = await browser.newPage();
+  // Chaque page est rendue en image (JPEG) puis assemblée : aucune ombre floue ni transparence dans le PDF,
+  // ce qui évite les rectangles noirs affichés par certains lecteurs (Aperçu, iOS…).
+  const page = await browser.newPage({ viewport: { width: 1123, height: 794 }, deviceScaleFactor: 2 });
   await page.goto(url(htmlPath));
   await page.waitForLoadState('networkidle').catch(() => {});
   await page.evaluate(() => document.fonts.ready);
-  await page.pdf({ path: path.join(OUT, '06-presentation.pdf'), width: '297mm', height: '210mm', printBackground: true, preferCSSPageSize: true });
+  await page.waitForTimeout(500);
+  const secs = await page.$$('section.page');
+  const imgs = [];
+  for (let i = 0; i < secs.length; i++) {
+    const f = path.join(TMP, `page-${String(i + 1).padStart(2, '0')}.jpg`);
+    await secs[i].screenshot({ path: f, type: 'jpeg', quality: 86 });
+    imgs.push(f);
+  }
+  await page.close();
+  const flat = `<!DOCTYPE html><html><head><style>@page{size:297mm 210mm;margin:0}*{margin:0;padding:0}img{display:block;width:297mm;height:210mm;page-break-after:always}img:last-child{page-break-after:auto}</style></head><body>${imgs.map(f => `<img src="${url(f)}">`).join('')}</body></html>`;
+  const flatPath = path.join(TMP, 'flat.html');
+  fs.writeFileSync(flatPath, flat);
+  const pp = await browser.newPage();
+  await pp.goto(url(flatPath));
+  await pp.waitForLoadState('networkidle').catch(() => {});
+  await pp.pdf({ path: path.join(OUT, '06-presentation.pdf'), width: '297mm', height: '210mm', printBackground: true, preferCSSPageSize: true });
   await browser.close();
   console.log('✓ templates/06-presentation.pdf');
 })();
