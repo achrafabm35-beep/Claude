@@ -129,17 +129,16 @@ if (SHOT) {
       gsap.to(".blob--2", { x: 70, y: -40, scale: 1.15, duration: 18, repeat: -1, yoyo: true, ease: "sine.inOut" });
       gsap.to(".blob--3", { x: -50, y: -60, duration: 12, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
-      /* marquee réactif à la vitesse de scroll */
-      const marquee = document.getElementById("marquee");
-      const loop = gsap.to(marquee, { xPercent: -50, duration: 24, ease: "none", repeat: -1 });
-      ScrollTrigger.create({
-        start: 0, end: "max",
-        onUpdate: (self) => {
-          const v = Math.min(Math.abs(self.getVelocity() / 300), 6);
-          gsap.to(loop, { timeScale: (self.direction === 1 ? 1 : -1) * (1 + v), duration: 0.3, overwrite: true });
-          gsap.to(loop, { timeScale: self.direction === 1 ? 1 : -1, duration: 0.9, delay: 0.3 });
-        },
-      });
+
+      /* ---------- MacBook : pivote, s'ouvre, l'application défile ---------- */
+      const macPage = document.getElementById("macPage");
+      if (macPage) {
+        const mac = gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: "#mac", start: "top top", end: "+=260%", scrub: 0.8, pin: true, anticipatePin: 1, invalidateOnRefresh: true } });
+        mac.fromTo("#macRig", { rotation: 0, rotationY: -38, rotationX: -22, scale: 0.82 }, { rotation: 0, rotationY: 0, rotationX: -12, scale: 1, duration: 1.2, ease: "power2.inOut" }, 0)
+          .fromTo("#macLid", { rotationX: -88 }, { rotationX: -4, duration: 1, ease: "power2.inOut" }, 0.3)
+          .fromTo("#macLine", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 1.15)
+          .to(macPage, { y: () => -(macPage.offsetHeight - macPage.parentElement.offsetHeight), duration: 1.6, ease: "power1.inOut" }, 1.35);
+      }
 
       /* ---------- titres + révélations ---------- */
       gsap.utils.toArray("[data-split]").forEach((el) => {

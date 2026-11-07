@@ -131,8 +131,6 @@ img { display: block; max-width: 100%; }
 .frame--dark { background: #15141c; box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 40px 90px -30px rgba(0,0,0,.8); }
 .frame__img { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
 .frame__img img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.device { border-radius: 28px; border: 7px solid #17161d; overflow: hidden; background: #000; box-shadow: 0 30px 60px -24px rgba(20,19,24,.6); aspect-ratio: 390 / 844; }
-.device img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
 /* ---------- MARQUEE ---------- */
 .marquee { border-block: 1px solid var(--border); padding: 1.1rem 0; overflow: hidden; white-space: nowrap; background: var(--ink); color: #fff; transform: rotate(-1.5deg); margin: 2rem -1rem; }
@@ -353,7 +351,7 @@ img { display: block; max-width: 100%; }
 @keyframes hcol { to { transform: translateY(calc(-50% - clamp(6px, 0.8vw, 12px))); } }
 .htile { border-radius: 14px; overflow: hidden; background: #1c1b22; box-shadow: 0 30px 50px -24px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.06); }
 .htile img { display: block; width: 100%; }
-.htile--phone { width: 72%; margin: 0 auto; border: 5px solid #232229; border-radius: 22px; }
+.htile--phone { width: 74%; margin: 0 auto; background: none; box-shadow: none; overflow: visible; border-radius: 0; }
 .htile--ad { border-radius: 18px; }
 .hero__veil { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 55% at 50% 50%, rgba(15,14,19,.82), rgba(15,14,19,.45) 55%, rgba(15,14,19,.05) 85%), linear-gradient(to bottom, rgba(15,14,19,.55), transparent 22%, transparent 70%, #0f0e13); }
 .hero__title--center { position: relative; z-index: 2; color: #fff; font-size: clamp(3rem, 10.5vw, 10rem); line-height: .92; letter-spacing: -0.045em; text-shadow: 0 20px 60px rgba(0,0,0,.6); }
@@ -361,9 +359,31 @@ img { display: block; max-width: 100%; }
 .hero__scroll { position: absolute; z-index: 2; bottom: 32px; left: 50%; width: 26px; height: 42px; margin-left: -13px; border-radius: 99px; border: 2px solid rgba(255,255,255,.55); }
 .hero__scroll i { position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; border-radius: 99px; background: #fff; animation: scrollcue 1.8s cubic-bezier(.6,0,.4,1) infinite; }
 @keyframes scrollcue { 0% { transform: translateY(0); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(16px); opacity: 0; } }
-.nav.on-dark { background: rgba(15,14,19,.35); border-bottom-color: rgba(255,255,255,.08); }
+.nav.on-dark { background: linear-gradient(rgba(15,14,19,.55), rgba(15,14,19,0)); backdrop-filter: none; border-bottom-color: transparent; }
 .nav.on-dark .nav__links a { color: rgba(255,255,255,.85); }
-.nav.on-dark .logo { background: rgba(255,255,255,.92); border-radius: 12px; padding: 2px 8px; display: inline-flex; }
+.logo .logo__light { display: none; } .nav.on-dark .logo .logo__dark { display: none; } .nav.on-dark .logo .logo__light { display: block; }
 .nav.on-dark .nav__cta { background: #fff; color: #0f0e13; }
 @media (max-width: 760px) { .hwall { inset: -10% -60%; } .hwall__plane { transform: rotateX(30deg) rotateZ(-14deg) scale(1); } .hcol { width: 120px; } }
 .shot .hcol__track { animation: none; }
+
+/* ===== MacBook 3D (pivote + s'ouvre au défilement) ===== */
+.mac { position: relative; height: 100svh; min-height: 560px; background: radial-gradient(ellipse 70% 60% at 50% 55%, #23213a, #0f0e13 70%); overflow: hidden; display: grid; place-items: center; }
+.mac__scene { --w: min(62vw, 760px, 92svh); --h: calc(var(--w) * 0.64); --d: calc(var(--w) * 0.7); --t: calc(var(--w) * 0.018); position: relative; width: var(--w); height: calc(var(--h) + var(--d) * 0.3); perspective: 2400px; margin-top: -14svh; }
+.mac__rig { position: absolute; left: 0; top: 0; width: var(--w); height: var(--h); transform-style: preserve-3d; transform-origin: 50% 100%; transform: rotateX(-22deg) rotateY(-38deg); }
+.mac__lid { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 100%; transform: rotateX(-88deg); }
+.mac__back, .mac__screen { position: absolute; inset: 0; border-radius: calc(var(--w) * 0.03) calc(var(--w) * 0.03) 4px 4px; backface-visibility: hidden; }
+.mac__back { transform: rotateY(180deg); background: linear-gradient(160deg, #d9dbe0, #a9acb4 55%, #c9ccd2); box-shadow: inset 0 0 0 1px rgba(255,255,255,.6); }
+.mac__screen { background: #0b0b0d; padding: calc(var(--w) * 0.022) calc(var(--w) * 0.022) calc(var(--w) * 0.03); box-shadow: inset 0 0 0 1.5px #5d5f66, inset 0 0 0 3px #111; }
+.mac__notch { position: absolute; z-index: 2; top: 0; left: 50%; width: 12%; height: calc(var(--w) * 0.022); transform: translateX(-50%); background: #0b0b0d; border-radius: 0 0 8px 8px; }
+.mac__viewport { position: relative; height: 100%; overflow: hidden; border-radius: 4px; background: #fff; }
+.mac__viewport::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(255,255,255,.12), transparent 35%); pointer-events: none; }
+.mac__page { display: block; width: 100%; will-change: transform; }
+.mac__base { position: absolute; left: -3%; width: 106%; top: 100%; height: var(--d); transform-origin: 50% 0; transform: rotateX(90deg); border-radius: 4px 4px calc(var(--w) * 0.03) calc(var(--w) * 0.03); background: linear-gradient(180deg, #c3c6cc, #e4e6ea 40%, #cfd2d7); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); }
+.mac__keys { position: absolute; left: 9%; right: 9%; top: 8%; height: 48%; border-radius: 6px; background: repeating-linear-gradient(90deg, #2a2b30 0 5.6%, transparent 5.6% 6.6%), #aeb1b8; -webkit-mask: repeating-linear-gradient(180deg, #000 0 14%, transparent 14% 16.6%); mask: repeating-linear-gradient(180deg, #000 0 14%, transparent 14% 16.6%); }
+.mac__pad { position: absolute; left: 32%; right: 32%; top: 62%; height: 30%; border-radius: 8px; background: #c4c7cd; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+.mac__front { position: absolute; left: -3%; width: 106%; height: var(--t); top: 100%; transform-origin: 50% 0; transform: translateZ(var(--d)); background: linear-gradient(#a6a9b0, #7d8087); border-radius: 0 0 10px 10px; }
+.mac__shadow { position: absolute; left: 0; width: 100%; top: 100%; height: var(--d); transform-origin: 50% 0; transform: rotateX(90deg) translateZ(calc(var(--t) * -1.2)) scale(1.05); background: radial-gradient(ellipse at center, rgba(0,0,0,.65), transparent 70%); filter: blur(18px); }
+.mac__line { position: absolute; bottom: 7svh; left: 0; right: 0; text-align: center; color: #fff; font: 700 clamp(1.4rem, 3.4vw, 2.6rem) var(--display); letter-spacing: -.02em; }
+.mac__line .grad { background: linear-gradient(100deg, #1fc6b6, #8fb0f0 52%, #eaa6e6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.shot .mac__lid { transform: rotateX(-4deg); } .shot .mac__rig { transform: rotateX(-12deg) rotateY(0deg); }
+@media (max-width: 760px) { .mac__scene { --w: 86vw; margin-top: -8svh; } }

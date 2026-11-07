@@ -19,7 +19,8 @@ const LOGO_MARK = url(path.join(SITE, 'img/logo-mark.webp'));
 
 const FONTS = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap';
 
-const CSS = `
+const IPHONE_CSS = fs.readFileSync(path.join(SITE, 'iphone.css'), 'utf8');
+const CSS = IPHONE_CSS + `
 *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 @page{size:297mm 210mm;margin:0}
 :root{--ink:#141318;--muted:#6b6976;--bg:#f4f4f7;--aqua:#1fc6b6;--grad:linear-gradient(100deg,#1fc6b6,#8fb0f0 52%,#eaa6e6);--paper:#fffdf8;--tape:rgba(255,240,196,.85);
@@ -67,7 +68,9 @@ h2{font-size:32pt;font-weight:700}
 const foot = (n, dark) => `<div class="foot">${dark ? '<b style="font:700 14pt Space Grotesk;color:#fff;letter-spacing:-.02em">AS</b>' : `<img src="${LOGO_MARK}">`}<span><b>AS Marketing Agency</b> · On le fait. Vous l'aimez. Ensuite, on parle.</span><span>${String(n).padStart(2, '0')}</span></div>`;
 // cadre navigateur : f = capture, style = position/taille, h = hauteur visible (sinon image entière), pos = object-position
 const fr = (f, style, h, url_ = 'votre-outil.fr') => `<figure class="fr" style="${style}"><div class="bar"><i></i><i></i><i></i><span>${url_}</span></div><div class="vp"${h ? ` style="height:${h}"` : ''}><img src="${S(f)}"></div></figure>`;
-const ph = (f, style) => `<div class="ph" style="${style}"><img src="${S(f)}"></div>`;
+// iPhone réaliste (même maquette que le site : site/asagency/iphone.css) ; la hauteur découle de la largeur
+const SB = { 'mobile-lumen.jpg': ['#0e0a07', '#fff'], 'mobile-velora.jpg': ['#2b1f23', '#fff'], 'mobile-kinetik.jpg': ['#12101d', '#fff'], 'mobile-verdi.jpg': ['#f1eee7', '#111'] };
+const ph = (f, style) => { const [bg, fg] = SB[f] || ['#fff', '#111']; return `<div class="iphone" style="position:absolute;z-index:4;--sb:${bg};--sbtext:${fg};${style.replace(/height:[^;]+;?/, '')}"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="${S(f)}"></div></div>`; };
 const lbl = (t, style) => `<span class="lbl" style="${style}">${t}</span>`;
 
 const pages = [];
@@ -84,7 +87,7 @@ pages.push(`<section class="page">
   ${fr('app-projets-dash.jpg', 'width:132mm;left:140mm;top:52mm', '', 'app.votre-entreprise.fr')}
   <img class="adimg" src="${url(path.join(TMP, 'ad-story.png'))}" style="width:36mm;left:128mm;top:112mm">
   <img class="adimg" src="${url(path.join(TMP, 'ad-banner.png'))}" style="width:78mm;left:170mm;top:140mm">
-  ${ph('mobile-kinetik.jpg', 'width:30mm;height:63mm;left:254mm;top:110mm')}
+  ${ph('mobile-kinetik.jpg', 'width:32mm;left:252mm;top:108mm')}
 </section>`);
 
 /* 3. Applications : ouverture */
@@ -150,7 +153,7 @@ pages.push(`<section class="page dark">
   ${fr('site-velora.jpg', 'width:168mm;left:18mm;top:20mm', '', 'velora.fr')}
   ${fr('site-kinetik.jpg', 'width:120mm;left:40mm;top:104mm', '', 'kinetik.fr')}
   <div class="z" style="position:absolute;left:200mm;top:20mm;width:84mm"><p class="eyebrow">Version mobile</p><h2 style="font-size:24pt">Parfaits aussi<br><span class="grad">dans la poche.</span></h2></div>
-  ${['lumen', 'velora', 'kinetik'].map((s, k) => ph('mobile-' + s + '.jpg', `width:26mm;height:56mm;left:${200 + k * 29}mm;top:${[80, 72, 80][k]}mm`)).join('')}
+  ${['lumen', 'velora', 'kinetik'].map((s, k) => ph('mobile-' + s + '.jpg', `width:28mm;left:${198 + k * 30}mm;top:${[78, 68, 78][k]}mm`)).join('')}
   ${foot(9, true)}
 </section>`);
 
