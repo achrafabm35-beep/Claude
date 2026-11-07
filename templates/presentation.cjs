@@ -87,19 +87,6 @@ pages.push(`<section class="page">
   ${ph('mobile-kinetik.jpg', 'width:30mm;height:63mm;left:254mm;top:110mm')}
 </section>`);
 
-/* 2. Philosophie */
-pages.push(`<section class="page dark">
-  <div class="z" style="max-width:230mm;margin-top:14mm">
-    <p class="eyebrow">Notre philosophie</p>
-    <h2 style="font-size:44pt;line-height:1.06">On fait avant<br>de faire payer.</h2>
-    <p class="lead" style="font-size:14pt;max-width:170mm;margin-top:8mm">Vous voyez une vraie première version. Elle vous plaît, on continue. Sinon, vous ne nous devez rien.</p>
-  </div>
-  <div class="z" style="display:flex;gap:6mm;position:absolute;left:18mm;right:18mm;bottom:24mm">
-    ${[['0 €', 'avant d\'avoir vu votre projet'], ['72 h', 'pour une première version'], ['24 h', 'pour une réponse'], ['100 %', 'sur mesure']].map(([b, t]) => `<div style="flex:1;border:1px solid rgba(255,255,255,.15);border-radius:5mm;padding:6mm"><div class="grad" style="font:700 30pt 'Space Grotesk'">${b}</div><div style="color:rgba(255,255,255,.7);font-size:10pt;margin-top:1mm">${t}</div></div>`).join('')}
-  </div>
-  ${foot(2, true)}
-</section>`);
-
 /* 3. Applications : ouverture */
 pages.push(`<section class="page dark">
   <div class="z" style="position:absolute;left:18mm;top:20mm;width:96mm">
@@ -112,7 +99,7 @@ pages.push(`<section class="page dark">
   </div>
   ${fr('app-projets-gantt.jpg', 'width:132mm;left:150mm;top:18mm;opacity:.9', '', 'pilotage.app/planning')}
   ${fr('app-amelio-dash.jpg', 'width:150mm;left:126mm;top:82mm', '', 'amelioration.app')}
-  ${foot(3, true)}
+  ${foot(2, true)}
 </section>`);
 
 /* 4-6. Une page par application */
@@ -123,9 +110,9 @@ const appPage = (n, kicker, title, chips, main, side1, side2, host) => `<section
   ${fr(side2, 'width:82mm;left:200mm;top:98mm', '', host)}
   ${foot(n)}
 </section>`;
-pages.push(appPage(4, 'Application · Pilotage de projets', 'Tous vos projets, <span class="grad">sur un seul écran.</span>', ['Planning', 'Budget', 'Risques', 'Reporting hebdo', 'Export PowerPoint'], 'app-projets-dash.jpg', 'app-projets-gantt.jpg', 'app-projets-risques.jpg', 'pilotage.app'));
-pages.push(appPage(5, 'Application · Cartographie terrain', 'Vos sites et ateliers, <span class="grad">en un coup d\'œil.</span>', ['Plan interactif', 'Zoom par zone', 'Questionnaires terrain', 'Tableau de bord'], 'app-carto-plan.jpg', 'app-carto-dash.jpg', 'app-carto-atelier.jpg', 'cartographie.app'));
-pages.push(appPage(6, 'Application · Amélioration continue', 'Idées, actions, audits : <span class="grad">tout avance.</span>', ['Idées & actions', 'Audits', 'Achats vs budget', 'Suivi d\'équipe'], 'app-amelio-dash.jpg', 'app-amelio-actions.jpg', 'app-amelio-achats.jpg', 'amelioration.app'));
+pages.push(appPage(3, 'Application · Pilotage de projets', 'Tous vos projets, <span class="grad">sur un seul écran.</span>', ['Planning', 'Budget', 'Risques', 'Reporting hebdo', 'Export PowerPoint'], 'app-projets-dash.jpg', 'app-projets-gantt.jpg', 'app-projets-risques.jpg', 'pilotage.app'));
+pages.push(appPage(4, 'Application · Cartographie terrain', 'Vos sites et ateliers, <span class="grad">en un coup d\'œil.</span>', ['Plan interactif', 'Zoom par zone', 'Questionnaires terrain', 'Tableau de bord'], 'app-carto-plan.jpg', 'app-carto-dash.jpg', 'app-carto-atelier.jpg', 'cartographie.app'));
+pages.push(appPage(5, 'Application · Amélioration continue', 'Idées, actions, audits : <span class="grad">tout avance.</span>', ['Idées & actions', 'Audits', 'Achats vs budget', 'Suivi d\'équipe'], 'app-amelio-dash.jpg', 'app-amelio-actions.jpg', 'app-amelio-achats.jpg', 'amelioration.app'));
 
 /* 7. Nouvelles applications */
 pages.push(`<section class="page dark">
@@ -133,7 +120,7 @@ pages.push(`<section class="page dark">
   ${[['app-reserva.jpg', 'Réservation en ligne', 'Agenda, réservation 24 h/24, rappels SMS.', 18], ['app-stockly.jpg', 'Ventes & stocks', 'Ventes en direct et réassort automatique.', 107], ['app-closr.jpg', 'CRM commercial', 'Pipeline, relances auto, entonnoir.', 196]].map(([f, t, d, x]) => `
     ${fr(f, `width:83mm;left:${x}mm;top:76mm`, '', 'demo.asagency.store')}
     <div class="z" style="position:absolute;left:${x}mm;top:132mm;width:83mm"><span class="chips" style="margin:0 0 2mm"><span class="n">Nouveau</span></span><div class="big">${t}</div><p style="font-size:9pt;color:rgba(255,255,255,.65);margin-top:1mm">${d}</p></div>`).join('')}
-  ${foot(7, true)}
+  ${foot(6, true)}
 </section>`);
 
 /* 8. Méthode */
@@ -146,7 +133,7 @@ pages.push(`<section class="page">
       <div class="grad" style="font:700 40pt 'Space Grotesk'">${n}</div>
       <h3 style="font-size:15pt;margin:6mm 0 3mm">${t}</h3><p style="font-size:10pt;color:${k === 1 ? 'rgba(255,255,255,.7)' : 'var(--muted)'}">${d}</p></div>`).join('')}
   </div>
-  ${foot(8)}
+  ${foot(7)}
 </section>`);
 
 /* 9-10. Sites */
@@ -157,14 +144,14 @@ pages.push(`<section class="page">
   ${fr('site-lumen-full.jpg', 'width:62mm;left:108mm;top:16mm', '168mm', 'lumen.fr')}
   ${fr('site-verdi-full.jpg', 'width:62mm;left:174mm;top:16mm', '168mm', 'verdi.fr')}
   ${fr('site-kinetik-full.jpg', 'width:44mm;left:240mm;top:16mm', '168mm', 'kinetik.fr')}
-  ${foot(9)}
+  ${foot(8)}
 </section>`);
 pages.push(`<section class="page dark">
   ${fr('site-velora.jpg', 'width:168mm;left:18mm;top:20mm', '', 'velora.fr')}
   ${fr('site-kinetik.jpg', 'width:120mm;left:40mm;top:104mm', '', 'kinetik.fr')}
   <div class="z" style="position:absolute;left:200mm;top:20mm;width:84mm"><p class="eyebrow">Version mobile</p><h2 style="font-size:24pt">Parfaits aussi<br><span class="grad">dans la poche.</span></h2></div>
   ${['lumen', 'velora', 'kinetik'].map((s, k) => ph('mobile-' + s + '.jpg', `width:26mm;height:56mm;left:${200 + k * 29}mm;top:${[80, 72, 80][k]}mm`)).join('')}
-  ${foot(10, true)}
+  ${foot(9, true)}
 </section>`);
 
 /* 11. Logos */
@@ -172,7 +159,7 @@ pages.push(`<section class="page">
   <div class="z" style="position:absolute;left:18mm;top:16mm;width:70mm"><p class="eyebrow">Logos & identité</p><h2 style="font-size:28pt">Des marques qui ont du caractère.</h2>
     <p class="lead" style="font-size:10.5pt">Chaque logo raconte une histoire et se décline sur tous vos supports.</p></div>
   <img src="${url(path.join(TMP, 'logos.png'))}" class="z" style="position:absolute;left:96mm;top:44mm;width:186mm">
-  ${foot(11)}
+  ${foot(10)}
 </section>`);
 
 /* 12. Pubs */
@@ -180,7 +167,7 @@ pages.push(`<section class="page">
   <div class="z"><p class="eyebrow">Publicités digitales</p><h2>Des pubs qui <span class="grad">arrêtent le pouce</span>.</h2>
     <p class="lead">Stories, posts sponsorisés, bannières : des formats animés pour Instagram, Facebook, TikTok et le web.</p></div>
   <img src="${url(path.join(TMP, 'ads.png'))}" class="z" style="position:absolute;left:18mm;right:18mm;bottom:18mm;width:261mm">
-  ${foot(12)}
+  ${foot(11)}
 </section>`);
 
 /* 13. Pourquoi nous */
@@ -191,7 +178,7 @@ pages.push(`<section class="page">
     <div style="background:#fff;border:1px solid #e6e5ea;border-radius:6mm;padding:7mm"><h3 style="font-size:13pt;color:var(--muted);margin-bottom:4mm">Le parcours habituel</h3>${rows.map(r => `<p style="padding:2.6mm 0;border-bottom:1px solid #eee;color:var(--muted);font-size:10.5pt">✕&nbsp;&nbsp;${r[0]}</p>`).join('')}</div>
     <div style="background:#141318;color:#fff;border-radius:6mm;padding:7mm;position:relative;overflow:hidden"><span style="position:absolute;inset:0 0 auto;height:1.6mm;background:var(--grad)"></span><h3 style="font-size:13pt;margin-bottom:4mm" class="grad">Avec AS Marketing Agency</h3>${rows.map(r => `<p style="padding:2.6mm 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:10.5pt"><b style="color:#1fc6b6">✓</b>&nbsp;&nbsp;${r[1]}</p>`).join('')}</div>
   </div>
-  ${foot(13)}
+  ${foot(12)}
 </section>`);
 
 /* 14. Contact */
@@ -206,7 +193,7 @@ pages.push(`<section class="page dark">
     <span style="display:inline-block;margin-top:9mm;background:var(--grad);color:#141318;font:700 11pt 'Space Grotesk';padding:3.5mm 7mm;border-radius:99px">Première version offerte, sans engagement</span>
   </div>
   <div style="position:absolute;right:20mm;top:40mm;width:92mm;height:92mm;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff,#f4f4f7 60%,#d9f6f2);display:grid;place-items:center;box-shadow:0 30px 80px -20px rgba(31,198,182,.5)"><img src="${LOGO_FULL}" style="width:72mm"></div>
-  ${foot(14, true)}
+  ${foot(13, true)}
 </section>`);
 
 const BG = (dark) => `<html><body style="margin:0;width:1123px;height:794px;overflow:hidden;background:${dark ? '#141318' : '#f4f4f7'}">

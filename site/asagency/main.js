@@ -104,7 +104,7 @@ if (SHOT) {
         .from(".rot", { yPercent: 115, duration: 0.9 }, "-=0.7")
         .fromTo("[data-anim]", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, "-=0.8")
         .from("#stage .layer > *", {
-          z: -600, y: 80, rotationX: 25, autoAlpha: 0, duration: 1.4, stagger: 0.15, ease: "power4.out", clearProps: "opacity,visibility",
+          z: -600, y: 80, rotationX: 25, autoAlpha: 0, duration: 1.4, stagger: 0.15, ease: "power4.out", clearProps: "transform,opacity,visibility",
         }, "-=1.1");
 
       /* parallax souris sur la scène 3D du hero */
@@ -120,7 +120,30 @@ if (SHOT) {
           items.forEach((i) => { i.x(nx * 26 * i.d); i.y(ny * 20 * i.d); i.ry(nx * 6); });
         });
       }
-      gsap.to("#stage", { yPercent: -12, scale: 0.94, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+      /* ouverture au défilement : la scène s'éclate, l'application vient plein écran */
+      if (desktop && stage) {
+        const L = (d) => stage.querySelector(`.layer[data-depth="${d}"]`);
+        const main = stage.querySelector(".s-main"), hero = document.querySelector(".hero");
+        // point de zoom = centre de l'application ; on l'amène au centre de l'écran
+        const origin = () => [main.offsetLeft + main.offsetWidth / 2, main.offsetTop + main.offsetHeight / 2];
+        gsap.set(stage, { transformOrigin: () => origin().map((v) => v + "px").join(" ") });
+        const center = () => { const r = stage.getBoundingClientRect(); return innerWidth / 2 - (r.left + origin()[0]); };
+        const middle = () => { return innerHeight / 2 - (stage.getBoundingClientRect().top - hero.getBoundingClientRect().top + origin()[1]); };
+        const zoom = () => Math.min(2.1, (innerWidth * 0.86) / (stage.offsetWidth * 0.8));
+        const open = gsap.timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "+=130%", scrub: 0.6, pin: true, anticipatePin: 1, invalidateOnRefresh: true },
+        });
+        open.to(".hero__intro", { yPercent: -30, autoAlpha: 0, duration: 0.35 }, 0)
+          .to(".stage__tags, " + '.layer[data-depth="2.2"]', { autoAlpha: 0, duration: 0.2 }, 0)
+          .to(L("0.5"), { xPercent: 70, yPercent: -60, autoAlpha: 0, duration: 0.6 }, 0.05)
+          .to(L("1.5"), { xPercent: 120, yPercent: 40, rotation: 12, autoAlpha: 0, duration: 0.6 }, 0.05)
+          .to(L("1.9"), { xPercent: -120, yPercent: 60, rotation: -14, autoAlpha: 0, duration: 0.6 }, 0.05)
+          .to(stage, { "--ry": "0deg", "--rx": "0deg", x: center, y: middle, scale: zoom, duration: 0.75, ease: "power2.inOut" }, 0.1)
+          .to(stage, { autoAlpha: 0, scale: () => zoom() * 1.12, duration: 0.15, ease: "power1.in" }, 0.9);
+      } else {
+        gsap.to("#stage", { yPercent: -12, scale: 0.94, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+      }
 
       /* blobs */
       gsap.to(".blob--1", { x: -60, y: 50, scale: 1.1, duration: 14, repeat: -1, yoyo: true, ease: "sine.inOut" });
