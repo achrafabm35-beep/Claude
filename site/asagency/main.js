@@ -130,14 +130,21 @@ if (SHOT) {
       gsap.to(".blob--3", { x: -50, y: -60, duration: 12, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
 
-      /* ---------- MacBook : pivote, s'ouvre, l'application défile ---------- */
+      /* ---------- MacBook : pivote, s'ouvre, puis l'application défile à l'écran ---------- */
       const macPage = document.getElementById("macPage");
       if (macPage) {
-        const mac = gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: "#mac", start: "top top", end: "+=260%", scrub: 0.8, pin: true, anticipatePin: 1, invalidateOnRefresh: true } });
-        mac.fromTo("#macRig", { rotation: 0, rotationY: -38, rotationX: -22, scale: 0.82 }, { rotation: 0, rotationY: 0, rotationX: -12, scale: 1, duration: 1.2, ease: "power2.inOut" }, 0)
-          .fromTo("#macLid", { rotationX: -88 }, { rotationX: -4, duration: 1, ease: "power2.inOut" }, 0.3)
-          .fromTo("#macLine", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 1.15)
+        const lid = document.getElementById("macLid"), scr = document.getElementById("macScreen"), back = document.getElementById("macBack");
+        // visibilité selon l'angle du couvercle (évite l'écran vu « de dos », y compris sur Safari)
+        const faces = () => {
+          const a = gsap.getProperty(lid, "rotationX");
+          gsap.set(scr, { autoAlpha: gsap.utils.clamp(0, 1, (a + 72) / 14) });
+          gsap.set(back, { autoAlpha: gsap.utils.clamp(0, 1, (-a - 40) / 14) });
+        };
+        const mac = gsap.timeline({ defaults: { ease: "none" }, onUpdate: faces, scrollTrigger: { trigger: "#mac", start: "top top", end: "+=240%", scrub: 0.8, pin: true, anticipatePin: 1, invalidateOnRefresh: true } });
+        mac.fromTo("#macRig", { rotation: 0, rotationY: -36, rotationX: -22, scale: 0.86 }, { rotation: 0, rotationY: 0, rotationX: -14, scale: 1, duration: 1.2, ease: "power2.inOut" }, 0)
+          .fromTo(lid, { rotationX: -90 }, { rotationX: -2, duration: 1, ease: "power2.inOut" }, 0.3)
           .to(macPage, { y: () => -(macPage.offsetHeight - macPage.parentElement.offsetHeight), duration: 1.6, ease: "power1.inOut" }, 1.35);
+        faces();
       }
 
       /* ---------- titres + révélations ---------- */
