@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Closr — CRM & pipeline commercial (exemple)</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="app.css" />
+<style>
+  :root { --indigo:#ef6b2f; --indigo2:#f7924f; --s1:#f0763a; --s2:#d2541c; --s3:#b54414; --accent:#ef6b2f; --accent2:#22c08a; }
+  .board { display:grid; grid-template-columns:repeat(4,minmax(170px,1fr)); gap:1rem; overflow-x:auto; padding-bottom:.5rem; }
+  .col { background:#eceef4; border-radius:16px; padding:.8rem; min-height:420px; transition:background .25s; }
+  .col.over { background:#dff5e7; }
+  .col header { display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:.86rem; margin:.2rem .3rem .8rem; }
+  .col header span { color:var(--muted); font-weight:500; }
+  .col header i { width:10px; height:10px; border-radius:50%; display:inline-block; margin-right:.4rem; }
+  .deal { background:#fff; border-radius:12px; padding:.8rem; margin-bottom:.6rem; cursor:grab; box-shadow:0 1px 0 rgba(0,0,0,.04); transition:transform .25s, box-shadow .25s, opacity .25s; animation:rise .5s both; }
+  .deal:hover { transform:translateY(-3px) rotate(-.6deg); box-shadow:0 14px 26px -16px rgba(0,0,0,.4); }
+  .deal.drag { opacity:.4; }
+  .deal b { display:block; font-size:.88rem; } .deal small { color:var(--muted); font-size:.76rem; }
+  .deal footer { display:flex; justify-content:space-between; align-items:center; margin-top:.6rem; font-size:.78rem; }
+  .deal footer em { font-style:normal; width:24px; height:24px; border-radius:50%; display:grid; place-items:center; color:#fff; font-size:.68rem; font-weight:700; }
+  .funnel div { height:34px; margin:0 auto 6px; border-radius:8px; color:#fff; font-size:.8rem; display:flex; align-items:center; justify-content:space-between; padding:0 .8rem; transform-origin:center; animation:grow 1s cubic-bezier(.2,.7,.2,1) both; }
+  .won { position:fixed; inset:0; pointer-events:none; z-index:900; }
+  .won i { position:absolute; width:8px; height:14px; border-radius:2px; animation:fall 1.6s ease-in forwards; }
+  @keyframes fall { from { transform:translateY(-20px) rotate(0); } to { transform:translateY(105vh) rotate(720deg); } }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="logo"><i>◆</i>Closr</div>
+    <a class="on">▥ Pipeline</a><a>☺ Contacts</a><a>✉ Relances auto</a><a>📄 Devis</a><a>▤ Rapports</a>
+    <span class="grow"></span>
+    <div class="user"><b>JD</b><div>Équipe commerciale<br><small style="opacity:.6">4 utilisateurs</small></div></div>
+  </aside>
+  <main class="main">
+    <div class="top"><div><h1>Pipeline commercial</h1><p>Glissez une carte vers « Gagné » pour fêter la signature 🎉</p></div><button class="btn">+ Nouvelle opportunité</button></div>
+    <div class="grid g4 rise" style="margin-bottom:1rem">
+      <div class="card kpi" style="--kc:var(--indigo)"><small>Opportunités ouvertes</small><b data-n="38">0</b></div>
+      <div class="card kpi" style="--kc:#e5a426"><small>Taux de transformation</small><b data-n="32" data-suf=" %">0</b><span class="delta up">+6 pts</span></div>
+      <div class="card kpi" style="--kc:#22a06b"><small>Relances envoyées (auto)</small><b data-n="146">0</b></div>
+      <div class="card kpi" style="--kc:#e2456a"><small>Délai moyen de signature</small><b data-n="11" data-suf=" j">0</b><span class="delta up">−3 j</span></div>
+    </div>
+    <div class="grid" style="grid-template-columns:3fr 1fr">
+      <div class="board" id="board">
+        <section class="col" data-c="lead"><header><span><i style="background:#94a3b8"></i>Nouveaux contacts</span><span>4</span></header></section>
+        <section class="col" data-c="meet"><header><span><i style="background:#06b6d4"></i>Rendez-vous</span><span>3</span></header></section>
+        <section class="col" data-c="prop"><header><span><i style="background:#f59e0b"></i>Proposition</span><span>3</span></header></section>
+        <section class="col" data-c="won"><header><span><i style="background:#22c55e"></i>Gagné</span><span>2</span></header></section>
+      </div>
+      <div class="card funnel"><h3>Entonnoir</h3>
+        <div style="width:100%;background:#94a3b8">Contacts <b>120</b></div>
+        <div style="width:82%;background:#06b6d4;animation-delay:.1s">RDV <b>64</b></div>
+        <div style="width:64%;background:#f59e0b;animation-delay:.2s">Propositions <b>41</b></div>
+        <div style="width:46%;background:#22c55e;animation-delay:.3s">Gagnés <b>13</b></div>
+        <p style="font-size:.78rem;color:var(--muted);margin-top:1rem">Chaque étape déclenche une relance personnalisée par email.</p>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="won" id="won"></div>
+<a class="as-ribbon" href="../../index.html#apps"><i></i>Démo conçue par AS Marketing Agency</a>
+<script src="app.js"></script>
+<script>
+  const deals = { lead: [['Boulangerie Martin','Site vitrine + Google','#0ea5e9','BM'],['Cabinet Lemaire','Prise de RDV en ligne','#8b5cf6','CL'],['Garage du Centre','Automatisation devis','#f97316','GC'],['Studio Yoga Flow','Réseaux sociaux','#ec4899','YF']],
+    meet: [['Domaine des Vignes','E-shop vins','#7c3aed','DV'],['Atelier Couture','Branding complet','#e11d48','AC'],['Kiné Santé','Application patients','#0891b2','KS']],
+    prop: [['Hôtel Les Pins','Site + réservation','#16a34a','HP'],['Fromagerie Roux','Newsletter mensuelle','#d97706','FR'],['Transports Gil','Tableau de bord','#2563eb','TG']],
+    won: [['Pizzeria Nonna','Site + commande','#dc2626','PN'],['Coach Élodie','Logo + Instagram','#db2777','CE']] };
+  let k = 0;
+  Object.entries(deals).forEach(([c, list]) => { const col = document.querySelector(`[data-c="${c}"]`); list.forEach(([n, p, color, ini]) => col.insertAdjacentHTML('beforeend', `<article class="deal" draggable="true" style="animation-delay:${(k++) * .04}s"><b>${n}</b><small>${p}</small><footer><span class="pill p-info">${['Chaud','Tiède','À relancer'][k % 3]}</span><em style="background:${color}">${ini}</em></footer></article>`)); });
+  let dragged = null;
+  document.addEventListener('dragstart', e => { dragged = e.target.closest('.deal'); dragged && dragged.classList.add('drag'); });
+  document.addEventListener('dragend', () => { dragged && dragged.classList.remove('drag'); document.querySelectorAll('.col').forEach(c => c.classList.remove('over')); });
+  document.querySelectorAll('.col').forEach(col => {
+    col.addEventListener('dragover', e => { e.preventDefault(); col.classList.add('over'); });
+    col.addEventListener('dragleave', () => col.classList.remove('over'));
+    col.addEventListener('drop', e => { e.preventDefault(); col.classList.remove('over'); if (!dragged) return; col.appendChild(dragged); recount(); if (col.dataset.c === 'won') confetti(); });
+  });
+  function recount() { document.querySelectorAll('.col').forEach(c => c.querySelector('header span:last-child').textContent = c.querySelectorAll('.deal').length); }
+  function confetti() { const w = document.getElementById('won'); const cols = ['#22c55e','#06b6d4','#f59e0b','#ec4899','#8b5cf6']; for (let i = 0; i < 80; i++) { const p = document.createElement('i'); p.style.left = Math.random() * 100 + 'vw'; p.style.background = cols[i % 5]; p.style.animationDelay = Math.random() * .5 + 's'; w.appendChild(p); setTimeout(() => p.remove(), 2400); } }
+</script>
+</body>
+</html>

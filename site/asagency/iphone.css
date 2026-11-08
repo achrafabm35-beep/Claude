@@ -1,0 +1,21 @@
+/* Maquette iPhone (cadre titane, Dynamic Island, barre d'état, boutons) — utilisée par le site et le PDF.
+   Tout est en pourcentages : la maquette s'adapte à la largeur donnée à .iphone. */
+.iphone { --sb: #fff; --sbtext: #111; container-type: inline-size; position: relative; aspect-ratio: 433 / 882; border-radius: 15.5% / 7.6%;
+  background: linear-gradient(150deg, #8d8f96 0%, #4a4b51 14%, #2b2c31 40%, #1d1e22 70%, #5a5b61 100%);
+  box-shadow: inset 0 0 0 1.2px rgba(255,255,255,.35), inset 0 0 0 2.6px #121215, 0 2px 4px rgba(0,0,0,.25), 0 40px 70px -30px rgba(10,10,14,.75); }
+/* boutons latéraux : action + volume à gauche, alimentation à droite */
+.iphone::before, .iphone::after { content: ""; position: absolute; width: 1.1%; border-radius: 2px; }
+.iphone::before { left: -0.9%; top: 17%; height: 23%; background: linear-gradient(#3b3c42 0 15%, transparent 15% 30%, #3b3c42 30% 62%, transparent 62% 70%, #3b3c42 70%); }
+.iphone::after { right: -0.9%; top: 26%; height: 11%; background: #3b3c42; }
+.iphone__screen { position: absolute; inset: 2.06% 4.2%; border-radius: 12.6% / 5.9%; overflow: hidden; background: var(--sb); padding-top: 11.45cqw; }
+.iphone__screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+/* Dynamic Island */
+.iphone__screen::before { content: ""; position: absolute; z-index: 3; top: 2.4%; left: 50%; width: 30%; height: 3.5%; transform: translateX(-50%); border-radius: 99px; background: #000; }
+/* reflet du verre */
+.iphone__screen::after { content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none; background: linear-gradient(118deg, rgba(255,255,255,.14), rgba(255,255,255,0) 32%); }
+/* barre d'état : heure à gauche, réseau + batterie à droite */
+.iphone__bar { position: absolute; z-index: 2; top: 0; left: 0; right: 0; height: 11.45cqw; display: flex; align-items: center; justify-content: space-between; padding: 0 9% 0 11%; color: var(--sbtext); }
+.iphone__bar b { font: 600 4.3cqw/1 -apple-system, "SF Pro Text", Inter, sans-serif; letter-spacing: -.01em; }
+.iphone__bar i { display: flex; align-items: center; gap: 1.4cqw; }
+.iphone__bar i::before { content: ""; width: 5cqw; height: 3.2cqw; background: linear-gradient(to top, currentColor 0 100%) 0 100% / 0.9cqw 35% no-repeat, linear-gradient(currentColor 0 0) 1.35cqw 100% / 0.9cqw 55% no-repeat, linear-gradient(currentColor 0 0) 2.7cqw 100% / 0.9cqw 78% no-repeat, linear-gradient(currentColor 0 0) 4.05cqw 100% / 0.9cqw 100% no-repeat; }
+.iphone__bar i::after { content: ""; width: 6.2cqw; height: 2.9cqw; border-radius: 0.9cqw; border: 0.35cqw solid currentColor; background: linear-gradient(currentColor 0 0) 0.35cqw 50% / 72% 62% no-repeat; opacity: .9; }
