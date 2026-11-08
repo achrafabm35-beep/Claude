@@ -7,6 +7,9 @@
    - logos dessinés au trait, curseur et boutons magnétiques
    - ?shot dans l'URL : tout est figé (captures pour le PDF)
    ========================================================= */
+/* on arrive toujours sur l'accueil, pas à l'endroit du dernier défilement */
+if ("scrollRestoration" in history && !location.hash) { history.scrollRestoration = "manual"; window.scrollTo(0, 0); }
+
 const SHOT = document.documentElement.classList.contains("shot");
 gsap.registerPlugin(ScrollTrigger);
 gsap.defaults({ ease: "power3.out" });
@@ -129,23 +132,6 @@ if (SHOT) {
       gsap.to(".blob--2", { x: 70, y: -40, scale: 1.15, duration: 18, repeat: -1, yoyo: true, ease: "sine.inOut" });
       gsap.to(".blob--3", { x: -50, y: -60, duration: 12, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
-
-      /* ---------- MacBook : pivote, s'ouvre, puis l'application défile à l'écran ---------- */
-      const macPage = document.getElementById("macPage");
-      if (macPage) {
-        const lid = document.getElementById("macLid"), scr = document.getElementById("macScreen"), back = document.getElementById("macBack");
-        // visibilité selon l'angle du couvercle (évite l'écran vu « de dos », y compris sur Safari)
-        const faces = () => {
-          const a = gsap.getProperty(lid, "rotationX");
-          gsap.set(scr, { autoAlpha: gsap.utils.clamp(0, 1, (a + 72) / 14) });
-          gsap.set(back, { autoAlpha: gsap.utils.clamp(0, 1, (-a - 40) / 14) });
-        };
-        const mac = gsap.timeline({ defaults: { ease: "none" }, onUpdate: faces, scrollTrigger: { trigger: "#mac", start: "top top", end: "+=240%", scrub: 0.8, pin: true, anticipatePin: 1, invalidateOnRefresh: true } });
-        mac.fromTo("#macRig", { rotation: 0, rotationY: -36, rotationX: -22, scale: 0.86 }, { rotation: 0, rotationY: 0, rotationX: -14, scale: 1, duration: 1.2, ease: "power2.inOut" }, 0)
-          .fromTo(lid, { rotationX: -90 }, { rotationX: -2, duration: 1, ease: "power2.inOut" }, 0.3)
-          .to(macPage, { y: () => -(macPage.offsetHeight - macPage.parentElement.offsetHeight), duration: 1.6, ease: "power1.inOut" }, 1.35);
-        faces();
-      }
 
       /* ---------- titres + révélations ---------- */
       gsap.utils.toArray("[data-split]").forEach((el) => {
