@@ -1,25 +1,25 @@
-/* Base partagée des sites d'exemple */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Base partagée des sites d'exemple — AS Marketing Agency */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: hidden; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
-body { overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-.w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.06em; }
-.wi { display: inline-block; will-change: transform; }
-.js [data-reveal] { visibility: hidden; }
-.shot [data-reveal] { visibility: visible; }
-.zoomwrap { overflow: hidden; position: relative; }
-.zoomwrap > * { will-change: transform; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+ul { list-style: none; }
 
-/* Bandeau « Exemple réalisé par AS Marketing Agency » */
-.as-ribbon {
-  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 999;
-  display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.55rem 1rem 0.55rem 0.7rem;
-  font: 600 0.78rem/1 "Space Grotesk", system-ui, sans-serif; color: #141318;
-  background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); border-radius: 999px;
-  box-shadow: 0 12px 30px -12px rgba(0,0,0,0.45); white-space: nowrap;
-}
-.as-ribbon i { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(100deg, #1fc6b6, #8fb0f0 52%, #eaa6e6); }
-.as-ribbon:hover { box-shadow: 0 16px 40px -12px rgba(0,0,0,0.6); }
-.shot .as-ribbon { display: none; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-html.shot, html.shot body { overflow-x: hidden; }
+/* titres découpés : chaque mot dans un masque */
+[data-split] .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+[data-split] .wi { display: inline-block; will-change: transform; }
+.js [data-reveal], .js [data-stagger] > * { visibility: hidden; }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* bandeau « exemple » discret */
+.demo-tag { position: fixed; z-index: 90; right: 14px; bottom: 14px; display: flex; align-items: center; gap: 8px; padding: 8px 12px 8px 10px; border-radius: 99px; background: rgba(12, 12, 16, 0.82); color: #fff; font: 500 11.5px/1 Inter, system-ui, sans-serif; letter-spacing: 0.01em; box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.6); }
+.demo-tag i { width: 7px; height: 7px; border-radius: 50%; background: linear-gradient(120deg, #1fc6b6, #eaa6e6); }
+.demo-tag b { font-weight: 600; }
+.shot .demo-tag { display: none; }
+@media (max-width: 600px) { .demo-tag span { display: none; } }

@@ -1,0 +1,50 @@
+[
+ {
+  "slug": "solstice",
+  "name": "Solstice",
+  "sector": "Festival de musique",
+  "bg": "#0d0716"
+ },
+ {
+  "slug": "brume",
+  "name": "Brume",
+  "sector": "Infusions pétillantes",
+  "bg": "#ffe9a8"
+ },
+ {
+  "slug": "orbe",
+  "name": "Orbe",
+  "sector": "Logiciel de facturation",
+  "bg": "#07070d"
+ },
+ {
+  "slug": "souffle",
+  "name": "Souffle",
+  "sector": "Studio de Pilates & yoga",
+  "bg": "#f3ebdf"
+ },
+ {
+  "slug": "lenoir",
+  "name": "Lenoir",
+  "sector": "Menuiserie & agencement",
+  "bg": "#1f2d27"
+ },
+ {
+  "slug": "pepin",
+  "name": "Pépin",
+  "sector": "Épicerie de saison",
+  "bg": "#fff3e3"
+ },
+ {
+  "slug": "varenne",
+  "name": "Varenne",
+  "sector": "Cabinet d'avocats",
+  "bg": "#101c33"
+ },
+ {
+  "slug": "nordik",
+  "name": "Nordik",
+  "sector": "Transport & logistique",
+  "bg": "#eaf0ff"
+ }
+]
