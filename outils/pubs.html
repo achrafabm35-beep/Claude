@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Publicités d'exemple — AS Marketing Agency</title>
+<!-- Chaque .ad est capturée en image par outils/captures.cjs (img/shots/ad-*.webp). -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800;900&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,400&family=DM+Sans:wght@500;700&family=Sora:wght@600;700&family=Inter:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Jost:wght@500;600&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet" />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { display: flex; flex-wrap: wrap; gap: 24px; padding: 24px; background: #ddd; align-items: flex-start; }
+.ad { position: relative; overflow: hidden; flex: none; }
+.story { width: 360px; height: 640px; } .square { width: 480px; height: 480px; } .land { width: 600px; height: 314px; }
+.bars { position: absolute; z-index: 5; top: 12px; left: 12px; right: 12px; display: flex; gap: 4px; } .bars i { flex: 1; height: 2.5px; border-radius: 2px; background: rgba(255, 255, 255, 0.45); } .bars i:first-child { background: #fff; }
+.acct { position: absolute; z-index: 5; top: 26px; left: 14px; display: flex; align-items: center; gap: 8px; font: 600 12px/1 Inter, sans-serif; color: #fff; } .acct b { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font: 800 13px/1 Inter; } .acct small { opacity: 0.8; font-weight: 500; display: block; margin-top: 3px; font-size: 10.5px; }
+.cta { display: inline-flex; align-items: center; gap: 8px; border-radius: 99px; font-weight: 700; }
+
+/* Brume — story */
+.a-brume { background: #ffd0da; --can: #e8315e; --can2: #9c1240; color: #24190a; font-family: "DM Sans", sans-serif; }
+.a-brume .acct { color: #24190a; } .a-brume .acct b { background: #e8315e; color: #fff; font-family: Fraunces; } .a-brume .bars i { background: rgba(36, 25, 10, 0.25); } .a-brume .bars i:first-child { background: #24190a; }
+.a-brume .halo { position: absolute; left: 50%; top: 96px; width: 310px; height: 310px; margin-left: -140px; border-radius: 50%; background: #f58aa6; }
+.a-brume .can { position: absolute; left: 50%; top: 62px; height: 350px; aspect-ratio: 200/380; margin-left: -70px; transform: rotate(-12deg); filter: drop-shadow(0 30px 26px rgba(36, 25, 10, 0.3)); }
+.a-brume .can svg { width: 100%; height: 100%; overflow: visible; }
+.a-brume .s { position: absolute; } .a-brume .s1 { width: 104px; left: -26px; top: 150px; } .a-brume .s2 { width: 78px; right: -16px; top: 330px; } .a-brume .s3 { width: 38px; left: 60px; top: 372px; }
+.a-brume h3 { position: absolute; left: 22px; right: 22px; bottom: 84px; font: 800 41px/0.98 Fraunces, serif; letter-spacing: -0.03em; } .a-brume h3 em { font-weight: 400; font-style: italic; color: #9c1240; }
+.a-brume .cta { position: absolute; left: 22px; bottom: 28px; padding: 13px 20px; background: #24190a; color: #fff; font-size: 13.5px; }
+.lab { fill: var(--can); } .lab2 { fill: var(--can2); } symbol .a { fill: var(--can); } symbol .b { fill: var(--can2); } symbol .c { fill: #fffaf0; }
+
+/* Solstice — carré */
+.a-sol { background: linear-gradient(180deg, #0d0716 0%, #2a0f45 52%, #a3215f 100%); color: #fff4e6; font-family: Unbounded, sans-serif; text-align: center; }
+.a-sol .sun { position: absolute; left: 50%; bottom: -250px; width: 520px; height: 520px; margin-left: -260px; border-radius: 50%; background: linear-gradient(180deg, #ffd23f 0%, #ff8a1f 14%, #ff2e88 34%, #b0237e 60%); -webkit-mask: linear-gradient(180deg, #000 0 13%, transparent 13% 14%, #000 14% 19%, transparent 19% 20.6%, #000 20.6% 25%, transparent 25% 27.4%, #000 27.4% 100%); mask: linear-gradient(180deg, #000 0 13%, transparent 13% 14%, #000 14% 19%, transparent 19% 20.6%, #000 20.6% 25%, transparent 25% 27.4%, #000 27.4% 100%); }
+.a-sol .rays { position: absolute; left: 50%; bottom: -420px; width: 860px; height: 860px; margin-left: -430px; border-radius: 50%; background: repeating-conic-gradient(rgba(255, 210, 63, 0.16) 0 3deg, transparent 3deg 12deg); }
+.a-sol small { position: absolute; top: 34px; left: 0; right: 0; font-weight: 500; font-size: 11px; letter-spacing: 0.2em; color: #ffd23f; }
+.a-sol h3 { position: absolute; top: 64px; left: 0; right: 0; font-weight: 900; font-size: 62px; letter-spacing: -0.05em; line-height: 0.9; }
+.a-sol p { position: absolute; top: 140px; left: 0; right: 0; font: 800 21px/1.15 Unbounded; letter-spacing: -0.02em; } .a-sol p b { color: #ffd23f; }
+.a-sol .cta { position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); padding: 14px 24px; background: #fff4e6; color: #0d0716; font: 800 12px/1 Unbounded; letter-spacing: 0.04em; white-space: nowrap; }
+
+/* Orbe — paysage */
+.a-orbe { background: radial-gradient(ellipse 70% 90% at 100% 0%, rgba(108, 92, 255, 0.6), transparent 70%), radial-gradient(ellipse 50% 70% at 0% 100%, rgba(34, 211, 238, 0.22), transparent 70%), #07070d; color: #f3f3fa; font-family: Inter, sans-serif; }
+.a-orbe .logo { position: absolute; left: 30px; top: 26px; height: 24px; }
+.a-orbe h3 { position: absolute; left: 30px; top: 86px; width: 300px; font: 700 37px/1.04 Sora, sans-serif; letter-spacing: -0.04em; } .a-orbe h3 span { background: linear-gradient(100deg, #8b7dff, #22d3ee); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.a-orbe .cta { position: absolute; left: 30px; bottom: 30px; padding: 12px 18px; border-radius: 10px; background: linear-gradient(100deg, #8b7dff, #22d3ee); color: #07070d; font-size: 13px; }
+.a-orbe .inv { position: absolute; right: 30px; top: 46px; width: 216px; padding: 16px; border-radius: 16px; background: #14141f; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 30px 60px -20px rgba(108, 92, 255, 0.8); transform: rotate(4deg); font-size: 11.5px; }
+.a-orbe .inv b { display: block; font: 700 10px/1 Sora; letter-spacing: 0.12em; color: #9a9ab2; } .a-orbe .inv strong { display: block; margin: 10px 0 12px; font: 700 26px/1 Sora; letter-spacing: -0.03em; }
+.a-orbe .inv i { display: block; height: 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.1); margin-top: 7px; } .a-orbe .inv i + i { width: 62%; }
+.a-orbe .ok { position: absolute; right: 150px; bottom: 34px; display: flex; align-items: center; gap: 9px; padding: 10px 14px; border-radius: 12px; background: #1b1b2c; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 20px 40px -16px #000; font: 600 12px/1.2 Inter; transform: rotate(-3deg); } .a-orbe .ok span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(61, 220, 151, 0.18); color: #3ddc97; }
+
+/* Souffle — story */
+.a-souf { background: #f3ebdf; color: #2b2420; font-family: Jost, sans-serif; text-align: center; }
+.a-souf .acct { color: #2b2420; } .a-souf .acct b { background: #c4623a; color: #fff; font: italic 500 17px/1 "Cormorant Garamond"; } .a-souf .bars i { background: rgba(43, 36, 32, 0.25); } .a-souf .bars i:first-child { background: #2b2420; }
+.a-souf .ar { position: absolute; bottom: 0; border-radius: 999px 999px 0 0; overflow: hidden; } .a-souf .ar i { position: absolute; left: 50%; transform: translateX(-50%); border-radius: 50%; }
+.a-souf .r1 { left: 24px; width: 92px; height: 250px; background: linear-gradient(#e9c9a8, #c4623a); } .a-souf .r1 i { width: 44px; height: 44px; top: 40px; background: #fbf7f0; }
+.a-souf .r2 { left: 128px; width: 104px; height: 350px; background: linear-gradient(#f0d9bd, #eab58f 46%, #c4623a); } .a-souf .r2 i { width: 60px; height: 60px; top: 46px; background: #fff3dd; box-shadow: 0 0 50px 14px rgba(255, 240, 214, 0.7); }
+.a-souf .r3 { right: 24px; width: 92px; height: 290px; background: linear-gradient(#cfd6bd, #8c9b7c 70%, #5f6f52); } .a-souf .r3 i { width: 150px; height: 150px; top: 160px; background: #5f6f52; opacity: 0.6; }
+.a-souf > small { position: absolute; top: 96px; left: 0; right: 0; font-size: 10.5px; letter-spacing: 0.26em; color: #5f6f52; font-weight: 600; }
+.a-souf h3 { position: absolute; top: 122px; left: 18px; right: 18px; font: 500 46px/0.98 "Cormorant Garamond", serif; letter-spacing: -0.02em; } .a-souf h3 em { font-style: italic; font-weight: 400; color: #c4623a; }
+.a-souf .cta { position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); padding: 13px 24px; background: #2b2420; color: #fbf7f0; font-size: 13.5px; font-weight: 500; z-index: 3; white-space: nowrap; }
+
+/* Pépin — carré */
+.a-pep { background: #fff3e3; color: #2a1a12; font-family: "Bricolage Grotesque", sans-serif; }
+.a-pep .fruit { position: absolute; right: -150px; bottom: -190px; width: 400px; height: 400px; border-radius: 50%; background: #e5482d; } .a-pep .fruit::after { content: ""; position: absolute; left: 50%; top: 22%; width: 34%; height: 54%; margin-left: -17%; background: #fff3e3; border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%; transform: rotate(0deg); clip-path: path("M68 0C110 46 114 150 68 216C22 150 26 46 68 0Z"); }
+.a-pep .leaf { position: absolute; right: 34px; bottom: 196px; width: 110px; height: 62px; background: #2f7d4f; border-radius: 0 100% 0 100%; transform: rotate(-18deg); }
+.a-pep img { position: absolute; left: 32px; top: 30px; height: 38px; }
+.a-pep h3 { position: absolute; left: 32px; top: 112px; width: 330px; font-weight: 800; font-size: 50px; line-height: 0.95; letter-spacing: -0.04em; } .a-pep h3 span { color: #e5482d; }
+.a-pep p { position: absolute; left: 32px; top: 286px; width: 200px; font: 500 15px/1.4 "DM Sans"; opacity: 0.8; }
+.a-pep .cta { position: absolute; left: 32px; bottom: 32px; padding: 14px 22px; background: #2a1a12; color: #fff3e3; font: 700 14px/1 "DM Sans"; }
+
+/* Lenoir — paysage */
+.a-len { background: #1f2d27; color: #f4ede0; font-family: Jost, sans-serif; }
+.a-len .rings { position: absolute; right: -50px; bottom: -140px; width: 380px; height: 380px; border-radius: 50%; background: repeating-radial-gradient(circle, #d2a56d 0 14px, #1f2d27 14px 26px); opacity: 0.95; }
+.a-len .rings::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, rgba(31, 45, 39, 0) 30%, rgba(31, 45, 39, 0.75) 72%); }
+.a-len img { position: absolute; left: 30px; top: 28px; height: 30px; }
+.a-len h3 { position: absolute; left: 30px; top: 96px; width: 290px; font: 600 35px/1.04 Jost; letter-spacing: -0.02em; } .a-len h3 span { color: #d2a56d; }
+.a-len .cta { position: absolute; left: 30px; bottom: 30px; padding: 12px 20px; background: #d2a56d; color: #1f2d27; font: 600 13.5px/1 Jost; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#8d9299" /><stop offset="0.2" stop-color="#e9ecef" /><stop offset="0.36" stop-color="#ffffff" /><stop offset="0.6" stop-color="#c3c8ce" /><stop offset="1" stop-color="#70757c" /></linearGradient>
+  <linearGradient id="shade" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity="0.38" /><stop offset="0.16" stop-color="#000" stop-opacity="0.06" /><stop offset="0.27" stop-color="#fff" stop-opacity="0.42" /><stop offset="0.36" stop-color="#fff" stop-opacity="0.05" /><stop offset="0.7" stop-color="#000" stop-opacity="0.04" /><stop offset="1" stop-color="#000" stop-opacity="0.4" /></linearGradient>
+  <clipPath id="canclip"><path d="M54 8h92l4 10c12 6 20 18 20 34v276c0 16-8 28-20 34l-4 10H54l-4-10c-12-6-20-18-20-34V52c0-16 8-28 20-34z" /></clipPath>
+  <symbol id="can" viewBox="0 0 200 380"><g clip-path="url(#canclip)"><rect x="30" y="0" width="140" height="380" fill="url(#metal)" /><rect class="lab" x="30" y="46" width="140" height="290" /><path class="lab2" d="M30 250c30-22 52 14 78-2s38-26 62-12v100H30z" opacity="0.85" /><circle cx="132" cy="112" r="34" fill="#fff" opacity="0.2" /><circle cx="132" cy="112" r="24" fill="none" stroke="#fff" stroke-width="2" opacity="0.7" /><path d="M132 88v48M108 112h48M115 95l34 34M149 95l-34 34" stroke="#fff" stroke-width="2" opacity="0.7" /><text transform="translate(96 302) rotate(-90)" font-family="Fraunces, serif" font-weight="800" font-size="62" letter-spacing="-2.5" fill="#fff">brume</text><text x="100" y="322" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="8.4" letter-spacing="2.2" fill="#fff" opacity="0.92">INFUSION PÉTILLANTE · 33 CL</text><rect x="30" y="0" width="140" height="380" fill="url(#shade)" /><rect x="30" y="18" width="140" height="3" fill="#000" opacity="0.18" /><rect x="30" y="360" width="140" height="3" fill="#000" opacity="0.2" /></g><ellipse cx="100" cy="9" rx="46" ry="5" fill="#d7dbe0" stroke="#8d9299" stroke-width="1.5" /></symbol>
+  <symbol id="slice" viewBox="0 0 100 100"><circle class="b" cx="50" cy="50" r="49" /><circle class="c" cx="50" cy="50" r="43" /><circle class="a" cx="50" cy="50" r="39" /><path d="M50 11v78M11 50h78M22.400 22.400l55.200 55.200M77.600 22.400L22.400 77.600" stroke="#fffaf0" stroke-width="3.4" /><circle class="c" cx="50" cy="50" r="5" /></symbol>
+</defs></svg>
+
+<div class="ad story a-brume" data-name="brume-story"><div class="bars"><i></i><i></i><i></i></div><div class="acct"><b>b</b><span>brume<small>Sponsorisé</small></span></div><span class="halo"></span><svg class="s s1" viewBox="0 0 100 100"><use href="#slice" /></svg><svg class="s s3" viewBox="0 0 100 100"><use href="#slice" /></svg><div class="can"><svg><use href="#can" /></svg></div><svg class="s s2" viewBox="0 0 100 100"><use href="#slice" /></svg><h3>Framboise<br />&amp; hibiscus. <em>Enfin.</em></h3><span class="cta">Goûter la nouveauté ↑</span></div>
+
+<div class="ad square a-sol" data-name="solstice-carre"><div class="rays"></div><div class="sun"></div><small>18 · 19 · 20 JUIN 2027</small><h3>SOLSTICE</h3><p>LES PASS 3 JOURS<br /><b>SONT OUVERTS.</b></p><span class="cta">JE PRENDS MON PASS →</span></div>
+
+<div class="ad land a-orbe" data-name="orbe-banniere"><img class="logo" src="../site/asagency/img/logos/orbe.svg" alt="" /><h3>Facturez en <span>30 secondes.</span></h3><span class="cta">Essayer gratuitement →</span><div class="inv"><b>FACTURE F-2026-041</b><strong>1 250,00 €</strong><i></i><i></i></div><div class="ok"><span>✓</span>Payée en 2 jours</div></div>
+
+<div class="ad story a-souf" data-name="souffle-story"><div class="bars"><i></i><i></i></div><div class="acct"><b>s</b><span>souffle.studio<small>Sponsorisé</small></span></div><small>PILATES &amp; YOGA</small><h3>Votre première séance est <em>offerte.</em></h3><div class="ar r1"><i></i></div><div class="ar r2"><i></i></div><div class="ar r3"><i></i></div><span class="cta">Réserver mon essai ↑</span></div>
+
+<div class="ad square a-pep" data-name="pepin-carre"><span class="fruit"></span><span class="leaf"></span><img src="../site/asagency/img/logos/pepin.svg" alt="" /><h3>Le panier de saison, <span>livré jeudi.</span></h3><p>Fruits et légumes de producteurs locaux, cueillis la veille.</p><span class="cta">Je commande →</span></div>
+
+<div class="ad land a-len" data-name="lenoir-banniere"><span class="rings"></span><img src="../site/asagency/img/logos/lenoir.svg" alt="" /><h3>Votre cuisine, <span>dessinée pour vous.</span></h3><span class="cta">Demander un devis gratuit →</span></div>
+</body>
+</html>

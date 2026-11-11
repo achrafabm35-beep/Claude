@@ -3,239 +3,317 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AS Marketing Agency — Sites web, applications, logos, réseaux sociaux et publicités digitales. On réalise une première version de votre projet avant de vous demander quoi que ce soit." />
-  <title>AS Marketing Agency — Vos outils digitaux, faits avant d'être payés</title>
+  <meta name="description" content="AS Marketing Agency crée des applications métier, des sites web, des logos et des publicités. On réalise une première version de votre projet avant de vous demander quoi que ce soit." />
+  <meta name="theme-color" content="#0a0a0f" />
+  <title>AS Marketing Agency — Applications, sites web, logos et publicités</title>
   <link rel="icon" href="img/logo-mark-sm.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,400&family=Syne:wght@700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@500;600&family=Anton&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="iphone.css" />
-  <script>document.documentElement.classList.add(/[?&]shot/.test(location.search) ? "shot" : "js"); if (/[?&]shot/.test(location.search)) document.addEventListener("DOMContentLoaded", () => document.querySelectorAll("img[loading]").forEach((i) => (i.loading = "eager")));</script>
+  <script>document.documentElement.classList.add(/[?&]shot/.test(location.search) ? "shot" : "js");</script>
 </head>
 <body>
-  <div class="curtain" id="curtain" aria-hidden="true"><img src="img/logo-mark.webp" alt="" /></div>
-  <div class="bg" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span></div>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
-  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="loader" id="loader" aria-hidden="true"><img src="img/logo-mark-light.webp" alt="" width="360" height="205" /></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <header class="nav on-dark" id="nav">
-    <a href="#top" class="logo" aria-label="AS Marketing Agency"><img class="logo__dark" src="img/logo-mark.webp" alt="AS Marketing Agency" /><img class="logo__light" src="img/logo-mark-light.webp" alt="" aria-hidden="true" /></a>
-    <nav class="nav__links">
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo" aria-label="AS Marketing Agency"><img src="img/logo-mark-light.webp" alt="AS Marketing Agency" width="360" height="205" /></a>
+    <nav class="nav__links" aria-label="Navigation principale">
       <a href="#apps">Applications</a>
       <a href="#methode">Méthode</a>
-      <a href="#realisations">Sites web</a>
-      <a href="#studio">Logos &amp; pubs</a>
+      <a href="#sites">Sites web</a>
+      <a href="#logos">Logos</a>
+      <a href="#pubs">Publicités</a>
     </nav>
-    <a href="#contact" class="btn btn--ink nav__cta" data-magnet>Mon projet</a>
+    <a href="#contact" class="btn btn--light nav__cta" data-magnet>Mon projet</a>
   </header>
 
   <main id="top">
-    <!-- HERO -->
-    <section class="hero hero--wall" id="hero">
-      <div class="hwall" aria-hidden="true"><div class="hwall__plane"><div class="hcol" style="--d:46s"><div class="hcol__track"><div class="htile"><img src="img/shots/app-projets-dash.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#2b1f23;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-velora.jpg" alt="" /></div></div></div><div class="htile htile--ad"><img src="img/shots/ad-banner.jpg" alt="" /></div><div class="htile"><img src="img/shots/app-carto-plan.jpg" alt="" /></div><div class="htile"><img src="img/shots/app-projets-dash.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#2b1f23;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-velora.jpg" alt="" /></div></div></div><div class="htile htile--ad"><img src="img/shots/ad-banner.jpg" alt="" /></div><div class="htile"><img src="img/shots/app-carto-plan.jpg" alt="" /></div></div></div><div class="hcol" style="--d:58s"><div class="hcol__track"><div class="htile"><img src="img/shots/site-lumen.jpg" alt="" /></div><div class="htile htile--ad"><img src="img/shots/ad-story.jpg" alt="" /></div><div class="htile"><img src="img/shots/app-stockly.jpg" alt="" /></div><div class="htile"><img src="img/shots/site-verdi.jpg" alt="" /></div><div class="htile"><img src="img/shots/site-lumen.jpg" alt="" /></div><div class="htile htile--ad"><img src="img/shots/ad-story.jpg" alt="" /></div><div class="htile"><img src="img/shots/app-stockly.jpg" alt="" /></div><div class="htile"><img src="img/shots/site-verdi.jpg" alt="" /></div></div></div><div class="hcol" style="--d:40s"><div class="hcol__track"><div class="htile"><img src="img/shots/app-amelio-dash.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#12101d;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-kinetik.jpg" alt="" /></div></div></div><div class="htile"><img src="img/shots/app-reserva.jpg" alt="" /></div><div class="htile htile--ad"><img src="img/shots/ad-square.jpg" alt="" /></div><div class="htile"><img src="img/shots/app-amelio-dash.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#12101d;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-kinetik.jpg" alt="" /></div></div></div><div class="htile"><img src="img/shots/app-reserva.jpg" alt="" /></div><div class="htile htile--ad"><img src="img/shots/ad-square.jpg" alt="" /></div></div></div><div class="hcol" style="--d:54s"><div class="hcol__track"><div class="htile"><img src="img/shots/site-velora.jpg" alt="" /></div><div class="htile"><img src="img/shots/app-closr.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#0e0a07;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-lumen.jpg" alt="" /></div></div></div><div class="htile"><img src="img/shots/app-projets-gantt.jpg" alt="" /></div><div class="htile"><img src="img/shots/site-velora.jpg" alt="" /></div><div class="htile"><img src="img/shots/app-closr.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#0e0a07;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-lumen.jpg" alt="" /></div></div></div><div class="htile"><img src="img/shots/app-projets-gantt.jpg" alt="" /></div></div></div><div class="hcol" style="--d:44s"><div class="hcol__track"><div class="htile"><img src="img/shots/app-carto-dash.jpg" alt="" /></div><div class="htile"><img src="img/shots/site-kinetik.jpg" alt="" /></div><div class="htile htile--ad"><img src="img/shots/ad-story.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#f1eee7;--sbtext:#111"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-verdi.jpg" alt="" /></div></div></div><div class="htile"><img src="img/shots/app-carto-dash.jpg" alt="" /></div><div class="htile"><img src="img/shots/site-kinetik.jpg" alt="" /></div><div class="htile htile--ad"><img src="img/shots/ad-story.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#f1eee7;--sbtext:#111"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-verdi.jpg" alt="" /></div></div></div></div></div><div class="hcol" style="--d:60s"><div class="hcol__track"><div class="htile"><img src="img/shots/app-amelio-achats.jpg" alt="" /></div><div class="htile htile--ad"><img src="img/shots/ad-square.jpg" alt="" /></div><div class="htile"><img src="img/shots/site-lumen.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#2b1f23;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-velora.jpg" alt="" /></div></div></div><div class="htile"><img src="img/shots/app-amelio-achats.jpg" alt="" /></div><div class="htile htile--ad"><img src="img/shots/ad-square.jpg" alt="" /></div><div class="htile"><img src="img/shots/site-lumen.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#2b1f23;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-velora.jpg" alt="" /></div></div></div></div></div><div class="hcol" style="--d:50s"><div class="hcol__track"><div class="htile"><img src="img/shots/app-reserva.jpg" alt="" /></div><div class="htile"><img src="img/shots/site-verdi.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#12101d;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-kinetik.jpg" alt="" /></div></div></div><div class="htile"><img src="img/shots/app-projets-risques.jpg" alt="" /></div><div class="htile"><img src="img/shots/app-reserva.jpg" alt="" /></div><div class="htile"><img src="img/shots/site-verdi.jpg" alt="" /></div><div class="htile htile--phone"><div class="iphone" style="--sb:#12101d;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-kinetik.jpg" alt="" /></div></div></div><div class="htile"><img src="img/shots/app-projets-risques.jpg" alt="" /></div></div></div></div></div>
-      <div class="hero__veil"></div>
-      <h1 class="hero__title hero__title--center">
-        <span class="line"><span class="word">On le fait.</span></span>
-        <span class="line"><span class="word"><span class="grad">Vous l'aimez.</span></span></span>
-      </h1>
-      <a class="hero__scroll" href="#apps" aria-label="Découvrir"><i></i></a>
+    <!-- ACCUEIL : mur de réalisations -->
+    <section class="hero" id="hero">
+      <div class="hero__sticky">
+        <div class="hwall" aria-hidden="true"><div class="hwall__plane" id="wall"></div></div>
+        <div class="hero__veil" id="veil"></div>
+        <h1 class="hero__title" id="heroTitle">
+          <span class="mask"><span class="in">On le fait.</span></span>
+          <span class="mask"><span class="in"><em class="grad">Vous l’aimez.</em></span></span>
+        </h1>
+        <a class="hero__cue" href="#apps" aria-label="Découvrir la suite"><i></i></a>
+        <div class="hero__out" id="heroOut"></div>
+      </div>
     </section>
-
-
 
     <!-- APPLICATIONS -->
     <section class="apps" id="apps">
-      <div class="apps__head">
-        <p class="eyebrow" data-reveal>Applications sur mesure</p>
-        <h2 class="section__title" data-split>Votre métier mérite son propre outil.</h2>
-        <p class="section__lead" data-reveal>Fini les fichiers Excel éparpillés. On construit l'application qui colle à vos process, et vous la testez avant de payer.</p>
-        <div class="apps__perks" data-reveal><span><b>✓</b>Pensée pour votre métier</span><span><b>✓</b>Tableaux de bord en temps réel</span><span><b>✓</b>Exports Excel &amp; PowerPoint</span></div>
+      <div class="wrap manifesto">
+        <p class="eyebrow" data-r>Applications sur mesure</p>
+        <p class="manifesto__text" id="manifesto">Vos fichiers Excel ont fait leur temps. On construit <em>l’application</em> qui colle à votre métier, et vous la voyez <em>avant de payer.</em></p>
       </div>
-      <div class="showcase" id="showcase">
-        <ul class="applist" id="applist"><li><button data-i="0" class="on"><span>01</span><b>Pilotage de projets</b><small>Planning, budget, risques et reporting.</small></button></li><li><button data-i="1" class=""><span>02</span><b>Cartographie terrain</b><small>Vos sites et ateliers, en un coup d'œil.</small></button></li><li><button data-i="2" class=""><span>03</span><b>Amélioration continue</b><small>Idées, actions, audits et achats.</small></button></li><li><button data-i="3" class=""><span>04</span><b>Réservation en ligne<i class="tag-new">Nouveau</i></b><small>Agenda, rendez-vous et rappels.</small></button></li><li><button data-i="4" class=""><span>05</span><b>Ventes & stocks<i class="tag-new">Nouveau</i></b><small>Commandes en direct, réassort auto.</small></button></li><li><button data-i="5" class=""><span>06</span><b>CRM commercial<i class="tag-new">Nouveau</i></b><small>Pipeline, relances, conversion.</small></button></li></ul>
-        <div class="screen" id="screen">
-          <div class="frame frame--dark"><div class="frame__bar"><i></i><i></i><i></i><span>app.votre-entreprise.fr</span></div><div class="frame__img"><img class="shot on" data-i="0" src="img/shots/app-projets-dash.jpg" alt="Pilotage de projets" /><img class="shot" data-i="1" src="img/shots/app-carto-plan.jpg" alt="Cartographie terrain" /><img class="shot" data-i="2" src="img/shots/app-amelio-dash.jpg" alt="Amélioration continue" /><img class="shot" data-i="3" src="img/shots/app-reserva.jpg" alt="Réservation en ligne" /><img class="shot" data-i="4" src="img/shots/app-stockly.jpg" alt="Ventes & stocks" /><img class="shot" data-i="5" src="img/shots/app-closr.jpg" alt="CRM commercial" /></div></div>
-          <div class="frame pip" id="pip"><div class="frame__img"><img data-i="0" class="on" src="img/shots/app-projets-gantt.jpg" alt="" /><img data-i="1" class="" src="img/shots/app-carto-dash.jpg" alt="" /><img data-i="2" class="" src="img/shots/app-amelio-achats.jpg" alt="" /></div></div>
-          <div class="screen__cta" id="screenCta"><a class="live" id="demoLink" href="#" target="_blank" rel="noopener" data-cursor="Tester">Tester la démo</a></div>
+
+      <div class="wrap showcase" id="showcase">
+        <header class="head"><h2 class="h2" data-split>Six applications. <em>Six quotidiens simplifiés.</em></h2></header>
+        <div class="showcase__side">
+          <ul class="tabs" id="tabs" role="tablist">
+            <li><button class="on" role="tab" data-i="0"><span>01</span><b>Pilotage de projets</b><i></i></button></li>
+            <li><button role="tab" data-i="1"><span>02</span><b>Cartographie terrain</b><i></i></button></li>
+            <li><button role="tab" data-i="2"><span>03</span><b>Amélioration continue</b><i></i></button></li>
+            <li><button role="tab" data-i="3"><span>04</span><b>Réservation en ligne</b><i></i></button></li>
+            <li><button role="tab" data-i="4"><span>05</span><b>Ventes &amp; stocks</b><i></i></button></li>
+            <li><button role="tab" data-i="5"><span>06</span><b>CRM commercial</b><i></i></button></li>
+          </ul>
+        </div>
+        <div class="showcase__main">
+          <div class="frame" id="frame">
+            <div class="frame__bar"><i></i><i></i><i></i><span>app.votre-entreprise.fr</span></div>
+            <div class="frame__img">
+              <img class="on" src="img/shots/app-projets-dash.webp" alt="Application de pilotage de projets" width="1600" height="900" />
+              <img src="img/shots/app-carto-plan.webp" alt="Application de cartographie terrain" width="1600" height="900" loading="lazy" />
+              <img src="img/shots/app-amelio-dash.webp" alt="Application d'amélioration continue" width="1600" height="900" loading="lazy" />
+              <img src="img/shots/app-reserva.webp" alt="Application de réservation en ligne" width="1440" height="900" loading="lazy" />
+              <img src="img/shots/app-stockly.webp" alt="Application de ventes et stocks" width="1440" height="900" loading="lazy" />
+              <img src="img/shots/app-closr.webp" alt="CRM commercial" width="1440" height="900" loading="lazy" />
+            </div>
+          </div>
+          <div class="pip" id="pip" aria-hidden="true">
+            <img class="on" src="img/shots/app-projets-gantt-s.webp" alt="" width="640" height="360" loading="lazy" />
+            <img src="img/shots/app-carto-dash-s.webp" alt="" width="640" height="360" loading="lazy" />
+            <img src="img/shots/app-amelio-achats-s.webp" alt="" width="640" height="360" loading="lazy" />
+          </div>
+          <div class="appinfo" id="appinfo">
+            <div class="appinfo__txt"><p id="appDesc">Planning, budget, risques et reporting au même endroit.</p><small id="appRep"><b>Remplace</b> le planning Excel, le suivi budget et le PowerPoint du lundi.</small></div>
+            <ul class="chips" id="appChips"><li>Gantt interactif</li><li>Budget en direct</li><li>Rapport en un clic</li></ul>
+            <a class="btn btn--line" id="appDemo" href="#" target="_blank" rel="noopener" hidden>Tester la démo ↗</a>
+          </div>
         </div>
       </div>
-      <div class="wall" aria-hidden="true">
-        <div class="wall__inner">
-          <div class="wall__row" data-wall="-1"><img src="img/shots/app-projets-dash.jpg" alt="" loading="lazy" /><img src="img/shots/app-carto-dash.jpg" alt="" loading="lazy" /><img src="img/shots/app-reserva.jpg" alt="" loading="lazy" /><img src="img/shots/app-amelio-achats.jpg" alt="" loading="lazy" /><img src="img/shots/app-projets-gantt.jpg" alt="" loading="lazy" /><img src="img/shots/app-stockly.jpg" alt="" loading="lazy" /><img src="img/shots/app-carto-plan.jpg" alt="" loading="lazy" /><img src="img/shots/app-projets-dash.jpg" alt="" loading="lazy" /><img src="img/shots/app-carto-dash.jpg" alt="" loading="lazy" /><img src="img/shots/app-reserva.jpg" alt="" loading="lazy" /><img src="img/shots/app-amelio-achats.jpg" alt="" loading="lazy" /><img src="img/shots/app-projets-gantt.jpg" alt="" loading="lazy" /><img src="img/shots/app-stockly.jpg" alt="" loading="lazy" /><img src="img/shots/app-carto-plan.jpg" alt="" loading="lazy" /></div>
-          <div class="wall__row" data-wall="1"><img src="img/shots/app-amelio-dash.jpg" alt="" loading="lazy" /><img src="img/shots/app-closr.jpg" alt="" loading="lazy" /><img src="img/shots/app-projets-risques.jpg" alt="" loading="lazy" /><img src="img/shots/app-carto-atelier.jpg" alt="" loading="lazy" /><img src="img/shots/app-projets-hebdo.jpg" alt="" loading="lazy" /><img src="img/shots/app-amelio-actions.jpg" alt="" loading="lazy" /><img src="img/shots/app-projets-budget.jpg" alt="" loading="lazy" /><img src="img/shots/app-amelio-dash.jpg" alt="" loading="lazy" /><img src="img/shots/app-closr.jpg" alt="" loading="lazy" /><img src="img/shots/app-projets-risques.jpg" alt="" loading="lazy" /><img src="img/shots/app-carto-atelier.jpg" alt="" loading="lazy" /><img src="img/shots/app-projets-hebdo.jpg" alt="" loading="lazy" /><img src="img/shots/app-amelio-actions.jpg" alt="" loading="lazy" /><img src="img/shots/app-projets-budget.jpg" alt="" loading="lazy" /></div>
+
+      <!-- avant / après -->
+      <div class="wrap compare-sec">
+        <header class="head head--center">
+          <p class="eyebrow" data-r>Avant, après</p>
+          <h2 class="h2" data-split>Le même travail. <em>Sans la galère.</em></h2>
+          <p class="lead" data-r>Faites glisser pour comparer.</p>
+        </header>
+        <div class="compare" id="compare" data-r>
+          <img class="compare__after" src="img/shots/app-projets-dash.webp" alt="Après : une application claire" width="1600" height="900" loading="lazy" />
+          <div class="compare__before" id="cmpBefore" aria-label="Avant : un tableur surchargé">
+            <div class="xl">
+              <div class="xl__title"><i></i><i></i><i></i><span>Suivi_projets_v7_FINAL (2) - Copie.xlsx</span></div>
+              <div class="xl__fx"><b>F14</b><span>=SI(ESTERREUR(RECHERCHEV(B14;'OLD 2023'!A:K;7;0));"??";RECHERCHEV(B14;'OLD 2023'!A:K;7;0))</span></div>
+              <div class="xl__grid" id="xlGrid"></div>
+              <div class="xl__note">Qui a modifié cette colonne ??</div>
+              <div class="xl__tabs"><span class="on">Suivi</span><span>Suivi (2)</span><span>OLD 2023</span><span>Feuil7</span><span>à trier</span><span>NE PAS TOUCHER</span></div>
+            </div>
+          </div>
+          <span class="compare__tag compare__tag--l">Avant</span>
+          <span class="compare__tag compare__tag--r">Après</span>
+          <div class="compare__handle" id="cmpHandle" role="slider" aria-label="Comparer avant et après" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"><span>‹ ›</span></div>
         </div>
       </div>
-      <div class="apps__cta"><h3 data-reveal>Et si la prochaine, c'était la vôtre ?</h3><a href="#contact" class="btn btn--grad btn--lg" data-magnet>Je décris mon besoin</a></div>
+
+      <!-- ce que l'app sait faire -->
+      <div class="wrap">
+        <header class="head">
+          <p class="eyebrow" data-r>Dans chaque application</p>
+          <h2 class="h2" data-split>Tout ce qui vous fait <em>gagner du temps.</em></h2>
+        </header>
+        <div class="bento" id="bento">
+          <article class="tile tile--a" data-r>
+            <div class="viz viz--dash"><svg viewBox="0 0 120 120" class="donut"><circle cx="60" cy="60" r="44" /><circle class="donut__v" cx="60" cy="60" r="44" /><text x="60" y="67" text-anchor="middle">78 %</text></svg><div class="bars"><i style="--h:42%"></i><i style="--h:68%"></i><i style="--h:54%"></i><i style="--h:86%"></i><i style="--h:62%"></i><i style="--h:96%"></i><i style="--h:74%"></i></div></div>
+            <h3>Tableaux de bord en direct</h3><p>Vos chiffres à jour, sans rien ressaisir.</p>
+          </article>
+          <article class="tile tile--c" data-r>
+            <div class="viz viz--notifs"><div class="notif"><i>✓</i><span><b>Relance envoyée</b>Devis n° 214 · il y a 2 min</span></div><div class="notif"><i>!</i><span><b>Stock bas</b>Plus que 4 unités</span></div><div class="notif"><i>↗</i><span><b>Objectif atteint</b>+12 % cette semaine</span></div></div>
+            <h3>Alertes et relances automatiques</h3><p>L’application prévient avant que ça coince.</p>
+          </article>
+          <article class="tile tile--b" data-r>
+            <div class="viz viz--files"><span class="file file--x">XLSX</span><span class="file file--p">PPTX</span><span class="file file--d">PDF</span></div>
+            <h3>Exports en un clic</h3><p>Excel, PowerPoint ou PDF, prêts à envoyer.</p>
+          </article>
+          <article class="tile tile--d" data-r>
+            <div class="viz viz--roles"><span style="--c:#1fc6b6">D<small>Direction</small></span><span style="--c:#8fb0f0">É<small>Équipe</small></span><span style="--c:#eaa6e6">T<small>Terrain</small></span></div>
+            <h3>Un accès pour chacun</h3><p>Chaque rôle voit ce dont il a besoin.</p>
+          </article>
+          <article class="tile tile--e" data-r>
+            <div class="viz viz--devices"><i class="dv dv--pc"></i><i class="dv dv--tab"></i><i class="dv dv--ph"></i></div>
+            <h3>Ordinateur, tablette, mobile</h3><p>Au bureau comme sur le terrain.</p>
+          </article>
+          <article class="tile tile--f" data-r>
+            <div class="viz viz--yours"><b>Votre logo</b><span></span><span></span><span></span></div>
+            <h3>À vos couleurs</h3><p>Votre nom, votre vocabulaire, vos process.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- par métier -->
+      <div class="wrap jobs">
+        <header class="head head--center">
+          <p class="eyebrow" data-r>Et chez vous ?</p>
+          <h2 class="h2" data-split>Choisissez votre métier.</h2>
+        </header>
+        <div class="jobs__tabs" id="jobTabs" data-r>
+          <button class="on" data-j="0">Artisans &amp; BTP</button><button data-j="1">Commerces</button><button data-j="2">Restauration</button><button data-j="3">Industrie</button><button data-j="4">Santé &amp; bien-être</button><button data-j="5">Services</button>
+        </div>
+        <div class="jobs__grid" id="jobGrid" data-r></div>
+        <div class="apps__cta" data-r><p>Votre idée n’est pas dans la liste ? <em>Tant mieux.</em></p><a href="#contact" class="btn btn--grad btn--lg" data-magnet>Je décris mon besoin</a></div>
+      </div>
     </section>
 
     <!-- MÉTHODE -->
-    <section id="methode">
-      <div class="manifesto">
-        <p class="eyebrow">Notre philosophie</p>
-        <p id="manifesto">Ailleurs, on paie avant de voir. Chez nous, c'est l'inverse : on crée d'abord une vraie première version, vous décidez ensuite.</p>
-      </div>
-      <div class="steps">
-        <article class="step" style="--i:0"><span class="step__n grad">01</span><div><h3>Vous nous parlez de votre projet</h3><p>20 minutes d'échange, sans cahier des charges.</p></div><span class="step__ico">💬</span></article>
-        <article class="step step--free" style="--i:1"><span class="step__n grad">02</span><div><span class="badge">Offert</span><h3>On réalise une première version</h3><p>Du concret sous 72 h, sans rien payer.</p></div><span class="step__ico">⚡</span></article>
-        <article class="step" style="--i:2"><span class="step__n grad">03</span><div><h3>Vous validez, ou pas</h3><p>Ça ne vous plaît pas ? Vous ne nous devez rien.</p></div><span class="step__ico">✓</span></article>
-        <article class="step" style="--i:3"><span class="step__n grad">04</span><div><h3>On lance et on vous accompagne</h3><p>Mise en ligne, suivi et ajustements.</p></div><span class="step__ico">🚀</span></article>
-      </div>
-    </section>
-
-    <!-- PLONGÉE ZOOM -->
-    <section class="dive" id="dive" aria-label="Sites web">
-      <div class="dive__screen" id="diveScreen">
-        <img class="dv" src="img/shots/site-lumen.jpg" alt="" />
-        <img class="dv" src="img/shots/site-verdi.jpg" alt="" />
-        <img class="dv" src="img/shots/site-velora.jpg" alt="" />
-      </div>
-      <div class="dive__text" id="diveText"><h2>Des sites qui<br /><span class="grad">bougent.</span></h2></div>
-    </section>
-
-    <!-- SITES -->
-    <section class="section" id="realisations">
-      <header class="section__head">
-        <p class="eyebrow" data-reveal>Sites web</p>
-        <h2 class="section__title" data-split>Zoom, parallax, mouvement. Et des clients en plus.</h2>
-        <p class="section__lead" data-reveal>Survolez un site pour le parcourir.</p>
-      </header>
-      <div class="sites">
-        <article class="site" data-rise>
-          <div class="frame"><div class="frame__bar"><i></i><i></i><i></i><span>lumen-brasserie.fr</span></div><div class="scrollshot"><img src="img/shots/site-lumen-full.jpg" alt="Site Lumen" loading="lazy" /></div></div>
-          <div class="site__meta"><div><h3>Lumen</h3><small>Brasserie · site vitrine</small></div><a class="live" href="exemples/sites/lumen.html" target="_blank" rel="noopener" data-cursor="Voir">Voir en live</a></div>
-        </article>
-        <article class="site" data-rise>
-          <div class="frame"><div class="frame__bar"><i></i><i></i><i></i><span>verdi-architectes.fr</span></div><div class="scrollshot"><img src="img/shots/site-verdi-full.jpg" alt="Site Verdi Architectes" loading="lazy" /></div></div>
-          <div class="site__meta"><div><h3>Verdi Architectes</h3><small>Architecture · portfolio</small></div><a class="live" href="exemples/sites/verdi.html" target="_blank" rel="noopener" data-cursor="Voir">Voir en live</a></div>
-        </article>
-        <article class="site" data-rise>
-          <div class="frame"><div class="frame__bar"><i></i><i></i><i></i><span>velora-soins.fr</span></div><div class="scrollshot"><img src="img/shots/site-velora-full.jpg" alt="Site Velora" loading="lazy" /></div></div>
-          <div class="site__meta"><div><h3>Velora</h3><small>Cosmétique · e-commerce</small></div><a class="live" href="exemples/sites/velora.html" target="_blank" rel="noopener" data-cursor="Voir">Voir en live</a></div>
-        </article>
-        <article class="site" data-rise>
-          <div class="frame"><div class="frame__bar"><i></i><i></i><i></i><span>kinetik-club.fr</span></div><div class="scrollshot"><img src="img/shots/site-kinetik-full.jpg" alt="Site Kinetik" loading="lazy" /></div></div>
-          <div class="site__meta"><div><h3>Kinetik</h3><small>Club de sport · site + app</small></div><a class="live" href="exemples/sites/kinetik.html" target="_blank" rel="noopener" data-cursor="Voir">Voir en live</a></div>
-        </article>
-      </div>
-      <div class="phones" id="phones" aria-label="Versions mobiles">
-        <div class="iphone device" style="--sb:#0e0a07;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-lumen.jpg" alt="Lumen sur mobile" loading="lazy" /></div></div>
-        <div class="iphone device" style="--sb:#2b1f23;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-velora.jpg" alt="Velora sur mobile" loading="lazy" /></div></div>
-        <div class="iphone device" style="--sb:#12101d;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-kinetik.jpg" alt="Kinetik sur mobile" loading="lazy" /></div></div>
-        <div class="iphone device" style="--sb:#f1eee7;--sbtext:#111"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-verdi.jpg" alt="Verdi sur mobile" loading="lazy" /></div></div>
-      </div>
-    </section>
-
-    <!-- STUDIO -->
-    <section class="section" id="studio">
-      <header class="section__head">
-        <p class="eyebrow" data-reveal>Logos &amp; identité</p>
-        <h2 class="section__title" data-split>Des marques qui se dessinent.</h2>
-      </header>
-      <div class="logos">
-                <div data-rise><div class="logo-card" style="background:#14100c">
-          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#d9a24a" stroke-width="3" stroke-linecap="round"><circle cx="58" cy="60" r="24"/><path d="M58 22v-10M58 108v-10M20 60H10M106 60H96M31 33l-7-7M92 94l-7-7M85 33l7-7M24 94l7-7"/></g><text x="104" y="74" font-family="Fraunces" font-weight="300" font-size="46" fill="#f4ead8">Lu<tspan fill="#d9a24a" font-style="italic">m</tspan>en</text></svg>
-        </div></div>
-        <div data-rise><div class="logo-card" style="background:#efede7">
-          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#3f5a43" stroke-width="3.5"><rect x="22" y="30" width="56" height="56"/><path d="M30 78C38 48 58 36 74 34C70 56 56 74 30 78ZM30 78L58 50"/></g><text x="94" y="72" font-family="Syne" font-weight="800" font-size="34" letter-spacing="2" fill="#1b1c1a">VERDI</text><text x="96" y="92" font-family="Inter" font-size="11" letter-spacing="5" fill="#3f5a43">ARCHITECTES</text></svg>
-        </div></div>
-        <div data-rise><div class="logo-card" style="background:#fbe9e1">
-          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#c46a6a" stroke-width="3"><path d="M60 18C80 44 88 60 88 74a28 28 0 0 1-56 0c0-14 8-30 28-56Z"/><path d="M60 50v44M60 72c8-4 12-10 14-16M60 80c-8-4-12-10-14-16"/></g><text x="104" y="76" font-family="DM Serif Display" font-size="46" fill="#2b1f24">Velora</text></svg>
-        </div></div>
-        <div data-rise><div class="logo-card" style="background:#0b0b0d">
-          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#c6ff3d" stroke-width="3.5" stroke-linejoin="round"><path d="M30 36h44l-12 14H18ZM42 54h44l-12 14H30ZM54 72h44l-12 14H42Z"/></g><text x="112" y="80" font-family="Anton" font-size="44" letter-spacing="1" fill="#f2f2f2">KINE<tspan fill="#c6ff3d">TIK</tspan></text></svg>
-        </div></div>
-        <div data-rise><div class="logo-card" style="background:linear-gradient(135deg,#2a1438,#5b2a6e)">
-          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#f5b8dc" stroke-width="3" stroke-linejoin="round"><path d="M60 20C64 46 74 56 100 60C74 64 64 74 60 100C56 74 46 64 20 60C46 56 56 46 60 20Z"/><circle cx="92" cy="28" r="6"/></g><text x="114" y="72" font-family="Fraunces" font-style="italic" font-size="44" fill="#fff">nova</text><text x="116" y="92" font-family="Inter" font-size="10" letter-spacing="4" fill="#f5b8dc">INSTITUT DE BEAUTÉ</text></svg>
-        </div></div>
-        <div data-rise><div class="logo-card" style="background:#f6efe3">
-          <svg viewBox="0 0 300 120" class="draw-logo"><g fill="none" stroke="#7a4b24" stroke-width="3.5" stroke-linejoin="round"><path d="M22 92V54L54 28L86 54V92Z"/><path d="M54 92V64M54 70L42 58M54 76L66 64"/></g><text x="102" y="68" font-family="Syne" font-weight="700" font-size="30" fill="#3b2412">Bois &amp; Co</text><text x="104" y="88" font-family="Inter" font-size="10" letter-spacing="4" fill="#7a4b24">MAISON · DÉCO</text></svg>
-        </div></div>
-      </div>
-
-      <header class="section__head" style="margin-top:clamp(5rem,10vw,8rem)">
-        <p class="eyebrow" data-reveal>Publicités digitales</p>
-        <h2 class="section__title" data-split>Des pubs qui arrêtent le pouce.</h2>
-      </header>
-      <div class="ads">
-        <div class="ad ad--story">
-          <div class="bars"><i></i><i></i></div><div class="acct"><b>V</b>velora · Sponsorisé</div>
-          <span class="sun"></span><span class="btl"></span>
-          <h4>Le sérum <em>éclat</em><br />est arrivé</h4><span class="swipe">Découvrir ↑</span>
+    <section class="method" id="methode">
+      <div class="wrap">
+        <header class="head head--center">
+          <p class="eyebrow" data-r>La méthode</p>
+          <h2 class="h2 h2--xl" data-split>On le fait d’abord.<br /><em>Vous payez ensuite.</em></h2>
+        </header>
+        <div class="steps" id="steps">
+          <div class="steps__line"><i id="stepsLine"></i></div>
+          <article class="step" data-r><span class="step__n">1</span><h3>Vous nous racontez</h3><p>Vingt minutes d’échange, sans cahier des charges.</p></article>
+          <article class="step step--free" data-r><span class="step__n">2</span><span class="badge">Offert</span><h3>On réalise une première version</h3><p>Du concret sous 72 h, sans rien payer.</p></article>
+          <article class="step" data-r><span class="step__n">3</span><h3>Vous décidez</h3><p>Ça ne vous plaît pas ? Vous ne nous devez rien.</p></article>
+          <article class="step" data-r><span class="step__n">4</span><h3>On lance ensemble</h3><p>Mise en ligne, formation et suivi.</p></article>
         </div>
-<div class="ad ad--square">
-          <span class="glow"></span><span class="streak s1"></span><span class="streak s2"></span><span class="streak s3"></span>
-          <span class="brand">KINE<i>TIK</i></span><h4>Séance<br />d'essai<br /><span>offerte</span></h4><p>RÉSERVE MAINTENANT</p>
-        </div>
-<div class="ad ad--banner">
-          <span class="plate p1"></span><span class="plate p2"></span>
-          <div class="copy"><small>Brasserie Lumen</small><h4>Le menu <em>d'automne</em> est servi</h4><span class="cta">Réserver une table</span></div>
+        <div class="promises">
+          <div data-r><b data-count="0" data-suffix=" €">0 €</b><span>avant d’avoir vu votre projet</span></div>
+          <div data-r><b data-count="72" data-suffix=" h">72 h</b><span>pour une première version</span></div>
+          <div data-r><b data-count="24" data-suffix=" h">24 h</b><span>pour vous répondre</span></div>
+          <div data-r><b data-count="100" data-suffix=" %">100 %</b><span>sur mesure</span></div>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section class="section" id="services">
-      <header class="section__head">
-        <p class="eyebrow" data-reveal>Services</p>
-        <h2 class="section__title" data-split>Tout pour exister en ligne.</h2>
-      </header>
-      <div class="cards">
-        <article class="card" data-card><span class="card__ico">◳</span><h3>Applications</h3><p>Outils internes, tableaux de bord, CRM, réservation.</p><a href="#apps">Voir →</a></article>
-        <article class="card" data-card><span class="card__ico">◍</span><h3>Sites web</h3><p>Vitrines, landing pages et e-commerce animés.</p><a href="#realisations">Voir →</a></article>
-        <article class="card" data-card><span class="card__ico">◈</span><h3>Logo &amp; identité</h3><p>Logo, charte, supports et templates.</p><a href="#studio">Voir →</a></article>
-        <article class="card" data-card><span class="card__ico">▶</span><h3>Publicités digitales</h3><p>Stories, posts sponsorisés, bannières.</p><a href="#studio">Voir →</a></article>
-        <article class="card" data-card><span class="card__ico">◎</span><h3>Réseaux sociaux</h3><p>Stratégie, création et gestion de vos comptes.</p></article>
-        <article class="card" data-card><span class="card__ico">⚙</span><h3>Automatisations</h3><p>Relances, emailing et workflows sur mesure.</p></article>
+    <!-- SITES WEB -->
+    <section class="sites" id="sites">
+      <div class="wrap">
+        <header class="head">
+          <p class="eyebrow" data-r>Sites web</p>
+          <h2 class="h2" data-split>Des sites qui donnent <em>envie de rester.</em></h2>
+          <p class="lead" data-r>Survolez un site pour le parcourir, ou ouvrez-le en vrai.</p>
+        </header>
+        <div class="sites__grid">
+          <article class="site" data-r>
+            <a class="site__view" href="exemples/sites/solstice.html" target="_blank" rel="noopener" aria-label="Ouvrir le site Solstice">
+              <div class="frame frame--site"><div class="frame__bar"><i></i><i></i><i></i><span>solstice-festival.fr</span></div><div class="scrollshot"><img src="img/shots/site-solstice-full.webp" alt="Site du festival Solstice" width="1000" height="3872" loading="lazy" /></div></div>
+              <div class="iphone site__phone" style="--sb:#0e0617;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-solstice.webp" alt="" width="600" height="1298" loading="lazy" /></div></div>
+            </a>
+            <div class="site__meta"><div><h3>Solstice</h3><small>Festival · billetterie</small></div><a class="live" href="exemples/sites/solstice.html" target="_blank" rel="noopener">Voir en live ↗</a></div>
+          </article>
+          <article class="site" data-r>
+            <a class="site__view" href="exemples/sites/brume.html" target="_blank" rel="noopener" aria-label="Ouvrir le site Brume">
+              <div class="frame frame--site"><div class="frame__bar"><i></i><i></i><i></i><span>brume-infusions.fr</span></div><div class="scrollshot"><img src="img/shots/site-brume-full.webp" alt="Boutique en ligne Brume" width="1000" height="3324" loading="lazy" /></div></div>
+              <div class="iphone site__phone" style="--sb:#ffeaa8;--sbtext:#111"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-brume.webp" alt="" width="600" height="1298" loading="lazy" /></div></div>
+            </a>
+            <div class="site__meta"><div><h3>Brume</h3><small>Boissons · boutique en ligne</small></div><a class="live" href="exemples/sites/brume.html" target="_blank" rel="noopener">Voir en live ↗</a></div>
+          </article>
+          <article class="site" data-r>
+            <a class="site__view" href="exemples/sites/orbe.html" target="_blank" rel="noopener" aria-label="Ouvrir le site Orbe">
+              <div class="frame frame--site"><div class="frame__bar"><i></i><i></i><i></i><span>orbe.fr</span></div><div class="scrollshot"><img src="img/shots/site-orbe-full.webp" alt="Site du logiciel Orbe" width="1000" height="3469" loading="lazy" /></div></div>
+              <div class="iphone site__phone" style="--sb:#312b6f;--sbtext:#fff"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-orbe.webp" alt="" width="600" height="1298" loading="lazy" /></div></div>
+            </a>
+            <div class="site__meta"><div><h3>Orbe</h3><small>Logiciel · page de vente</small></div><a class="live" href="exemples/sites/orbe.html" target="_blank" rel="noopener">Voir en live ↗</a></div>
+          </article>
+          <article class="site" data-r>
+            <a class="site__view" href="exemples/sites/souffle.html" target="_blank" rel="noopener" aria-label="Ouvrir le site Souffle">
+              <div class="frame frame--site"><div class="frame__bar"><i></i><i></i><i></i><span>souffle-studio.fr</span></div><div class="scrollshot"><img src="img/shots/site-souffle-full.webp" alt="Site du studio Souffle" width="1000" height="3647" loading="lazy" /></div></div>
+              <div class="iphone site__phone" style="--sb:#f3ebe0;--sbtext:#111"><div class="iphone__screen"><span class="iphone__bar"><b>9:41</b><i></i></span><img src="img/shots/mobile-souffle.webp" alt="" width="600" height="1298" loading="lazy" /></div></div>
+            </a>
+            <div class="site__meta"><div><h3>Souffle</h3><small>Studio · réservation en ligne</small></div><a class="live" href="exemples/sites/souffle.html" target="_blank" rel="noopener">Voir en live ↗</a></div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="promises">
-      <div class="promise" data-card><b data-count="0" data-suffix=" €">0 €</b><p>avant d'avoir vu votre projet</p></div>
-      <div class="promise" data-card><b data-count="72" data-suffix=" h">72 h</b><p>pour une première version</p></div>
-      <div class="promise" data-card><b data-count="24" data-suffix=" h">24 h</b><p>pour vous répondre</p></div>
-      <div class="promise" data-card><b data-count="100" data-suffix=" %">100 %</b><p>sur mesure</p></div>
+    <!-- LOGOS -->
+    <section class="logos" id="logos">
+      <div class="wrap">
+        <header class="head">
+          <p class="eyebrow" data-r>Logos &amp; identité</p>
+          <h2 class="h2" data-split>Des logos qu’on <em>reconnaît de loin.</em></h2>
+        </header>
+        <div class="logos__grid" id="logoGrid">
+          <figure class="logo" style="--bg:#0d0716;--fg:#fff4e6" data-r><img src="img/logos/solstice.svg" alt="Logo Solstice" width="320" height="64" loading="lazy" /><figcaption>Solstice<small>Festival de musique</small></figcaption></figure>
+          <figure class="logo" style="--bg:#ffe9a8;--fg:#24190a" data-r><img src="img/logos/brume.svg" alt="Logo Brume" width="260" height="104" loading="lazy" /><figcaption>Brume<small>Infusions pétillantes</small></figcaption></figure>
+          <figure class="logo" style="--bg:#07070d;--fg:#f3f3fa" data-r><img src="img/logos/orbe.svg" alt="Logo Orbe" width="206" height="60" loading="lazy" /><figcaption>Orbe<small>Logiciel de facturation</small></figcaption></figure>
+          <figure class="logo" style="--bg:#f3ebdf;--fg:#2b2420" data-r><img src="img/logos/souffle.svg" alt="Logo Souffle" width="216" height="84" loading="lazy" /><figcaption>Souffle<small>Studio de Pilates &amp; yoga</small></figcaption></figure>
+          <figure class="logo" style="--bg:#1f2d27;--fg:#f4ede0" data-r><img src="img/logos/lenoir.svg" alt="Logo Lenoir" width="263" height="60" loading="lazy" /><figcaption>Lenoir<small>Menuiserie &amp; agencement</small></figcaption></figure>
+          <figure class="logo" style="--bg:#fff3e3;--fg:#2a1a12" data-r><img src="img/logos/pepin.svg" alt="Logo Pépin" width="237" height="80" loading="lazy" /><figcaption>Pépin<small>Épicerie de saison</small></figcaption></figure>
+          <figure class="logo" style="--bg:#101c33;--fg:#f6f1e6" data-r><img src="img/logos/varenne.svg" alt="Logo Varenne" width="200" height="126" loading="lazy" /><figcaption>Varenne<small>Cabinet d’avocats</small></figcaption></figure>
+          <figure class="logo" style="--bg:#eaf0ff;--fg:#0b1433" data-r><img src="img/logos/nordik.svg" alt="Logo Nordik" width="280" height="62" loading="lazy" /><figcaption>Nordik<small>Transport &amp; logistique</small></figcaption></figure>
+        </div>
+        <div class="kit" data-r>
+          <div class="kit__txt"><h3>Et tout ce qui va avec.</h3><p>Couleurs, typographies, icône, carte de visite : une identité complète, prête à imprimer et à publier.</p></div>
+          <div class="kit__item kit__pal"><i style="background:#24190a"></i><i style="background:#f6b400"></i><i style="background:#e06b00"></i><i style="background:#ffe9a8"></i><small>Couleurs</small></div>
+          <div class="kit__item kit__type"><b>Aa</b><small>Typographies</small></div>
+          <div class="kit__item kit__icon"><img src="img/logos/brume-mark.svg" alt="" width="64" height="64" loading="lazy" /><small>Icône</small></div>
+          <div class="kit__item kit__card"><span><img src="img/logos/brume.svg" alt="" width="260" height="104" loading="lazy" /></span><small>Carte de visite</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICITÉS -->
+    <section class="pubs" id="pubs">
+      <div class="wrap">
+        <header class="head head--center">
+          <p class="eyebrow" data-r>Publicités &amp; réseaux sociaux</p>
+          <h2 class="h2" data-split>Des pubs qui <em>arrêtent le pouce.</em></h2>
+        </header>
+        <div class="pubs__grid" id="pubGrid">
+          <div class="pubcol" data-speed="-6"><img src="img/shots/ad-brume-story.webp" alt="Story sponsorisée Brume" width="810" height="1440" loading="lazy" /></div>
+          <div class="pubcol" data-speed="8"><img src="img/shots/ad-solstice-carre.webp" alt="Publication Solstice" width="1080" height="1080" loading="lazy" /><img src="img/shots/ad-orbe-banniere.webp" alt="Bannière Orbe" width="1350" height="707" loading="lazy" /></div>
+          <div class="pubcol" data-speed="-10"><img src="img/shots/ad-souffle-story.webp" alt="Story sponsorisée Souffle" width="810" height="1440" loading="lazy" /></div>
+          <div class="pubcol" data-speed="6"><img src="img/shots/ad-lenoir-banniere.webp" alt="Bannière Lenoir" width="1350" height="707" loading="lazy" /><img src="img/shots/ad-pepin-carre.webp" alt="Publication Pépin" width="1080" height="1080" loading="lazy" /></div>
+        </div>
+      </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="section contact" id="contact">
-      <div class="contact__card" data-reveal>
-        <p class="eyebrow">Votre projet</p>
-        <h2 class="section__title">Décrivez-le. <span class="grad">On vous le montre.</span></h2>
-        <p class="contact__lead">Dites-nous ce dont vous avez besoin. Vous recevez une première version sous 72 h, et vous ne payez que si elle vous plaît.</p>
-        <form class="contact__form" action="https://formsubmit.co/47b404d83ccfec14e5f1a4be344b75d8" method="POST">
+    <section class="contact" id="contact">
+      <div class="wrap contact__in">
+        <div class="contact__txt">
+          <p class="eyebrow" data-r>Votre projet</p>
+          <h2 class="h2 h2--xl" data-split>Décrivez-le.<br /><em>On vous le montre.</em></h2>
+          <p class="lead" data-r>Vous recevez une première version sous 72 h. Vous ne payez que si elle vous plaît.</p>
+          <ul class="contact__list" data-r><li>Sans engagement</li><li>Aucun paiement avant validation</li><li>Réponse sous 24 h</li></ul>
+        </div>
+        <form class="form" action="https://formsubmit.co/47b404d83ccfec14e5f1a4be344b75d8" method="POST" data-r>
           <input type="hidden" name="_subject" value="Nouvelle demande — AS Marketing Agency" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_next" value="https://asagencystore.netlify.app/merci.html" />
-          <input type="text" name="_honey" style="display:none" />
-          <div class="row">
-            <input type="text" name="Nom" placeholder="Votre nom" aria-label="Nom" required />
-            <input type="email" name="Email" placeholder="Votre email" aria-label="Email" required />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="form__row">
+            <label><span>Nom</span><input type="text" name="Nom" placeholder="Votre nom" required /></label>
+            <label><span>E-mail</span><input type="email" name="Email" placeholder="vous@exemple.fr" required /></label>
           </div>
-          <select name="Besoin" aria-label="Type de projet">
-            <option>Application</option><option>Site web</option><option>Logo &amp; identité</option><option>Publicités digitales</option><option>Réseaux sociaux</option><option>Autre / je ne sais pas encore</option>
-          </select>
-          <textarea name="Message" rows="4" placeholder="Votre projet en quelques mots…" aria-label="Message" required></textarea>
-          <button type="submit" class="btn btn--ink btn--lg btn--block">Recevoir ma première version →</button>
+          <fieldset class="form__need"><legend>Votre besoin</legend>
+            <label><input type="radio" name="Besoin" value="Application" checked /><span>Application</span></label>
+            <label><input type="radio" name="Besoin" value="Site web" /><span>Site web</span></label>
+            <label><input type="radio" name="Besoin" value="Logo &amp; identité" /><span>Logo</span></label>
+            <label><input type="radio" name="Besoin" value="Publicités" /><span>Publicités</span></label>
+            <label><input type="radio" name="Besoin" value="Je ne sais pas encore" /><span>Je ne sais pas encore</span></label>
+          </fieldset>
+          <label><span>Votre projet</span><textarea name="Message" rows="4" placeholder="Quelques mots suffisent…" required></textarea></label>
+          <button type="submit" class="btn btn--grad btn--lg btn--block">Recevoir ma première version</button>
+          <p class="form__or">ou écrivez-nous : <a href="mailto:as.agency.off@gmail.com">as.agency.off@gmail.com</a></p>
         </form>
-        <span class="contact__free">✓ Sans engagement · aucun paiement avant validation</span>
-        <p class="contact__or">ou écrivez-nous à <a href="mailto:as.agency.off@gmail.com">as.agency.off@gmail.com</a></p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <img class="footer__logo" src="img/logo-mark.webp" alt="AS Marketing Agency" />
-    <p>On le fait. Vous l'aimez. Ensuite, on parle.</p>
-    <div class="footer__links"><a href="#apps">Applications</a><a href="#methode">Méthode</a><a href="#realisations">Sites web</a><a href="#studio">Logos &amp; pubs</a><a href="mailto:as.agency.off@gmail.com">as.agency.off@gmail.com</a></div>
-    <small>© 2026 AS Marketing Agency · Les marques présentées sont des exemples fictifs réalisés par l'agence.</small>
+    <div class="wrap footer__in">
+      <img src="img/logo-mark-light.webp" alt="AS Marketing Agency" width="360" height="205" loading="lazy" />
+      <p class="footer__tag">On le fait. Vous l’aimez. <em>Ensuite, on parle.</em></p>
+      <nav class="footer__links" aria-label="Pied de page"><a href="#apps">Applications</a><a href="#methode">Méthode</a><a href="#sites">Sites web</a><a href="#logos">Logos</a><a href="#pubs">Publicités</a><a href="#contact">Contact</a></nav>
+      <small>© 2026 AS Marketing Agency · Les marques présentées sont des exemples fictifs réalisés par l’agence.</small>
+    </div>
   </footer>
 
   <script src="assets/gsap.min.js"></script>
   <script src="assets/ScrollTrigger.min.js"></script>
-  <script>window.APPS = [{"pip":1,"demo":""},{"pip":1,"demo":""},{"pip":1,"demo":""},{"pip":0,"demo":"exemples/apps/reserva.html"},{"pip":0,"demo":"exemples/apps/stockly.html"},{"pip":0,"demo":"exemples/apps/closr.html"}];</script>
+  <script src="assets/lenis.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

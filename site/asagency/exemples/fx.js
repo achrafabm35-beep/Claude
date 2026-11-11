@@ -1,111 +1,135 @@
 /* =========================================================
    Effets partagés des sites d'exemple — AS Marketing Agency
    Attributs :
-   data-split      titre révélé mot par mot
-   data-reveal     apparition en fondu + montée
-   data-zoom       zoom au scroll (data-zoom="1.35" = échelle de départ)
-   data-zoomout    agrandissement au scroll (ex. titre qui « traverse » l'écran)
-   data-parallax   décalage vertical (data-parallax="-20" en %)
-   data-tilt       inclinaison 3D au survol
-   data-count      compteur animé
-   data-hscroll    section à défilement horizontal épinglée
-   data-marquee    bandeau infini
-   ?shot           (dans l'URL) fige les animations pour les captures
+   data-split        titre révélé ligne par ligne / mot par mot
+   data-reveal       apparition en fondu + montée (data-reveal="left|right|scale")
+   data-stagger      les enfants directs apparaissent en cascade
+   data-parallax     décalage vertical au défilement (ex. data-parallax="-18" en %)
+   data-rotate       rotation liée au défilement (ex. data-rotate="40" en degrés)
+   data-tilt         inclinaison 3D au survol
+   data-magnet       bouton aimanté
+   data-count        compteur animé (data-prefix / data-suffix / data-dec)
+   ?shot             (dans l'URL) fige les animations pour les captures
    ========================================================= */
 (function () {
   const SHOT = /[?&]shot/.test(location.search);
-  document.documentElement.classList.add("js");
-  if (SHOT) document.documentElement.classList.add("shot");
+  const root = document.documentElement;
+  root.classList.add(SHOT ? "shot" : "js");
   gsap.registerPlugin(ScrollTrigger);
   gsap.defaults({ ease: "power3.out" });
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
-  /* découpe des titres en mots */
+  /* découpe des titres en mots (chaque mot dans un masque) */
   const splitNode = (node) => {
     [...node.childNodes].forEach((n) => {
       if (n.nodeType === 3) {
         const frag = document.createDocumentFragment();
         n.textContent.split(/(\s+)/).forEach((part) => {
           if (!part) return;
-          if (/^\s+$/.test(part)) return frag.appendChild(document.createTextNode(part));
+          if (/^\s+$/.test(part)) return frag.appendChild(document.createTextNode(" "));
           const w = document.createElement("span"); w.className = "w";
           const wi = document.createElement("span"); wi.className = "wi"; wi.textContent = part;
           w.appendChild(wi); frag.appendChild(w);
         });
         n.replaceWith(frag);
-      } else if (n.nodeType === 1 && n.tagName !== "BR") splitNode(n);
+      } else if (n.nodeType === 1 && n.tagName !== "BR" && !n.hasAttribute("data-nosplit")) splitNode(n);
     });
   };
-  document.querySelectorAll("[data-split]").forEach(splitNode);
+  $$("[data-split]").forEach(splitNode);
 
-  if (SHOT) {
-    gsap.set("[data-reveal], .wi", { autoAlpha: 1, y: 0, yPercent: 0 });
-    document.querySelectorAll("[data-count]").forEach((el) => (el.textContent = (el.dataset.prefix || "") + el.dataset.count + (el.dataset.suffix || "")));
-    return;
+  const fmt = (el, v) => {
+    const dec = +el.dataset.dec || 0;
+    const s = dec ? v.toFixed(dec).replace(".", ",") : Math.round(v).toLocaleString("fr-FR");
+    el.textContent = (el.dataset.prefix || "") + s + (el.dataset.suffix || "");
+  };
+  const finalCounts = () => $$("[data-count]").forEach((el) => fmt(el, parseFloat(el.dataset.count)));
+
+  if (SHOT) { finalCounts(); window.FX = { shot: true }; return; }
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (reduce) { root.classList.replace("js", "shot"); finalCounts(); window.FX = { shot: true }; return; }
+
+  /* défilement adouci (souris) */
+  let lenis = null;
+  if (fine && window.Lenis) {
+    lenis = new Lenis({ duration: 1.05, smoothWheel: true, wheelMultiplier: 1 });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    $$('a[href^="#"]').forEach((a) => a.addEventListener("click", (e) => {
+      const t = a.getAttribute("href"); if (t.length < 2) return;
+      const el = document.querySelector(t); if (!el) return;
+      e.preventDefault(); lenis.scrollTo(el, { offset: -70 });
+    }));
   }
 
-  const mm = gsap.matchMedia();
-  mm.add({ ok: "(prefers-reduced-motion: no-preference)", reduce: "(prefers-reduced-motion: reduce)" }, (ctx) => {
-    const { reduce } = ctx.conditions;
-    if (reduce) {
-      gsap.set("[data-reveal], .wi", { autoAlpha: 1, y: 0, yPercent: 0 });
-      document.querySelectorAll("[data-count]").forEach((el) => (el.textContent = (el.dataset.prefix || "") + el.dataset.count + (el.dataset.suffix || "")));
-      return;
-    }
-
-    gsap.utils.toArray("[data-split]").forEach((el, i) => {
-      gsap.from(el.querySelectorAll(".wi"), {
-        yPercent: 110, duration: 1.1, stagger: 0.06, ease: "power4.out", delay: i === 0 ? 0.2 : 0,
-        scrollTrigger: i === 0 ? undefined : { trigger: el, start: "top 85%" },
-      });
-    });
-
-    gsap.utils.toArray("[data-reveal]").forEach((el) => {
-      gsap.fromTo(el, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 1, scrollTrigger: { trigger: el, start: "top 88%" } });
-    });
-
-    gsap.utils.toArray("[data-zoom]").forEach((el) => {
-      const s = parseFloat(el.dataset.zoom) || 1.3;
-      gsap.fromTo(el, { scale: s }, { scale: 1, ease: "none", scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: true } });
-    });
-
-    gsap.utils.toArray("[data-zoomout]").forEach((el) => {
-      const s = parseFloat(el.dataset.zoomout) || 6;
-      const host = el.closest("[data-pin]") || el.parentElement;
-      gsap.to(el, { scale: s, ease: "power2.in", scrollTrigger: { trigger: host, start: "top top", end: "+=120%", scrub: true, pin: !!el.closest("[data-pin]") } });
-    });
-
-    gsap.utils.toArray("[data-parallax]").forEach((el) => {
-      gsap.to(el, { yPercent: parseFloat(el.dataset.parallax) || -20, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
-    });
-
-    gsap.utils.toArray("[data-count]").forEach((el) => {
-      const o = { v: 0 }, pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
-      gsap.to(o, { v: +el.dataset.count, duration: 2, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 90%" }, onUpdate: () => (el.textContent = pre + Math.round(o.v) + suf) });
-    });
-
-    gsap.utils.toArray("[data-hscroll]").forEach((sec) => {
-      const track = sec.querySelector("[data-track]");
-      gsap.to(track, {
-        x: () => -(track.scrollWidth - window.innerWidth + 40), ease: "none",
-        scrollTrigger: { trigger: sec, start: "top top", end: () => "+=" + (track.scrollWidth - window.innerWidth), scrub: 1, pin: true, invalidateOnRefresh: true },
-      });
-    });
-
-    gsap.utils.toArray("[data-marquee]").forEach((m) => {
-      gsap.to(m, { xPercent: -50, duration: parseFloat(m.dataset.marquee) || 20, ease: "none", repeat: -1 });
-    });
-
-    document.querySelectorAll("[data-tilt]").forEach((card) => {
-      const rx = gsap.quickTo(card, "rotationX", { duration: 0.5 }), ry = gsap.quickTo(card, "rotationY", { duration: 0.5 });
-      gsap.set(card, { transformPerspective: 900 });
-      card.addEventListener("pointermove", (e) => {
-        const r = card.getBoundingClientRect();
-        ry(((e.clientX - r.left) / r.width - 0.5) * 16);
-        rx(-((e.clientY - r.top) / r.height - 0.5) * 16);
-      });
-      card.addEventListener("pointerleave", () => { rx(0); ry(0); });
+  /* titres */
+  $$("[data-split]").forEach((el) => {
+    const first = el.hasAttribute("data-now");
+    gsap.fromTo(el.querySelectorAll(".wi"), { yPercent: 115 }, {
+      yPercent: 0, duration: 1.15, stagger: 0.055, ease: "power4.out", delay: first ? 0.15 : 0,
+      scrollTrigger: first ? undefined : { trigger: el, start: "top 88%", once: true },
     });
   });
 
+  /* apparitions */
+  const from = { left: { x: -60 }, right: { x: 60 }, scale: { scale: 0.9 }, "": { y: 46 } };
+  $$("[data-reveal]").forEach((el) => {
+    gsap.fromTo(el, { autoAlpha: 0, ...(from[el.dataset.reveal] || from[""]) }, {
+      autoAlpha: 1, x: 0, y: 0, scale: 1, duration: 1, delay: +el.dataset.delay || 0,
+      scrollTrigger: { trigger: el, start: "top 90%", once: true },
+    });
+  });
+  $$("[data-stagger]").forEach((el) => {
+    gsap.fromTo(el.children, { autoAlpha: 0, y: 40 }, {
+      autoAlpha: 1, y: 0, duration: 0.9, stagger: +el.dataset.stagger || 0.08,
+      scrollTrigger: { trigger: el, start: "top 86%", once: true },
+    });
+  });
+
+  /* liés au défilement */
+  $$("[data-parallax]").forEach((el) => {
+    gsap.fromTo(el, { yPercent: -(parseFloat(el.dataset.parallax) || -18) / 2 }, {
+      yPercent: (parseFloat(el.dataset.parallax) || -18) / 2, ease: "none",
+      scrollTrigger: { trigger: el.closest("[data-scene]") || el, start: "top bottom", end: "bottom top", scrub: 0.6 },
+    });
+  });
+  $$("[data-rotate]").forEach((el) => {
+    gsap.to(el, { rotation: parseFloat(el.dataset.rotate) || 40, ease: "none",
+      scrollTrigger: { trigger: el.closest("[data-scene]") || el, start: "top bottom", end: "bottom top", scrub: 0.6 } });
+  });
+
+  /* compteurs */
+  $$("[data-count]").forEach((el) => {
+    const o = { v: 0 }, end = parseFloat(el.dataset.count);
+    fmt(el, 0);
+    gsap.to(o, { v: end, duration: 1.6, ease: "power2.out", onUpdate: () => fmt(el, o.v),
+      scrollTrigger: { trigger: el, start: "top 92%", once: true } });
+  });
+
+  /* survol */
+  if (fine) {
+    $$("[data-tilt]").forEach((el) => {
+      const max = +el.dataset.tilt || 8;
+      const rx = gsap.quickTo(el, "rotationX", { duration: 0.5 }), ry = gsap.quickTo(el, "rotationY", { duration: 0.5 });
+      gsap.set(el, { transformPerspective: 900 });
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        ry(((e.clientX - r.left) / r.width - 0.5) * max * 2); rx(-((e.clientY - r.top) / r.height - 0.5) * max * 2);
+      });
+      el.addEventListener("pointerleave", () => { rx(0); ry(0); });
+    });
+    $$("[data-magnet]").forEach((el) => {
+      const x = gsap.quickTo(el, "x", { duration: 0.4 }), y = gsap.quickTo(el, "y", { duration: 0.4 });
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        x((e.clientX - r.left - r.width / 2) * 0.3); y((e.clientY - r.top - r.height / 2) * 0.3);
+      });
+      el.addEventListener("pointerleave", () => { x(0); y(0); });
+    });
+  }
+
+  window.FX = { shot: false, lenis, fine };
   window.addEventListener("load", () => ScrollTrigger.refresh());
 })();

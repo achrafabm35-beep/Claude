@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Souffle — Studio de Pilates &amp; yoga</title>
+<meta name="description" content="Souffle, studio de Pilates et de yoga en petits groupes. Site vitrine avec réservation en ligne, exemple réalisé par AS Marketing Agency." />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../fx.css" />
+<style>
+:root { --sand: #f3ebdf; --sand2: #e9dccb; --ink: #2b2420; --mute: #7c6f66; --terra: #c4623a; --clay: #e2a07c; --sage: #8c9b7c; --sage2: #5f6f52; --cream: #fbf7f0; --line: rgba(43, 36, 32, 0.14); --serif: "Cormorant Garamond", Georgia, serif; --pad: clamp(20px, 5vw, 80px); }
+body { background: var(--sand); color: var(--ink); font: 400 16.5px/1.6 Jost, system-ui, sans-serif; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 0.98; letter-spacing: -0.02em; }
+h1 em, h2 em { font-style: italic; font-weight: 400; color: var(--terra); }
+.wrap { max-width: 1360px; margin-inline: auto; padding-inline: var(--pad); }
+.kicker { font: 500 12.5px/1 Jost; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage2); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 28px; border-radius: 99px; background: var(--ink); color: var(--cream); font: 500 15px/1 Jost; letter-spacing: 0.02em; transition: background 0.35s, color 0.35s; }
+.btn:hover { background: var(--terra); }
+.btn--line { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.2px var(--ink); }
+.btn--line:hover { background: var(--ink); color: var(--cream); }
+
+.nav { position: fixed; z-index: 50; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 20px var(--pad); transition: background 0.4s, padding 0.4s; }
+.nav.scrolled { background: rgba(243, 235, 223, 0.94); padding-block: 12px; box-shadow: 0 1px 0 var(--line); }
+.brand { font: 500 italic 30px/1 var(--serif); letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+.brand svg { width: 26px; height: 30px; }
+.nav ul { display: flex; gap: 34px; font-size: 15px; } .nav ul a { position: relative; } .nav ul a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -5px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.35s; } .nav ul a:hover::after { transform: scaleX(1); }
+.nav .btn { padding: 12px 20px; font-size: 14px; }
+@media (max-width: 860px) { .nav ul { display: none; } }
+
+/* hero */
+.hero { position: relative; min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(20px, 4vw, 70px); padding: 120px var(--pad) 70px; overflow: hidden; }
+.hero h1 { margin-top: 24px; font-size: clamp(3.4rem, 8.4vw, 8.6rem); }
+.hero p { margin-top: 26px; max-width: 42ch; color: var(--mute); font-size: clamp(1rem, 1.3vw, 1.2rem); }
+.hero__cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
+.scene { position: relative; height: min(76svh, 700px); display: flex; align-items: flex-end; justify-content: center; gap: clamp(10px, 1.4vw, 22px); }
+.arch { position: relative; flex: 1; max-width: 230px; border-radius: 999px 999px 18px 18px; overflow: hidden; will-change: transform; }
+.arch--1 { height: 62%; background: linear-gradient(180deg, #e9c9a8, #e2a07c 60%, #c4623a); }
+.arch--2 { height: 100%; background: linear-gradient(180deg, #f0d9bd 0%, #eab58f 46%, #c4623a 100%); }
+.arch--3 { height: 76%; background: linear-gradient(180deg, #cfd6bd, #8c9b7c 70%, #5f6f52); }
+.arch i { position: absolute; left: 50%; border-radius: 50%; transform: translateX(-50%); }
+.arch--1 i { width: 46%; aspect-ratio: 1; top: 20%; background: var(--cream); opacity: 0.9; }
+.arch--2 i { width: 58%; aspect-ratio: 1; top: 16%; background: radial-gradient(circle at 50% 50%, #fff6e6, #f6d3a0); box-shadow: 0 0 80px 20px rgba(255, 240, 214, 0.6); }
+.arch--3 i { width: 150%; aspect-ratio: 1; top: 58%; background: #5f6f52; opacity: 0.55; }
+.arch--3 i + i { width: 120%; top: 74%; left: 20%; background: #47553c; opacity: 0.8; }
+.arch--2 b { position: absolute; left: -20%; right: -20%; bottom: -8%; height: 34%; border-radius: 50% 50% 0 0; background: #a94f2c; opacity: 0.55; }
+.breath { position: absolute; z-index: 3; left: 4%; top: 6%; width: clamp(96px, 10vw, 140px); aspect-ratio: 1; display: grid; place-items: center; text-align: center; font: 400 italic clamp(14px, 1.3vw, 18px)/1.1 var(--serif); }
+.breath::before, .breath::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--ink); opacity: 0.35; animation: breathe 9s ease-in-out infinite; }
+.breath::after { inset: 14%; opacity: 0.16; background: var(--terra); border: 0; animation-delay: -0.4s; }
+.breath span { position: relative; z-index: 1; }
+@keyframes breathe { 0%, 100% { transform: scale(0.72); } 45%, 55% { transform: scale(1.12); } }
+.next { position: absolute; z-index: 4; right: 0; bottom: 8%; width: min(300px, 80%); padding: 18px 20px; border-radius: 20px; background: var(--cream); box-shadow: 0 30px 60px -30px rgba(43, 36, 32, 0.55); }
+.next small { display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage2); }
+.next small::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 4px rgba(140, 155, 124, 0.25); }
+.next b { display: block; margin-top: 10px; font: 500 1.7rem/1 var(--serif); }
+.next p { margin: 4px 0 14px; font-size: 14px; color: var(--mute); }
+.next .btn { width: 100%; padding: 12px; font-size: 14px; }
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-top: 104px; } .scene { height: 52svh; order: -1; } .breath { left: 0; top: 0; } .next { bottom: 4%; } }
+
+/* cours */
+.sec { padding-block: clamp(80px, 11vw, 160px); }
+.head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(34px, 5vw, 64px); }
+.head h2 { margin-top: 18px; font-size: clamp(2.6rem, 6vw, 5.6rem); }
+.head p { max-width: 38ch; color: var(--mute); }
+.classes { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(12px, 1.6vw, 24px); }
+.cls { padding: 14px 14px 26px; border-radius: 26px; background: var(--cream); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.cls:hover { transform: translateY(-10px); }
+.cls__v { position: relative; height: clamp(190px, 20vw, 290px); border-radius: 999px 999px 14px 14px; overflow: hidden; background: var(--bgc); }
+.cls__v span { position: absolute; background: var(--fg); transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.v1 span { left: 50%; top: 22%; width: 44%; aspect-ratio: 1; border-radius: 50%; margin-left: -22%; } .v1 span + span { top: auto; bottom: -30%; width: 130%; margin-left: -65%; opacity: 0.5; }
+.v2 span { left: 14%; right: 14%; bottom: 0; height: 56%; border-radius: 999px 999px 0 0; } .v2 span + span { left: 30%; right: 30%; height: 30%; background: var(--bgc); }
+.v3 span { left: -10%; right: -10%; bottom: 18%; height: 26%; border-radius: 50%; } .v3 span + span { bottom: -6%; height: 34%; opacity: 0.55; }
+.v4 span { left: 50%; top: 18%; width: 30%; aspect-ratio: 1; border-radius: 50%; margin-left: -15%; } .v4 span + span { top: 48%; width: 62%; margin-left: -31%; opacity: 0.6; }
+.cls:hover .cls__v span:first-child { transform: scale(1.14); }
+.cls h3 { margin: 22px 8px 0; font-size: 2rem; }
+.cls p { margin: 8px 8px 0; color: var(--mute); font-size: 15px; }
+.cls ul { display: flex; gap: 8px; margin: 16px 8px 0; flex-wrap: wrap; } .cls li { padding: 6px 12px; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--line); font-size: 12.5px; }
+@media (max-width: 1040px) { .classes { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .classes { grid-template-columns: 1fr; } }
+
+/* planning */
+.plan { background: var(--ink); color: var(--cream); border-radius: clamp(28px, 4vw, 60px); margin-inline: clamp(8px, 1.4vw, 20px); }
+.plan .kicker { color: var(--clay); } .plan h2 em { color: var(--clay); } .plan .head p { color: rgba(251, 247, 240, 0.65); }
+.bar { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 26px; }
+.days, .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.days button, .filters button { padding: 12px 18px; border-radius: 99px; font: 500 14.5px/1 Jost; box-shadow: inset 0 0 0 1px rgba(251, 247, 240, 0.2); transition: background 0.3s, color 0.3s; }
+.days button.on, .filters button.on { background: var(--cream); color: var(--ink); box-shadow: none; }
+.slots { border-top: 1px solid rgba(251, 247, 240, 0.16); }
+.slot { display: grid; grid-template-columns: 110px 1.4fr 1fr auto auto; gap: 20px; align-items: center; padding: 20px 6px; border-bottom: 1px solid rgba(251, 247, 240, 0.16); }
+.slot time { font: 500 1.9rem/1 var(--serif); font-variant-numeric: tabular-nums; }
+.slot b { font: 500 1.5rem/1.1 var(--serif); } .slot small { display: block; color: rgba(251, 247, 240, 0.6); font-size: 13.5px; margin-top: 2px; }
+.slot span { color: rgba(251, 247, 240, 0.7); font-size: 14.5px; }
+.slot em { font-style: normal; font-size: 13px; padding: 7px 12px; border-radius: 99px; background: rgba(140, 155, 124, 0.25); color: #c9d6b8; white-space: nowrap; } .slot em.few { background: rgba(226, 160, 124, 0.22); color: var(--clay); }
+.slot .btn { background: var(--cream); color: var(--ink); padding: 12px 22px; font-size: 14px; min-width: 124px; } .slot .btn:hover { background: var(--clay); }
+.slot .btn.done { background: var(--sage); color: #fff; }
+@media (max-width: 860px) { .slot { grid-template-columns: 76px 1fr auto; } .slot span, .slot em { display: none; } .slot time { font-size: 1.4rem; } }
+
+/* studio */
+.studio { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 100px); align-items: center; }
+.studio h2 { font-size: clamp(2.4rem, 5vw, 4.6rem); margin-top: 18px; }
+.studio p { margin-top: 22px; color: var(--mute); max-width: 46ch; }
+.nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 38px; padding-top: 28px; border-top: 1px solid var(--line); }
+.nums b { display: block; font: 500 clamp(2.6rem, 5vw, 4.4rem)/1 var(--serif); color: var(--terra); } .nums span { font-size: 14px; color: var(--mute); }
+.duo { position: relative; height: clamp(360px, 44vw, 600px); }
+.duo .arch { position: absolute; max-width: none; }
+.duo .a { left: 0; bottom: 0; width: 58%; height: 100%; background: linear-gradient(180deg, #ecd9c0, #e2a07c 55%, #c4623a); }
+.duo .a i { width: 52%; aspect-ratio: 1; top: 16%; background: var(--cream); }
+.duo .b { right: 0; bottom: 0; width: 38%; height: 62%; background: linear-gradient(180deg, #cfd6bd, #8c9b7c); }
+.duo .b i { width: 60%; aspect-ratio: 1; top: 20%; background: #5f6f52; opacity: 0.6; }
+.duo .c { right: 6%; top: 4%; width: 26%; aspect-ratio: 1; border-radius: 50%; background: var(--sand2); position: absolute; }
+@media (max-width: 860px) { .studio { grid-template-columns: 1fr; } .duo { height: 340px; } }
+
+/* tarifs */
+.prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.6vw, 24px); }
+.pr { padding: clamp(24px, 2.6vw, 38px); border-radius: 26px; background: var(--cream); display: flex; flex-direction: column; }
+.pr--hot { background: var(--terra); color: var(--cream); }
+.pr small { letter-spacing: 0.16em; text-transform: uppercase; font-size: 12px; opacity: 0.75; }
+.pr b { margin: 18px 0 6px; font: 500 clamp(3rem, 5vw, 4.6rem)/1 var(--serif); } .pr b span { font: 400 1rem Jost; opacity: 0.75; }
+.pr p { opacity: 0.75; font-size: 15px; margin-bottom: 26px; }
+.pr .btn { margin-top: auto; } .pr--hot .btn { background: var(--cream); color: var(--ink); } .pr--hot .btn:hover { background: var(--ink); color: var(--cream); }
+@media (max-width: 860px) { .prices { grid-template-columns: 1fr; } }
+
+.end { text-align: center; padding: clamp(40px, 6vw, 80px) var(--pad) clamp(90px, 12vw, 170px); }
+.end h2 { font-size: clamp(3rem, 9vw, 9rem); }
+.end .btn { margin-top: 34px; }
+footer { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 30px; padding: 50px var(--pad); border-top: 1px solid var(--line); font-size: 14.5px; color: var(--mute); }
+footer b { display: block; color: var(--ink); font-weight: 500; margin-bottom: 8px; }
+footer .brand { color: var(--ink); margin-bottom: 10px; }
+@media (max-width: 760px) { footer { grid-template-columns: 1fr 1fr; } }
+.shot .breath::before, .shot .breath::after { animation: none; }
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <a href="#top" class="brand"><svg viewBox="0 0 26 30" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 29V13a12 12 0 0 1 24 0v16z" /><circle cx="13" cy="14" r="4.5" fill="currentColor" stroke="none" /></svg>souffle</a>
+  <ul><li><a href="#cours">Les cours</a></li><li><a href="#planning">Planning</a></li><li><a href="#studio">Le studio</a></li><li><a href="#tarifs">Tarifs</a></li></ul>
+  <a href="#planning" class="btn" data-magnet>Séance d'essai</a>
+</header>
+
+<main id="top">
+  <section class="hero" data-scene>
+    <div>
+      <span class="kicker" id="h0">Pilates &amp; yoga · petits groupes</span>
+      <h1 id="h1" data-split data-now>Respirez.<br /><em>Vous êtes arrivé.</em></h1>
+      <p id="h2">Un studio lumineux en plein centre-ville, douze places par cours, et des professeurs qui connaissent votre prénom.</p>
+      <div class="hero__cta" id="h3"><a href="#planning" class="btn" data-magnet>Réserver ma séance d'essai</a><a href="#cours" class="btn btn--line">Découvrir les cours</a></div>
+    </div>
+    <div class="scene" id="scene">
+      <div class="breath"><span id="breath">Inspirez</span></div>
+      <div class="arch arch--1" data-parallax="-14"><i></i></div>
+      <div class="arch arch--2" data-parallax="-26"><i></i><b></b></div>
+      <div class="arch arch--3" data-parallax="-8"><i></i><i></i></div>
+      <div class="next" id="next"><small>Prochain cours</small><b>Pilates doux</b><p>Aujourd'hui · 18 h 30 · avec Clara · 4 places</p><a href="#planning" class="btn">Réserver</a></div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="cours">
+    <div class="head"><div><span class="kicker" data-reveal>Les cours</span><h2 data-split>Quatre façons<br />de <em>ralentir.</em></h2></div><p data-reveal>Du renforcement profond au lâcher-prise complet. Tous les niveaux sont les bienvenus, les tapis sont fournis.</p></div>
+    <div class="classes" data-stagger="0.1">
+      <article class="cls"><div class="cls__v v1" style="--bgc:#efd8c2;--fg:#c4623a"><span></span><span></span></div><h3>Pilates</h3><p>Posture, gainage et mobilité, sur tapis ou sur machine.</p><ul><li>55 min</li><li>Tous niveaux</li></ul></article>
+      <article class="cls"><div class="cls__v v2" style="--bgc:#dfe4d3;--fg:#5f6f52"><span></span><span></span></div><h3>Vinyasa</h3><p>Un yoga fluide et dynamique, guidé par la respiration.</p><ul><li>60 min</li><li>Intermédiaire</li></ul></article>
+      <article class="cls"><div class="cls__v v3" style="--bgc:#e9dccb;--fg:#a8876b"><span></span><span></span></div><h3>Yin</h3><p>Des postures tenues longtemps pour relâcher en profondeur.</p><ul><li>75 min</li><li>Tous niveaux</li></ul></article>
+      <article class="cls"><div class="cls__v v4" style="--bgc:#f1d3c6;--fg:#b5593c"><span></span><span></span></div><h3>Prénatal</h3><p>Bouger en douceur et en sécurité, à chaque trimestre.</p><ul><li>50 min</li><li>Futures mamans</li></ul></article>
+    </div>
+  </section>
+
+  <section class="sec plan" id="planning">
+    <div class="wrap">
+      <div class="head"><div><span class="kicker" data-reveal>Planning</span><h2 data-split>Choisissez <em>votre moment.</em></h2></div><p data-reveal>Réservation en deux clics, annulation gratuite jusqu'à 6 h avant le cours.</p></div>
+      <div class="bar" data-reveal>
+        <div class="days" id="days"><button class="on" data-d="0">Lun.</button><button data-d="1">Mar.</button><button data-d="2">Mer.</button><button data-d="3">Jeu.</button><button data-d="4">Ven.</button><button data-d="5">Sam.</button></div>
+        <div class="filters" id="filters"><button class="on" data-f="">Tous</button><button data-f="Pilates">Pilates</button><button data-f="Yoga">Yoga</button></div>
+      </div>
+      <div class="slots" id="slots"></div>
+    </div>
+  </section>
+
+  <section class="sec wrap studio" id="studio">
+    <div class="duo" data-scene><div class="arch a" data-parallax="-10"><i></i></div><div class="c" data-parallax="-40"></div><div class="arch b" data-parallax="-22"><i></i></div></div>
+    <div>
+      <span class="kicker" data-reveal>Le studio</span>
+      <h2 data-split>Petit par choix, <em>pas par hasard.</em></h2>
+      <p data-reveal>Douze personnes au maximum, pour que chaque posture soit corrigée et que personne ne se cache au fond. Parquet en chêne, lumière naturelle, vestiaires et tisane offerte après la séance.</p>
+      <div class="nums" data-stagger="0.1"><div><b data-count="12">12</b><span>places par cours</span></div><div><b data-count="38">38</b><span>cours par semaine</span></div><div><b data-count="7">7</b><span>professeurs diplômés</span></div></div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="tarifs" style="padding-top:0">
+    <div class="head"><div><span class="kicker" data-reveal>Tarifs</span><h2 data-split>À votre <em>rythme.</em></h2></div><p data-reveal>Sans frais d'inscription. La première séance est toujours offerte.</p></div>
+    <div class="prices" data-stagger="0.1">
+      <div class="pr"><small>À l'unité</small><b>22 €</b><p>Une séance, quand vous voulez.</p><a href="#planning" class="btn btn--line">Réserver</a></div>
+      <div class="pr pr--hot"><small>Le plus choisi</small><b>180 €</b><p>Carte de 10 séances, valable 6 mois.</p><a href="#planning" class="btn">Choisir la carte</a></div>
+      <div class="pr"><small>Illimité</small><b>95 € <span>/ mois</span></b><p>Tous les cours, sans compter.</p><a href="#planning" class="btn btn--line">S'abonner</a></div>
+    </div>
+  </section>
+
+  <section class="end"><h2 data-split>La première séance<br />est <em>pour nous.</em></h2><a href="#planning" class="btn" data-magnet>Je réserve mon essai</a></section>
+
+  <footer>
+    <div><a href="#top" class="brand">souffle</a>Studio de Pilates &amp; yoga<br />Site d'exemple créé par AS Marketing Agency</div>
+    <div><b>Adresse</b>14 rue des Tilleuls<br />Centre-ville</div>
+    <div><b>Horaires</b>Lun. – ven. · 7 h – 21 h<br />Sam. · 9 h – 13 h</div>
+    <div><b>Contact</b>bonjour@souffle-studio.fr<br />02 00 00 00 00</div>
+  </footer>
+</main>
+
+<a class="demo-tag" href="../../index.html#sites"><i></i><span>Site d'exemple par</span><b>AS Agency</b></a>
+
+<script src="../../assets/gsap.min.js"></script>
+<script src="../../assets/ScrollTrigger.min.js"></script>
+<script src="../../assets/lenis.min.js"></script>
+<script src="../fx.js"></script>
+<script>
+(() => {
+  const nav = document.getElementById("nav");
+  addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 40), { passive: true });
+
+  /* planning */
+  const C = { P: ["Pilates", "Pilates", "55 min"], D: ["Pilates doux", "Pilates", "55 min"], R: ["Pilates Reformer", "Pilates", "50 min"], V: ["Vinyasa", "Yoga", "60 min"], Y: ["Yin", "Yoga", "75 min"], N: ["Prénatal", "Yoga", "50 min"] };
+  const WEEK = [
+    [["07:30", "V", "Inès", 6], ["12:15", "P", "Clara", 2], ["18:30", "D", "Clara", 4], ["19:45", "Y", "Maud", 8]],
+    [["08:00", "R", "Hugo", 3], ["12:15", "V", "Inès", 5], ["17:30", "N", "Maud", 7], ["19:00", "P", "Clara", 1]],
+    [["07:30", "P", "Clara", 5], ["10:00", "N", "Maud", 6], ["18:30", "V", "Inès", 2], ["19:45", "Y", "Maud", 9]],
+    [["08:00", "D", "Hugo", 4], ["12:15", "R", "Hugo", 2], ["18:30", "P", "Clara", 3], ["20:00", "V", "Inès", 7]],
+    [["07:30", "V", "Inès", 8], ["12:15", "P", "Clara", 4], ["17:30", "Y", "Maud", 6], ["18:45", "R", "Hugo", 1]],
+    [["09:00", "P", "Clara", 2], ["10:15", "V", "Inès", 3], ["11:30", "Y", "Maud", 10]],
+  ];
+  const slots = document.getElementById("slots"); let day = 0, filt = "";
+  const draw = (anim) => {
+    slots.innerHTML = WEEK[day].filter((s) => !filt || C[s[1]][1] === filt).map(([t, k, prof, left]) =>
+      `<div class="slot"><time>${t}</time><div><b>${C[k][0]}</b><small>${C[k][1]} · ${C[k][2]}</small></div><span>avec ${prof}</span><em class="${left <= 2 ? "few" : ""}">${left} place${left > 1 ? "s" : ""}</em><button class="btn">Réserver</button></div>`).join("") || `<div class="slot"><div style="grid-column:1/-1;opacity:.6">Aucun cours de ce type ce jour-là.</div></div>`;
+    if (anim && !FX.shot) gsap.fromTo("#slots .slot", { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.06 });
+  };
+  draw();
+  const group = (id, fn) => document.querySelectorAll(`#${id} button`).forEach((b) => b.addEventListener("click", () => { document.querySelector(`#${id} .on`).classList.remove("on"); b.classList.add("on"); fn(b); draw(true); }));
+  group("days", (b) => (day = +b.dataset.d)); group("filters", (b) => (filt = b.dataset.f));
+  slots.addEventListener("click", (e) => { const b = e.target.closest(".btn"); if (!b) return; const on = b.classList.toggle("done"); b.textContent = on ? "Réservé ✓" : "Réserver"; });
+
+  if (FX.shot) return;
+  gsap.from("#h0, #h2, #h3", { autoAlpha: 0, y: 26, duration: 1, stagger: 0.12, delay: 0.4 });
+  gsap.from("#scene .arch", { yPercent: 100, duration: 1.6, stagger: 0.14, ease: "power4.out", delay: 0.15 });
+  gsap.from("#next", { autoAlpha: 0, y: 40, duration: 1, delay: 1.1 });
+  gsap.from(".breath", { autoAlpha: 0, scale: 0.6, duration: 1.2, delay: 0.9 });
+  const br = document.getElementById("breath"); let inh = true;
+  setInterval(() => { inh = !inh; gsap.to(br, { autoAlpha: 0, duration: 0.4, onComplete: () => { br.textContent = inh ? "Inspirez" : "Expirez"; gsap.to(br, { autoAlpha: 1, duration: 0.4 }); } }); }, 4500);
+})();
+</script>
+</body>
+</html>

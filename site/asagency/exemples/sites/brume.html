@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brume — Infusions pétillantes</title>
+<meta name="description" content="Brume, des infusions pétillantes aux plantes et aux fruits. Site e-commerce d'exemple réalisé par AS Marketing Agency." />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../fx.css" />
+<style>
+:root { --bg: #ffe9a8; --can: #f6b400; --can2: #e06b00; --ink: #24190a; --paper: #fffaf0; --serif: "Fraunces", Georgia, serif; --pad: clamp(20px, 5vw, 80px); }
+body { background: var(--paper); color: var(--ink); font: 400 16.5px/1.55 "DM Sans", system-ui, sans-serif; }
+[data-f="yuzu"] { --bg: #ffe9a8; --can: #f6b400; --can2: #e06b00; }
+[data-f="framboise"] { --bg: #ffd0da; --can: #e8315e; --can2: #9c1240; }
+[data-f="menthe"] { --bg: #cdefd6; --can: #1f9d63; --can2: #0c6a3d; }
+[data-f="peche"] { --bg: #ffd9c2; --can: #ff8552; --can2: #c74a17; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1; letter-spacing: -0.02em; word-spacing: 0.06em; }
+h1 em, h2 em { font-style: italic; font-weight: 400; color: var(--can2); transition: color 0.8s; }
+.wrap { max-width: 1400px; margin-inline: auto; padding-inline: var(--pad); }
+.kicker { font: 700 12px/1 "DM Sans"; letter-spacing: 0.16em; text-transform: uppercase; color: var(--can2); transition: color 0.8s; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 26px; border-radius: 99px; background: var(--ink); color: #fff; font: 700 14.5px/1 "DM Sans"; transition: transform 0.25s, background 0.3s; }
+.btn:hover { background: var(--can2); }
+.btn--line { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.btn--line:hover { background: var(--ink); color: #fff; }
+
+/* nav */
+.nav { position: fixed; z-index: 50; top: 14px; left: 50%; transform: translateX(-50%); width: min(1100px, calc(100% - 28px)); display: flex; align-items: center; justify-content: space-between; padding: 10px 12px 10px 24px; border-radius: 99px; background: rgba(255, 250, 240, 0.9); box-shadow: 0 10px 30px -18px rgba(36, 25, 10, 0.5), inset 0 0 0 1px rgba(36, 25, 10, 0.08); }
+.brand { font: 800 26px/1 var(--serif); letter-spacing: -0.04em; }
+.brand i { font-style: normal; color: var(--can2); transition: color 0.8s; }
+.nav ul { display: flex; gap: 30px; font-weight: 500; font-size: 14.5px; }
+.cart { display: inline-flex; align-items: center; gap: 9px; padding: 11px 18px; border-radius: 99px; background: var(--ink); color: #fff; font: 700 13.5px/1 "DM Sans"; }
+.cart b { display: grid; place-items: center; min-width: 22px; height: 22px; border-radius: 99px; background: var(--can); color: var(--ink); font-size: 12px; transition: background 0.8s; }
+@media (max-width: 760px) { .nav ul { display: none; } }
+
+/* hero */
+.hero { position: relative; min-height: 100svh; overflow: hidden; background: var(--bg); transition: background 0.9s cubic-bezier(0.3, 0.7, 0.2, 1); display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 20px; padding: 120px var(--pad) 90px; }
+.hero__txt { position: relative; z-index: 3; max-width: 640px; }
+.hero h1 { margin-top: 22px; font-size: clamp(3rem, 7.6vw, 7.4rem); font-weight: 800; letter-spacing: -0.03em; }
+.hero p { margin-top: 26px; max-width: 40ch; font-size: clamp(1rem, 1.35vw, 1.2rem); opacity: 0.8; }
+.buy { margin-top: 34px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.buy .flav { display: flex; flex-direction: column; gap: 4px; }
+.buy .flav b { font: 600 20px/1.1 var(--serif); }
+.buy .flav span { font-size: 13.5px; opacity: 0.7; }
+.stagecan { position: relative; z-index: 2; height: min(78svh, 720px); display: grid; place-items: center; }
+.halo { position: absolute; width: min(100%, 560px); aspect-ratio: 1; border-radius: 50%; background: var(--can); opacity: 0.35; transition: background 0.9s; }
+.halo::after { content: ""; position: absolute; inset: 14%; border-radius: 50%; border: 2px dashed var(--can2); opacity: 0.6; animation: spin 40s linear infinite; transition: border-color 0.8s; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.can { position: relative; height: 100%; aspect-ratio: 200 / 380; filter: drop-shadow(0 46px 40px rgba(36, 25, 10, 0.3)); will-change: transform; }
+.can svg { width: 100%; height: 100%; overflow: visible; }
+.lab { fill: var(--can); transition: fill 0.8s; } .lab2 { fill: var(--can2); transition: fill 0.8s; }
+.float { position: absolute; z-index: 1; will-change: transform; }
+.float svg { width: 100%; height: 100%; }
+symbol .a { fill: var(--can); transition: fill 0.8s; } symbol .b { fill: var(--can2); transition: fill 0.8s; } symbol .c { fill: var(--paper); }
+.f1 { width: clamp(90px, 13vw, 190px); left: 46%; top: 16%; } .f2 { width: clamp(60px, 8vw, 120px); right: 5%; top: 22%; } .f3 { width: clamp(70px, 10vw, 150px); right: 9%; bottom: 12%; z-index: 4; } .f4 { width: clamp(40px, 5vw, 76px); left: 52%; bottom: 20%; z-index: 4; } .f5 { width: clamp(30px, 3.4vw, 52px); left: 42%; top: 58%; }
+.dots { position: absolute; z-index: 5; left: var(--pad); bottom: 34px; display: flex; gap: 10px; align-items: center; }
+.dots button { display: flex; align-items: center; gap: 9px; padding: 8px 14px 8px 8px; border-radius: 99px; font: 500 13.5px/1 "DM Sans"; background: rgba(255, 250, 240, 0.55); transition: background 0.3s; }
+.dots button i { width: 20px; height: 20px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7); }
+.dots button.on { background: var(--paper); box-shadow: 0 8px 20px -12px rgba(36, 25, 10, 0.6); }
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-top: 110px; padding-bottom: 110px; } .stagecan { height: 54svh; order: -1; } .dots span { display: none; } .dots button { padding: 8px; } .f1 { left: 4%; top: 12%; } .f5, .f4 { display: none; } }
+
+/* gamme */
+.range { padding-block: clamp(80px, 11vw, 150px) clamp(60px, 8vw, 110px); }
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(30px, 5vw, 60px); }
+.head h2 { margin-top: 16px; font-size: clamp(2.3rem, 5.4vw, 4.8rem); font-weight: 800; }
+.head p { max-width: 36ch; opacity: 0.75; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(12px, 1.6vw, 24px); }
+.item { position: relative; border-radius: 30px; padding: 22px 22px 24px; background: var(--bg); overflow: hidden; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.item:hover { transform: translateY(-8px); }
+.item .can { height: clamp(220px, 24vw, 340px); margin: 6px auto 18px; filter: drop-shadow(0 24px 20px rgba(36, 25, 10, 0.25)); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); transform: rotate(-6deg); }
+.item:hover .can { transform: rotate(4deg) scale(1.06); }
+.item h3 { font-size: 1.45rem; }
+.item small { display: block; margin-top: 6px; font-size: 13.5px; opacity: 0.75; }
+.item__foot { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; }
+.item__foot b { font: 600 1.35rem/1 var(--serif); }
+.add { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 22px; line-height: 1; transition: transform 0.3s, background 0.3s; }
+.add:hover { transform: rotate(90deg); background: var(--can2); }
+.tag { position: absolute; top: 18px; left: 18px; z-index: 2; padding: 7px 12px; border-radius: 99px; background: var(--paper); font: 700 11px/1 "DM Sans"; letter-spacing: 0.08em; text-transform: uppercase; }
+@media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .grid { gap: 10px; } .item { padding: 16px; border-radius: 22px; } .item h3 { font-size: 1.1rem; } }
+
+/* dedans */
+.inside { background: var(--ink); color: var(--paper); border-radius: clamp(28px, 4vw, 60px); margin-inline: clamp(8px, 1.4vw, 20px); padding: clamp(60px, 9vw, 130px) 0; overflow: hidden; position: relative; }
+.inside h2 { font-size: clamp(2.2rem, 6vw, 5.6rem); font-weight: 800; max-width: 15ch; }
+.inside h2 em { color: #ffd166; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 50px); margin-top: clamp(40px, 6vw, 80px); }
+.fact { padding-top: 22px; border-top: 1px solid rgba(255, 250, 240, 0.22); }
+.fact b { display: block; font: 800 clamp(3rem, 7vw, 6.4rem)/0.95 var(--serif); letter-spacing: -0.04em; color: #ffd166; white-space: nowrap; }
+.fact p { margin-top: 12px; opacity: 0.75; max-width: 26ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(34px, 5vw, 60px); }
+.chips span { padding: 11px 18px; border-radius: 99px; box-shadow: inset 0 0 0 1.5px rgba(255, 250, 240, 0.28); font-size: 14.5px; }
+.inside .float { opacity: 0.9; } .inside .f6 { width: clamp(120px, 20vw, 300px); right: -4%; top: -6%; --can: #ffd166; --can2: #e06b00; }
+@media (max-width: 760px) { .facts { grid-template-columns: 1fr; } }
+
+/* fabrication */
+.how { padding-block: clamp(80px, 11vw, 150px); }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 30px); counter-reset: s; }
+.stp { position: relative; padding: 30px 28px 34px; border-radius: 30px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(36, 25, 10, 0.1); counter-increment: s; }
+.stp::before { content: "0" counter(s); display: block; font: 400 italic 3.4rem/1 var(--serif); color: var(--c, #e06b00); margin-bottom: 26px; }
+.stp h3 { font-size: 1.6rem; } .stp p { margin-top: 10px; opacity: 0.75; }
+@media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+
+/* box */
+.box { margin-inline: clamp(8px, 1.4vw, 20px); border-radius: clamp(28px, 4vw, 60px); background: #cdefd6; padding: clamp(40px, 6vw, 90px) var(--pad); display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; overflow: hidden; }
+.box h2 { margin-top: 16px; font-size: clamp(2.2rem, 5vw, 4.4rem); font-weight: 800; }
+.box p { margin-top: 18px; max-width: 40ch; opacity: 0.8; }
+.switch { display: inline-flex; margin-top: 26px; padding: 5px; border-radius: 99px; background: rgba(36, 25, 10, 0.08); }
+.switch button { padding: 11px 20px; border-radius: 99px; font: 700 13.5px/1 "DM Sans"; }
+.switch button.on { background: var(--ink); color: #fff; }
+.box__price { display: flex; align-items: baseline; gap: 10px; margin: 26px 0 22px; }
+.box__price b { font: 800 clamp(3rem, 6vw, 5rem)/1 var(--serif); letter-spacing: -0.04em; }
+.trio { position: relative; height: clamp(280px, 34vw, 480px); }
+.trio .can { position: absolute; height: 100%; left: 50%; bottom: -14%; filter: drop-shadow(0 30px 24px rgba(36, 25, 10, 0.28)); }
+.trio .can:nth-child(1) { transform: translateX(-118%) rotate(-14deg) scale(0.86); } .trio .can:nth-child(2) { transform: translateX(-50%); z-index: 2; } .trio .can:nth-child(3) { transform: translateX(18%) rotate(14deg) scale(0.86); }
+@media (max-width: 860px) { .box { grid-template-columns: 1fr; } .trio { order: -1; height: 300px; } }
+
+footer { padding: clamp(60px, 8vw, 110px) var(--pad) 40px; text-align: center; }
+footer h2 { font-size: clamp(3rem, 13vw, 12rem); font-weight: 800; letter-spacing: -0.05em; }
+footer h2 i { font-style: normal; color: #e06b00; }
+.news { display: flex; gap: 8px; justify-content: center; margin: 30px auto 0; max-width: 460px; }
+.news input { flex: 1; min-width: 0; padding: 16px 22px; border-radius: 99px; border: 1.5px solid rgba(36, 25, 10, 0.2); background: #fff; font: inherit; }
+footer small { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: clamp(50px, 7vw, 90px); opacity: 0.65; font-size: 13px; }
+.shot .halo::after { animation: none; }
+</style>
+</head>
+<body data-f="yuzu">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#8d9299" /><stop offset="0.2" stop-color="#e9ecef" /><stop offset="0.36" stop-color="#ffffff" /><stop offset="0.6" stop-color="#c3c8ce" /><stop offset="1" stop-color="#70757c" /></linearGradient>
+    <linearGradient id="shade" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity="0.38" /><stop offset="0.16" stop-color="#000" stop-opacity="0.06" /><stop offset="0.27" stop-color="#fff" stop-opacity="0.42" /><stop offset="0.36" stop-color="#fff" stop-opacity="0.05" /><stop offset="0.7" stop-color="#000" stop-opacity="0.04" /><stop offset="1" stop-color="#000" stop-opacity="0.4" /></linearGradient>
+    <clipPath id="canclip"><path d="M54 8h92l4 10c12 6 20 18 20 34v276c0 16-8 28-20 34l-4 10H54l-4-10c-12-6-20-18-20-34V52c0-16 8-28 20-34z" /></clipPath>
+    <symbol id="can" viewBox="0 0 200 380">
+      <g clip-path="url(#canclip)">
+        <rect x="30" y="0" width="140" height="380" fill="url(#metal)" />
+        <rect class="lab" x="30" y="46" width="140" height="290" />
+        <path class="lab2" d="M30 250c30-22 52 14 78-2s38-26 62-12v100H30z" opacity="0.85" />
+        <circle cx="132" cy="112" r="34" fill="#fff" opacity="0.2" /><circle cx="132" cy="112" r="24" fill="none" stroke="#fff" stroke-width="2" opacity="0.7" /><path d="M132 88v48M108 112h48M115 95l34 34M149 95l-34 34" stroke="#fff" stroke-width="2" opacity="0.7" />
+        <text x="0" y="0" transform="translate(96 302) rotate(-90)" font-family="Fraunces, Georgia, serif" font-weight="800" font-size="62" letter-spacing="-2.5" fill="#fff">brume</text>
+        <text x="100" y="322" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="8.4" letter-spacing="2.2" fill="#fff" opacity="0.92">INFUSION PÉTILLANTE · 33 CL</text>
+        <rect x="30" y="0" width="140" height="380" fill="url(#shade)" />
+        <rect x="30" y="18" width="140" height="3" fill="#000" opacity="0.18" /><rect x="30" y="360" width="140" height="3" fill="#000" opacity="0.2" />
+      </g>
+      <ellipse cx="100" cy="9" rx="46" ry="5" fill="#d7dbe0" stroke="#8d9299" stroke-width="1.5" />
+    </symbol>
+    <symbol id="slice" viewBox="0 0 100 100"><circle class="b" cx="50" cy="50" r="49" /><circle class="c" cx="50" cy="50" r="43" /><circle class="a" cx="50" cy="50" r="39" /><path class="c" d="M50 11v78M11 50h78M22.400 22.400l55.200 55.200M77.600 22.400L22.400 77.600" stroke="#fffaf0" stroke-width="3.4" /><circle class="c" cx="50" cy="50" r="5" /></symbol>
+    <symbol id="leaf" viewBox="0 0 100 60"><path class="b" d="M2 30C22 2 70 -4 98 30C70 64 22 58 2 30Z" /><path d="M8 30h84" stroke="#fffaf0" stroke-width="2.4" opacity="0.7" /></symbol>
+    <symbol id="bub" viewBox="0 0 60 60"><circle class="a" cx="30" cy="30" r="29" opacity="0.55" /><circle cx="21" cy="20" r="7" fill="#fff" opacity="0.7" /></symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <a href="#top" class="brand">brume<i>.</i></a>
+  <ul><li><a href="#gamme">La gamme</a></li><li><a href="#dedans">Dedans</a></li><li><a href="#fabrication">Fabrication</a></li><li><a href="#box">Abonnement</a></li></ul>
+  <a href="#gamme" class="cart">Panier <b id="cartN">0</b></a>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero" data-scene>
+    <div class="hero__txt">
+      <span class="kicker" id="hk">Infusions pétillantes</span>
+      <h1 id="ht">Des bulles,<br />des plantes,<br /><em>et c'est tout.</em></h1>
+      <p id="hp">Infusées à froid, à peine sucrées par le fruit, pétillantes juste comme il faut. Sans sucres ajoutés, sans arômes artificiels.</p>
+      <div class="buy" id="hb">
+        <a href="#gamme" class="btn" data-magnet>Ajouter au panier — <span id="hprice">2,90 €</span></a>
+        <div class="flav"><b id="fname">Yuzu &amp; gingembre</b><span id="fnote">Vif, citronné, un peu piquant</span></div>
+      </div>
+    </div>
+    <div class="stagecan">
+      <span class="halo"></span>
+      <div class="can" id="heroCan"><svg><use href="#can" /></svg></div>
+    </div>
+    <div class="float f1" data-parallax="-50" data-rotate="70"><svg viewBox="0 0 100 100"><use href="#slice" /></svg></div>
+    <div class="float f2" data-parallax="-90" data-rotate="-50"><svg viewBox="0 0 100 60"><use href="#leaf" /></svg></div>
+    <div class="float f3" data-parallax="-130" data-rotate="-90"><svg viewBox="0 0 100 100"><use href="#slice" /></svg></div>
+    <div class="float f4" data-parallax="-160"><svg viewBox="0 0 60 60"><use href="#bub" /></svg></div>
+    <div class="float f5" data-parallax="-70"><svg viewBox="0 0 60 60"><use href="#bub" /></svg></div>
+    <div class="dots" id="dots">
+      <button class="on" data-f="yuzu" style="--c:#f6b400"><i></i><span>Yuzu</span></button>
+      <button data-f="framboise" style="--c:#e8315e"><i></i><span>Framboise</span></button>
+      <button data-f="menthe" style="--c:#1f9d63"><i></i><span>Menthe</span></button>
+      <button data-f="peche" style="--c:#ff8552"><i></i><span>Pêche</span></button>
+    </div>
+  </section>
+
+  <section class="range wrap" id="gamme">
+    <div class="head">
+      <div><span class="kicker" data-reveal>La gamme</span><h2 data-split>Quatre recettes,<br /><em>zéro compromis.</em></h2></div>
+      <p data-reveal>Livraison offerte dès 24 canettes. Expédiées sous 48 h, partout en France.</p>
+    </div>
+    <div class="grid" data-stagger="0.1">
+      <article class="item" data-f="yuzu"><span class="tag">Best-seller</span><div class="can"><svg><use href="#can" /></svg></div><h3>Yuzu &amp; gingembre</h3><small>Vif, citronné, un peu piquant</small><div class="item__foot"><b>2,90 €</b><button class="add" aria-label="Ajouter au panier">+</button></div></article>
+      <article class="item" data-f="framboise"><div class="can"><svg><use href="#can" /></svg></div><h3>Framboise &amp; hibiscus</h3><small>Fruité, floral, acidulé</small><div class="item__foot"><b>2,90 €</b><button class="add" aria-label="Ajouter au panier">+</button></div></article>
+      <article class="item" data-f="menthe"><span class="tag">Nouveau</span><div class="can"><svg><use href="#can" /></svg></div><h3>Menthe &amp; citron vert</h3><small>Frais, herbacé, très désaltérant</small><div class="item__foot"><b>2,90 €</b><button class="add" aria-label="Ajouter au panier">+</button></div></article>
+      <article class="item" data-f="peche"><div class="can"><svg><use href="#can" /></svg></div><h3>Pêche &amp; thé blanc</h3><small>Doux, rond, délicat</small><div class="item__foot"><b>2,90 €</b><button class="add" aria-label="Ajouter au panier">+</button></div></article>
+    </div>
+  </section>
+
+  <section class="inside" id="dedans" data-scene>
+    <div class="float f6" data-rotate="120"><svg viewBox="0 0 100 100"><use href="#slice" /></svg></div>
+    <div class="wrap">
+      <span class="kicker" data-reveal style="color:#ffd166">Dedans</span>
+      <h2 data-split style="margin-top:18px">Lisez l'étiquette. <em>Elle est courte.</em></h2>
+      <div class="facts" data-stagger="0.12">
+        <div class="fact"><b data-count="0" data-suffix=" g">0 g</b><p>de sucres ajoutés. Le fruit suffit.</p></div>
+        <div class="fact"><b data-count="12" data-suffix=" kcal">12 kcal</b><p>par canette, soit dix fois moins qu'un soda.</p></div>
+        <div class="fact"><b data-count="100" data-suffix=" %">100 %</b><p>de plantes et de fruits, infusés à froid.</p></div>
+      </div>
+      <div class="chips" data-stagger="0.05"><span>Eau de source</span><span>Jus de yuzu</span><span>Gingembre frais</span><span>Fleurs d'hibiscus</span><span>Menthe poivrée</span><span>Thé blanc</span><span>Fines bulles</span><span>Rien d'autre</span></div>
+    </div>
+  </section>
+
+  <section class="how wrap" id="fabrication">
+    <div class="head"><div><span class="kicker" data-reveal>Fabrication</span><h2 data-split>Lentement,<br /><em>mais sûrement.</em></h2></div><p data-reveal>Chaque lot est préparé dans notre atelier, par petites cuvées.</p></div>
+    <div class="steps" data-stagger="0.12">
+      <div class="stp" style="--c:#e06b00"><h3>Infusé à froid</h3><p>Douze heures dans une eau fraîche, pour garder le goût sans l'amertume.</p></div>
+      <div class="stp" style="--c:#e8315e"><h3>Pétillé doucement</h3><p>Des bulles fines, ajoutées au dernier moment. Ça pique à peine.</p></div>
+      <div class="stp" style="--c:#1f9d63"><h3>Mis en canette</h3><p>En aluminium recyclable à l'infini, et bien plus léger que le verre.</p></div>
+    </div>
+  </section>
+
+  <section class="box" id="box">
+    <div>
+      <span class="kicker" data-reveal style="color:#0c6a3d">Abonnement</span>
+      <h2 data-split>La box du mois, <em style="color:#0c6a3d">chez vous.</em></h2>
+      <p data-reveal>Vos recettes préférées, plus une édition limitée chaque mois. Sans engagement, modifiable à tout moment.</p>
+      <div class="switch" id="switch" data-reveal><button class="on" data-p="29">12 canettes</button><button data-p="54">24 canettes</button></div>
+      <div class="box__price" data-reveal><b id="boxP">29 €</b><span>par mois, livraison incluse</span></div>
+      <a href="#" class="btn" data-magnet data-reveal>Je m'abonne</a>
+    </div>
+    <div class="trio" data-reveal="scale">
+      <div class="can" data-f="framboise"><svg><use href="#can" /></svg></div>
+      <div class="can" data-f="yuzu"><svg><use href="#can" /></svg></div>
+      <div class="can" data-f="menthe"><svg><use href="#can" /></svg></div>
+    </div>
+  </section>
+
+  <footer>
+    <h2 data-split>brume<i>.</i></h2>
+    <form class="news" onsubmit="return false"><input type="email" placeholder="Votre e-mail" aria-label="E-mail" /><button class="btn">Recevoir −10 %</button></form>
+    <small><span>© 2026 Brume · Infusions pétillantes</span><span>Livraison · Retours · Contact</span><span>Site d'exemple créé par AS Marketing Agency</span></small>
+  </footer>
+</main>
+
+<a class="demo-tag" href="../../index.html#sites"><i></i><span>Site d'exemple par</span><b>AS Agency</b></a>
+
+<script src="../../assets/gsap.min.js"></script>
+<script src="../../assets/ScrollTrigger.min.js"></script>
+<script src="../../assets/lenis.min.js"></script>
+<script src="../fx.js"></script>
+<script>
+(() => {
+  const F = { yuzu: ["Yuzu & gingembre", "Vif, citronné, un peu piquant"], framboise: ["Framboise & hibiscus", "Fruité, floral, acidulé"], menthe: ["Menthe & citron vert", "Frais, herbacé, très désaltérant"], peche: ["Pêche & thé blanc", "Doux, rond, délicat"] };
+  const order = Object.keys(F), body = document.body, can = document.getElementById("heroCan");
+  const fname = document.getElementById("fname"), fnote = document.getElementById("fnote");
+  let cur = 0, timer;
+  const set = (k, user) => {
+    cur = order.indexOf(k); body.dataset.f = k;
+    document.querySelectorAll("#dots button").forEach((b) => b.classList.toggle("on", b.dataset.f === k));
+    fname.textContent = F[k][0]; fnote.textContent = F[k][1];
+    if (!FX.shot) {
+      gsap.fromTo(can, { rotation: -26, scale: 0.9 }, { rotation: -8, scale: 1, duration: 1.1, ease: "elastic.out(1, 0.6)" });
+      gsap.fromTo([fname, fnote], { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.5, stagger: 0.06 });
+    }
+    if (user) { clearInterval(timer); }
+  };
+  document.querySelectorAll("#dots button").forEach((b) => b.addEventListener("click", () => set(b.dataset.f, true)));
+
+  /* panier */
+  let n = 0; const cartN = document.getElementById("cartN");
+  document.querySelectorAll(".add").forEach((b) => b.addEventListener("click", () => {
+    cartN.textContent = ++n;
+    if (!FX.shot) { gsap.fromTo(cartN, { scale: 1.7 }, { scale: 1, duration: 0.5, ease: "back.out(3)" }); gsap.fromTo(b.closest(".item").querySelector(".can"), { y: -18 }, { y: 0, duration: 0.6, ease: "bounce.out" }); }
+  }));
+
+  /* abonnement */
+  document.querySelectorAll("#switch button").forEach((b) => b.addEventListener("click", () => {
+    document.querySelector("#switch .on").classList.remove("on"); b.classList.add("on");
+    document.getElementById("boxP").textContent = b.dataset.p + " €";
+  }));
+
+  gsap.set(can, { rotation: -8 });
+  if (FX.shot) return;
+
+  gsap.timeline({ defaults: { ease: "power4.out" } })
+    .from(can, { yPercent: 60, rotation: 20, autoAlpha: 0, duration: 1.5 }, 0.1)
+    .from(".halo", { scale: 0.4, autoAlpha: 0, duration: 1.4 }, 0.1)
+    .from(".hero .float", { scale: 0, autoAlpha: 0, duration: 1, stagger: 0.08, ease: "back.out(1.6)" }, 0.5)
+    .from("#hk, #ht, #hp, #hb, #dots", { y: 40, autoAlpha: 0, duration: 1, stagger: 0.09 }, 0.3);
+  gsap.to(can, { y: -16, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: -1 });
+  gsap.to(".stagecan", { yPercent: 14, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 0.5 } });
+  timer = setInterval(() => set(order[(cur + 1) % order.length]), 4200);
+  ScrollTrigger.create({ trigger: "#hero", start: "bottom 60%", onEnter: () => clearInterval(timer) });
+})();
+</script>
+</body>
+</html>
